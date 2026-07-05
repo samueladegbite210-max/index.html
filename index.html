@@ -8,24 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="bg-gray-50 dark:bg-gray-950 min-h-screen">
-    <div id="login-screen" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl text-center max-w-sm w-full">
-            <div class="text-6xl mb-6">🧠</div>
-            <h1 class="text-4xl font-bold mb-2">LifeAI</h1>
-            <p class="text-gray-600 mb-8">Welcome! Enter your name to start</p>
-            <input id="username" type="text" placeholder="Your name" class="w-full p-4 rounded-2xl border mb-6 text-center text-xl">
-            <button onclick="startApp()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl text-lg">Start Using LifeAI</button>
-        </div>
-    </div>
-
-    <div class="max-w-2xl mx-auto p-4 hidden" id="main-app">
+    <div class="max-w-2xl mx-auto p-4">
         <header class="bg-emerald-700 p-6 rounded-3xl text-white mb-6">
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-brain text-4xl"></i>
                     <div>
                         <h1 class="text-3xl font-bold">LifeAI</h1>
-                        <p id="user-greeting" class="text-emerald-100"></p>
+                        <p>Global AI Life Assistant</p>
                     </div>
                 </div>
                 <button onclick="toggleDark()" class="text-3xl">🌙</button>
@@ -35,24 +25,20 @@
         <div class="flex border-b mb-6">
             <button onclick="switchTab(0)" class="flex-1 py-4 tab-active" id="tab0">Tasks</button>
             <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Calendar</button>
-            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Premium</button>
+            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Report</button>
+            <button onclick="switchTab(3)" class="flex-1 py-4" id="tab3">More</button>
         </div>
 
         <div id="content"></div>
     </div>
 
     <script>
-        let currentUser = "";
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let streak = parseInt(localStorage.getItem('streak')) || 7;
 
-        function startApp() {
-            const name = document.getElementById('username').value.trim();
-            if (name) {
-                currentUser = name;
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('main-app').classList.remove('hidden');
-                document.getElementById('user-greeting').textContent = `Welcome, ${name}!`;
-                switchTab(0);
-            }
+        function saveData() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem('streak', streak);
         }
 
         function switchTab(n) {
@@ -65,51 +51,68 @@
                 `;
                 renderTasks();
             } else if (n === 1) {
-                content.innerHTML = `<p class="text-center py-12 text-gray-500">📅 Simple Calendar (Coming Soon)</p>`;
+                content.innerHTML = `<p class="text-center py-12 text-gray-500">📅 Calendar View (Demo)</p>`;
+            } else if (n === 2) {
+                content.innerHTML = `<div class="bg-white dark:bg-gray-800 p-8 rounded-3xl text-center"><h2 class="text-2xl font-bold">Monthly Summary</h2><p>Tasks completed this month: ${tasks.filter(t=>t.done).length}</p></div>`;
             } else {
                 content.innerHTML = `
-                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center">
-                        <h2 class="text-2xl font-bold mb-4">Go Premium</h2>
-                        <p class="mb-8">Unlock unlimited tasks, voice input, charts, and more.</p>
-                        <button onclick="subscribe()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl text-lg">Subscribe - ₦1,500/month</button>
-                    </div>
+                    <button onclick="exportData()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl mb-4">Export Data</button>
+                    <button onclick="alert('Share achievements coming soon!')" class="w-full py-4 bg-blue-600 text-white rounded-3xl">Share Achievements</button>
                 `;
             }
         }
 
-        let tasks = [];
-
         function renderTasks() {
             const container = document.getElementById('task-list');
             container.innerHTML = tasks.map((t,i) => `
-                <div class="bg-white dark:bg-gray-800 p-5 rounded-3xl flex gap-4">
-                    <input type="checkbox" onchange="toggleTask(${i})">
-                    <span>${t}</span>
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-3xl flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask(${i})">
+                        <span class="${t.done?'line-through text-gray-400':''}">${t.text}</span>
+                    </div>
+                    <button onclick="deleteTask(${i})" class="text-red-500">🗑</button>
                 </div>
             `).join('');
         }
 
-        function addTaskVoice() {
-            const text = prompt("Speak your task (type here):");
-            if(text) {
-                tasks.push(text);
+        function toggleTask(i) {
+            tasks[i].done = !tasks[i].done;
+            saveData();
+            renderTasks();
+        }
+
+        function deleteTask(i) {
+            if(confirm("Delete this task?")) {
+                tasks.splice(i,1);
+                saveData();
                 renderTasks();
             }
         }
 
-        function toggleTask(i) {
-            alert("Task completed!");
+        function addTaskVoice() {
+            const text = prompt("Speak your task:");
+            if(text) {
+                tasks.push({text, done:false});
+                saveData();
+                renderTasks();
+            }
+        }
+
+        function exportData() {
+            const dataStr = JSON.stringify({tasks, streak}, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            const exportFileDefaultName = 'lifeai_backup.json';
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
         }
 
         function toggleDark() {
             document.documentElement.classList.toggle('dark');
         }
 
-        function subscribe() {
-            alert("Thank you! Premium activated (Demo).");
-        }
-
-        window.onload = () => {};
+        window.onload = () => switchTab(0);
     </script>
 </body>
 </html>
