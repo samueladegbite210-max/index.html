@@ -5,46 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LifeAI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-gray-50 p-6">
-    <div class="max-w-md mx-auto">
-        <h1 class="text-4xl font-bold text-green-700 mb-8">LifeAI</h1>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen">
+    <div id="login-screen" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl text-center max-w-sm w-full">
+            <div class="text-6xl mb-6">🧠</div>
+            <h1 class="text-4xl font-bold mb-2">LifeAI</h1>
+            <p class="text-gray-600 mb-8">Welcome! Enter your name to start</p>
+            <input id="username" type="text" placeholder="Your name" class="w-full p-4 rounded-2xl border mb-6 text-center text-xl">
+            <button onclick="startApp()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl text-lg">Start Using LifeAI</button>
+        </div>
+    </div>
 
-        <button onclick="addTask()" class="w-full py-4 bg-green-600 text-white rounded-3xl mb-8">+ New Task</button>
+    <div class="max-w-2xl mx-auto p-4 hidden" id="main-app">
+        <header class="bg-emerald-700 p-6 rounded-3xl text-white mb-6">
+            <div class="flex justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-brain text-4xl"></i>
+                    <div>
+                        <h1 class="text-3xl font-bold">LifeAI</h1>
+                        <p id="user-greeting" class="text-emerald-100"></p>
+                    </div>
+                </div>
+                <button onclick="toggleDark()" class="text-3xl">🌙</button>
+            </div>
+        </header>
 
-        <div id="task-list" class="space-y-4"></div>
+        <div class="flex border-b mb-6">
+            <button onclick="switchTab(0)" class="flex-1 py-4 tab-active" id="tab0">Tasks</button>
+            <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Calendar</button>
+            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Premium</button>
+        </div>
+
+        <div id="content"></div>
     </div>
 
     <script>
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let currentUser = "";
+
+        function startApp() {
+            const name = document.getElementById('username').value.trim();
+            if (name) {
+                currentUser = name;
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+                document.getElementById('user-greeting').textContent = `Welcome, ${name}!`;
+                switchTab(0);
+            }
+        }
+
+        function switchTab(n) {
+            document.querySelectorAll('button').forEach((b,i) => b.classList.toggle('tab-active', i===n));
+            const content = document.getElementById('content');
+            if (n === 0) {
+                content.innerHTML = `
+                    <button onclick="addTaskVoice()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl mb-6">🎤 Speak to Add Task</button>
+                    <div id="task-list" class="space-y-3"></div>
+                `;
+                renderTasks();
+            } else if (n === 1) {
+                content.innerHTML = `<p class="text-center py-12 text-gray-500">📅 Simple Calendar (Coming Soon)</p>`;
+            } else {
+                content.innerHTML = `
+                    <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center">
+                        <h2 class="text-2xl font-bold mb-4">Go Premium</h2>
+                        <p class="mb-8">Unlock unlimited tasks, voice input, charts, and more.</p>
+                        <button onclick="subscribe()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl text-lg">Subscribe - ₦1,500/month</button>
+                    </div>
+                `;
+            }
+        }
+
+        let tasks = [];
 
         function renderTasks() {
             const container = document.getElementById('task-list');
-            container.innerHTML = tasks.map((task, i) => `
-                <div class="bg-white p-5 rounded-3xl flex items-center gap-4">
-                    <input type="checkbox" ${task.done ? 'checked' : ''} onchange="toggleTask(${i})" class="w-6 h-6">
-                    <span class="${task.done ? 'line-through text-gray-400' : ''}">${task.text}</span>
+            container.innerHTML = tasks.map((t,i) => `
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-3xl flex gap-4">
+                    <input type="checkbox" onchange="toggleTask(${i})">
+                    <span>${t}</span>
                 </div>
             `).join('');
         }
 
-        function addTask() {
-            const text = prompt("What is the new task?");
-            if (text && text.trim() !== "") {
-                tasks.push({text: text.trim(), done: false});
-                localStorage.setItem('tasks', JSON.stringify(tasks));
+        function addTaskVoice() {
+            const text = prompt("Speak your task (type here):");
+            if(text) {
+                tasks.push(text);
                 renderTasks();
             }
         }
 
         function toggleTask(i) {
-            tasks[i].done = !tasks[i].done;
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
+            alert("Task completed!");
         }
 
-        // Initial render
-        renderTasks();
+        function toggleDark() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function subscribe() {
+            alert("Thank you! Premium activated (Demo).");
+        }
+
+        window.onload = () => {};
     </script>
 </body>
 </html>
