@@ -6,16 +6,25 @@
     <title>LifeAI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="manifest" href="data:application/manifest+json,{
+        &quot;name&quot;:&quot;LifeAI&quot;,
+        &quot;short_name&quot;:&quot;LifeAI&quot;,
+        &quot;start_url&quot;:&quot;.&quot;,
+        &quot;display&quot;:&quot;standalone&quot;,
+        &quot;background_color&quot;:&quot;#10b981&quot;,
+        &quot;theme_color&quot;:&quot;#10b981&quot;,
+        &quot;icons&quot;:[{&quot;src&quot;:&quot;https://cdn-icons-png.flaticon.com/512/10473/10473455.png&quot;,&quot;sizes&quot;:&quot;512x512&quot;,&quot;type&quot;:&quot;image/png&quot;}]
+    }">
 </head>
 <body class="bg-gray-50 dark:bg-gray-950 min-h-screen">
     <div class="max-w-2xl mx-auto p-4">
         <header class="bg-gradient-to-r from-emerald-700 to-teal-600 p-6 rounded-3xl text-white mb-8 shadow-xl">
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-3xl">🧠</div>
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-4xl">🧠</div>
                     <div>
                         <h1 class="text-4xl font-bold">LifeAI</h1>
-                        <p class="text-emerald-100">Global AI Life Assistant</p>
+                        <p class="text-emerald-100 text-sm">Global AI Life Assistant</p>
                     </div>
                 </div>
                 <button onclick="toggleDark()" class="text-3xl">🌙</button>
@@ -24,11 +33,16 @@
 
         <div class="flex border-b mb-8">
             <button onclick="switchTab(0)" class="flex-1 py-4 tab-active" id="tab0">Tasks</button>
-            <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Progress</button>
-            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Report</button>
+            <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Budget</button>
+            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Goals</button>
         </div>
 
         <div id="content"></div>
+
+        <!-- Share Button -->
+        <button onclick="shareApp()" class="fixed bottom-6 right-6 bg-emerald-600 text-white w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center text-2xl">
+            <i class="fas fa-share-alt"></i>
+        </button>
     </div>
 
     <script>
@@ -43,16 +57,14 @@
             const content = document.getElementById('content');
             if (n === 0) {
                 content.innerHTML = `
-                    <button onclick="startVoice()" class="w-full py-5 bg-emerald-600 text-white rounded-3xl mb-8 flex items-center justify-center gap-3 text-lg">
-                        <i class="fas fa-microphone"></i> Speak to Add Task
-                    </button>
+                    <button onclick="addTask()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl mb-6">+ New Task</button>
                     <div id="task-list" class="space-y-3"></div>
                 `;
                 renderTasks();
             } else if (n === 1) {
-                content.innerHTML = `<div class="bg-white dark:bg-gray-800 p-8 rounded-3xl text-center"><div class="text-6xl mb-4">📊</div><p class="text-xl">Progress Charts</p></div>`;
+                content.innerHTML = `<p class="text-center py-12 text-gray-500">Budget coming soon</p>`;
             } else {
-                content.innerHTML = `<div class="bg-white dark:bg-gray-800 p-8 rounded-3xl text-center"><h2 class="text-2xl font-bold">Monthly Summary</h2><p>${tasks.filter(t=>t.done).length} tasks completed</p></div>`;
+                content.innerHTML = `<p class="text-center py-12 text-gray-500">Goals coming soon</p>`;
             }
         }
 
@@ -83,24 +95,24 @@
             }
         }
 
-        function startVoice() {
-            if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-                const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-                recognition.onresult = (event) => {
-                    const text = event.results[0][0].transcript;
-                    tasks.push({text, done:false});
-                    saveTasks();
-                    renderTasks();
-                    alert("Task added: " + text);
-                };
-                recognition.start();
+        function addTask() {
+            const text = prompt("New task?");
+            if(text) {
+                tasks.push({text, done:false});
+                saveTasks();
+                renderTasks();
+            }
+        }
+
+        function shareApp() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'LifeAI - AI Life Assistant',
+                    text: 'Download this free AI Life Assistant app!',
+                    url: window.location.href
+                });
             } else {
-                const text = prompt("Type your task:");
-                if(text) {
-                    tasks.push({text, done:false});
-                    saveTasks();
-                    renderTasks();
-                }
+                alert('Share this link: ' + window.location.href);
             }
         }
 
