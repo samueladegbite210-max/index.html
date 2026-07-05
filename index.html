@@ -22,45 +22,88 @@
             </div>
         </header>
 
-        <div class="bg-emerald-600 text-white p-6 rounded-3xl mb-8">
-            <p id="ai-text" class="italic">"Speak to add tasks now!"</p>
-        </div>
-
         <div class="flex border-b mb-6">
             <button onclick="switchTab(0)" class="flex-1 py-4 tab-active" id="tab0">Tasks</button>
-            <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Streak</button>
-            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Settings</button>
+            <button onclick="switchTab(1)" class="flex-1 py-4" id="tab1">Budget</button>
+            <button onclick="switchTab(2)" class="flex-1 py-4" id="tab2">Goals</button>
+            <button onclick="switchTab(3)" class="flex-1 py-4" id="tab3">Settings</button>
         </div>
 
         <div id="content"></div>
     </div>
 
     <script>
-        let streak = parseInt(localStorage.getItem('streak')) || 7;
+        let data = JSON.parse(localStorage.getItem('lifeai')) || {
+            tasks: [],
+            expenses: [],
+            goals: [{name:"Emergency Fund", target:1000000, current:450000}],
+            streak: 7
+        };
+
+        function saveData() { localStorage.setItem('lifeai', JSON.stringify(data)); }
 
         function switchTab(n) {
             document.querySelectorAll('button').forEach((b,i) => b.classList.toggle('tab-active', i===n));
             const content = document.getElementById('content');
             if (n === 0) {
-                content.innerHTML = `<button onclick="addTaskVoice()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl">🎤 Speak to Add Task</button>`;
+                content.innerHTML = `<button onclick="addTask()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl mb-6">+ New Task</button><div id="tasklist"></div>`;
+                renderTasks();
             } else if (n === 1) {
-                content.innerHTML = `<div class="text-center py-12"><div class="text-6xl">🔥</div><div class="text-5xl font-bold">${streak}</div><p>Day Streak</p></div>`;
+                content.innerHTML = `<button onclick="addExpense()" class="w-full py-4 bg-emerald-600 text-white rounded-3xl">+ Add Expense</button><div id="explist" class="mt-6"></div>`;
+                renderExpenses();
+            } else if (n === 2) {
+                content.innerHTML = `<div id="goallist"></div>`;
+                renderGoals();
             } else {
-                content.innerHTML = `<button onclick="resetData()" class="w-full py-4 bg-red-600 text-white rounded-3xl">Reset All Data</button>`;
+                content.innerHTML = `<button onclick="alert('Settings: Name, Reset Data, Export coming soon!')">Open Settings</button>`;
             }
         }
 
-        function addTaskVoice() {
-            const text = prompt("What task do you want to add? (Voice in full app)");
-            if(text) alert("Task added: " + text);
+        function renderTasks() {
+            document.getElementById('tasklist').innerHTML = data.tasks.map((t,i) => `
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-3xl flex gap-4 mb-3">
+                    <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask(${i})">
+                    <span class="${t.done?'line-through':''}">${t.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleTask(i) {
+            data.tasks[i].done = !data.tasks[i].done;
+            saveData();
+            renderTasks();
+        }
+
+        function addTask() {
+            const text = prompt("New task?");
+            if(text) { data.tasks.push({text, done:false}); saveData(); renderTasks(); }
+        }
+
+        function addExpense() {
+            const amt = prompt("Amount?");
+            if(amt) { data.expenses.push({amount:parseFloat(amt), date:new Date().toLocaleDateString()}); saveData(); renderExpenses(); }
+        }
+
+        function renderExpenses() {
+            document.getElementById('explist').innerHTML = data.expenses.map(e => `
+                <div class="flex justify-between py-3 border-b">
+                    <span>${e.date}</span>
+                    <span class="font-medium">- ₦${e.amount}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderGoals() {
+            document.getElementById('goallist').innerHTML = data.goals.map(g => `
+                <div class="bg-white dark:bg-gray-800 p-5 rounded-3xl mb-4">
+                    <div class="flex justify-between mb-2"><span>${g.name}</span><span>${Math.round(g.current/g.target*100)}%</span></div>
+                    <div class="h-2 bg-gray-200 rounded-full"><div class="h-2 bg-emerald-500 rounded-full" style="width:${g.current/g.target*100}%"></div></div>
+                </div>
+            `).join('');
         }
 
         function toggleDark() {
             document.documentElement.classList.toggle('dark');
-        }
-
-        function resetData() {
-            if(confirm("Reset all data?")) localStorage.clear();
         }
 
         window.onload = () => switchTab(0);
