@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar - AI Life Assistant</title>
 
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0B0F1A;
+    color:white;
+}
+
+header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.container{
+    padding:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+.event{
+    background:#1F2937;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+📅 Calendar
+</header>
+
+<div class="container">
+
+<input
+type="date"
+id="date">
+
+<input
+type="text"
+id="event"
+placeholder="Enter an event">
+
+<button onclick="saveEvent()">
+Save Event
+</button>
+
+<div id="events"></div>
+
+</div>
+
+<script>
+
+const eventsDiv=document.getElementById("events");
+
+function loadEvents(){
+
+eventsDiv.innerHTML=localStorage.getItem("events") || "";
+
+}
+
+loadEvents();
+
+function saveEvent(){
+
+const date=document.getElementById("date").value;
+
+const event=document.getElementById("event").value;
+
+if(date==="" || event==="") return;
+
+eventsDiv.innerHTML += `
+<div class="event">
+📅 <b>${date}</b><br>
+${event}
+</div>
+`;
+
+localStorage.setItem("events",eventsDiv.innerHTML);
+
+document.getElementById("event").value="";
+
+}
+
+</script>
+
+</body>
+</html>
