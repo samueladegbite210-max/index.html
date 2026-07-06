@@ -97,32 +97,41 @@ Send
 </div>
 
 <script>
-
 function sendMessage(){
 
-const input=document.getElementById("message");
+const input = document.getElementById("message");
+const chat = document.getElementById("chat");
 
-if(input.value==="") return;
+if(input.value.trim() === "") return;
 
-const chat=document.getElementById("chat");
+const userText = input.value;
 
-chat.innerHTML+=`
+chat.innerHTML += `
 <div class="user">
-${input.value}
+${userText}
 </div>
 `;
 
-input.value="";
+input.value = "";
 
-chat.scrollTop=chat.scrollHeight;
-setTimeout(() => {
-    const aiMessage = document.createElement("div");
-    aiMessage.className = "ai-message";
-    aiMessage.innerHTML = "🤖 I'm still being built. Soon I'll answer like ChatGPT!";
+chat.scrollTop = chat.scrollHeight;
 
-    chat.appendChild(aiMessage);
-    chat.scrollTop = chat.scrollHeight;
-}, 1000);
+setTimeout(function(){
+
+chat.innerHTML += `
+<div class="ai">
+🤖 You said: "${userText}"<br><br>
+I'm still under development. Soon I'll become a real AI assistant!
+</div>
+`;
+
+chat.scrollTop = chat.scrollHeight;
+
+},1000);
+
+
+
+
 }
 
 </script>
