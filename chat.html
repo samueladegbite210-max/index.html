@@ -3,82 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Chat</title>
+<title>AI Life Assistant - Chat</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:Arial,sans-serif;
+}
+
+body{
     background:#0B0F1A;
     color:white;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
 }
 
 .header{
     background:#111827;
-    padding:20px;
+    padding:18px;
     text-align:center;
     font-size:24px;
     font-weight:bold;
 }
 
 .chat{
-    height:60vh;
-    overflow:auto;
+    flex:1;
+    overflow-y:auto;
     padding:20px;
+}
+
+.message{
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:15px;
+    max-width:80%;
+    word-wrap:break-word;
 }
 
 .ai{
     background:#1F2937;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:15px;
 }
 
 .user{
-    background:#3B82F6;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:15px;
+    background:#2563EB;
+    margin-left:auto;
     text-align:right;
 }
 
 .bottom{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#111827;
     display:flex;
-    padding:15px;
     gap:10px;
+    padding:15px;
+    background:#111827;
 }
 
-input{
+.bottom input{
     flex:1;
     padding:12px;
     border:none;
     border-radius:10px;
+    outline:none;
 }
 
-button{
-    background:#3B82F6;
+.bottom button{
+    background:#2563EB;
     color:white;
     border:none;
+    padding:12px 20px;
     border-radius:10px;
-    padding:12px 18px;
+    cursor:pointer;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="header">
-🤖 AI Assistant
+🤖 AI Life Assistant
 </div>
 
 <div class="chat" id="chat">
 
-<div class="ai">
-Hello Samuel! 👋 How can I help you today?
+<div class="message ai">
+👋 Hello Samuel! How can I help you today?
 </div>
 
 </div>
@@ -86,6 +96,7 @@ Hello Samuel! 👋 How can I help you today?
 <div class="bottom">
 
 <input
+type="text"
 id="message"
 placeholder="Ask me anything..."
 >
@@ -97,40 +108,43 @@ Send
 </div>
 
 <script>
+
 function sendMessage(){
 
-const input = document.getElementById("message");
-const chat = document.getElementById("chat");
+const input=document.getElementById("message");
+const chat=document.getElementById("chat");
 
-if(input.value.trim() === "") return;
+const text=input.value.trim();
 
-const userText = input.value;
+if(text==="") return;
 
 chat.innerHTML += `
-<div class="user">
-${userText}
+<div class="message user">
+${text}
 </div>
 `;
 
-input.value = "";
+input.value="";
 
-chat.scrollTop = chat.scrollHeight;
+chat.scrollTop=chat.scrollHeight;
 
 setTimeout(function(){
 
 chat.innerHTML += `
-<div class="ai">
-🤖 You said: "${userText}"<br><br>
-I'm still under development. Soon I'll become a real AI assistant!
+<div class="message ai">
+🤖 You said: "${text}"
+
+<br><br>
+
+I'm still under development.
+
+Soon I'll become a real AI assistant.
 </div>
 `;
 
-chat.scrollTop = chat.scrollHeight;
+chat.scrollTop=chat.scrollHeight;
 
 },1000);
-
-
-
 
 }
 
