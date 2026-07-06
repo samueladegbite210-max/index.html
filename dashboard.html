@@ -105,7 +105,14 @@ font-size:18px;
 <p>Let's make today productive.</p>
 
 <div class="card">
-...
+<div class="card" id="aiTip">
+    <h3>🤖 AI Tip of the Day</h3>
+    <p id="tipText">Loading today's tip...</p>
+</div>
+    <span id="eventCount">0</span>
+    <span id="goalCount">0</span>
+    
+    ...
 </div>
 
 <div class="card">
@@ -273,6 +280,19 @@ document.getElementById("eventCount").textContent =
 
 document.getElementById("eventCount").textContent =
 (localStorage.getItem("events") || "").split('class="event"').length - 1;
+ const tips = [
+    "Complete your hardest task first.",
+    "Take a 5-minute break after every hour of work.",
+    "Review your goals every morning.",
+    "Finish one task before starting another.",
+    "Small daily progress leads to big success.",
+    "Stay organized and plan tomorrow before sleeping."
+];
+
+const today = new Date().getDate();
+
+document.getElementById("tipText").textContent =
+tips[today % tips.length];
 </script>
 </body>
 </html>
