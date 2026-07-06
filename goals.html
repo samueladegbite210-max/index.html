@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goals - AI Life Assistant</title>
 
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0B0F1A;
+    color:white;
+}
+header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+.container{
+    padding:20px;
+}
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+button{
+    width:100%;
+    padding:15px;
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+.goal{
+    background:#1F2937;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🎯 Goals</header>
+
+<div class="container">
+
+<input
+id="goal"
+placeholder="Enter a new goal">
+
+<button onclick="saveGoal()">Add Goal</button>
+
+<div id="goals"></div>
+
+</div>
+
+<script>
+
+const goals=document.getElementById("goals");
+
+goals.innerHTML=localStorage.getItem("goals") || "";
+
+function saveGoal(){
+
+const input=document.getElementById("goal");
+
+if(input.value.trim()==="") return;
+
+goals.innerHTML += `
+<div class="goal">
+🎯 ${input.value}
+</div>
+`;
+
+localStorage.setItem("goals",goals.innerHTML);
+
+input.value="";
+
+}
+
+</script>
+
+</body>
+</html>
