@@ -43,3 +43,11 @@ padding-bottom:90px;
 .header p{
     color:#9CA3AF;
 }
+.card{
+    background:#1D232D;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
