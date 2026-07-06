@@ -1,106 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Chat - AI Life Assistant</title>
+<title>AI Chat</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
-background:#0B0F1A;
-color:white;
-display:flex;
-flex-direction:column;
-height:100vh;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0B0F1A;
+    color:white;
 }
 
-header{
-background:#161B22;
-padding:20px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
+.header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
 }
 
 .chat{
-flex:1;
-padding:20px;
-overflow-y:auto;
-}
-
-.message{
-margin-bottom:20px;
-padding:15px;
-border-radius:15px;
-max-width:80%;
+    height:60vh;
+    overflow:auto;
+    padding:20px;
 }
 
 .ai{
-background:#1D232D;
+    background:#1F2937;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:15px;
 }
 
 .user{
-background:#2563EB;
-margin-left:auto;
+    background:#3B82F6;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:15px;
+    text-align:right;
 }
 
-.input-area{
-display:flex;
-padding:15px;
-background:#161B22;
+.bottom{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#111827;
+    display:flex;
+    padding:15px;
+    gap:10px;
 }
 
 input{
-flex:1;
-padding:15px;
-border:none;
-border-radius:12px;
-font-size:16px;
-outline:none;
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
 }
 
 button{
-margin-left:10px;
-padding:15px 20px;
-background:#2563EB;
-color:white;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
+    background:#3B82F6;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-🤖 AI Life Assistant
-</header>
+<div class="header">
+🤖 AI Assistant
+</div>
 
 <div class="chat" id="chat">
 
-<div class="message ai">
-👋 Hello Samuel! I'm your AI Life Assistant.
-How can I help you today?
+<div class="ai">
+Hello Samuel! 👋 How can I help you today?
 </div>
 
 </div>
 
-<div class="input-area">
+<div class="bottom">
 
 <input
 id="message"
-type="text"
-placeholder="Type a message...">
+placeholder="Ask me anything..."
+>
 
 <button onclick="sendMessage()">
 Send
@@ -112,33 +100,17 @@ Send
 
 function sendMessage(){
 
-let input=document.getElementById("message");
+const input=document.getElementById("message");
 
-let text=input.value.trim();
+if(input.value==="") return;
 
-if(text==="") return;
-
-let chat=document.getElementById("chat");
+const chat=document.getElementById("chat");
 
 chat.innerHTML+=`
-<div class="message user">
-${text}
+<div class="user">
+${input.value}
 </div>
 `;
-
-setTimeout(()=>{
-
-chat.innerHTML+=`
-<div class="message ai">
-I'm still learning 😊
-
-Soon I'll answer your questions using AI.
-</div>
-`;
-
-chat.scrollTop=chat.scrollHeight;
-
-},500);
 
 input.value="";
 
