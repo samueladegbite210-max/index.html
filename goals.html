@@ -94,7 +94,8 @@ button:hover{
 
 <script>
 
-const goals = document.getElementById("goals");
+
+    const goals = document.getElementById("goals");
 
 goals.innerHTML = localStorage.getItem("goals") || "";
 
@@ -105,15 +106,29 @@ function saveGoal(){
     if(input.value.trim() === "") return;
 
     goals.innerHTML += `
-        <div class="goal">
-            🎯 ${input.value}
-        </div>
-    `;
+<div class="goal">
+    🎯 ${input.value}
+
+    <br><br>
+
+    <button onclick="deleteGoal(this)">
+        🗑 Delete
+    </button>
+</div>
+`;
 
     localStorage.setItem("goals", goals.innerHTML);
 
     input.value = "";
     input.focus();
+}
+
+function deleteGoal(button){
+
+    button.parentElement.remove();
+
+    localStorage.setItem("goals", goals.innerHTML);
+
 }
 
 document.getElementById("goal").addEventListener("keypress", function(event){
