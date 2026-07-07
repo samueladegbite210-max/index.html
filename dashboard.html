@@ -1,93 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard - AI Life Assistant</title>
-<link rel="stylesheet" href="style.css">
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-body{
-background:#0B0F1A;
-color:white;
-padding:20px;
-}
-
-.header{
-margin-bottom:25px;
-}
-
-.header h1{
-font-size:30px;
-}
-
-.header p{
-color:#aaa;
-margin-top:5px;
-}
-
-.card{
-background:#161B22;
-padding:20px;
-border-radius:18px;
-margin-bottom:20px;
-}
-
-.card h2{
-margin-bottom:10px;
-}
-
-.button{
-display:block;
-text-decoration:none;
-text-align:center;
-background:#2563EB;
-color:white;
-padding:16px;
-border-radius:14px;
-margin-top:15px;
-font-weight:bold;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:20px;
-}
-
-.box{
-background:#1D232D;
-padding:20px;
-border-radius:15px;
-text-align:center;
-font-size:18px;
-}
-</style>
-</head>
-
-<body>
-
-    <div class="header">
-    <h1>👋 Welcome Back, Samuel</h1>
+<div class="header">
+    <h1 id="welcomeText">👋 Welcome Back</h1>
     <p>Your smart productivity companion</p>
 </div>
-    <div class="card">
+
+<div class="card">
     <h3>📅 Today's Date</h3>
     <p id="todayDate">Loading...</p>
 </div>
-<input
-type="text"
-id="search"
-placeholder="🔍 Search notes, goals, events..."
->
 
+<div class="card">
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search notes, goals, events..."
+    >
 </div>
 
 <div class="card" id="aiTip">
@@ -98,33 +24,79 @@ placeholder="🔍 Search notes, goals, events..."
 <div class="summary">
 
     <div class="card">
-        📅<br>
-        <strong>Today's Events</strong><br>
-        <span id="eventCount">0</span>
+        <h2 id="eventCount">0</h2>
+        <p>📅 Today's Events</p>
     </div>
 
     <div class="card">
-        ✅<br>
-        <strong>Tasks</strong><br>
-        <span id="taskCount">0</span>
+        <h2 id="taskCount">0</h2>
+        <p>✅ Tasks</p>
     </div>
 
     <div class="card">
-        🎯<br>
-        <strong>Goals</strong><br>
-        <span id="goalCount">0</span>
+        <h2 id="goalCount">0</h2>
+        <p>🎯 Goals</p>
     </div>
 
 </div>
 
-    
 <div class="card">
-    <h3>⚡ Quick Actions</h3>
-    <a href="chat.html" class="button">🤖 Ask AI</a>
-<a href="notes.html" class="button">📝 New Note</a>
-<a href="calendar.html" class="button">📅 Add Event</a>
+
+<h3>⚡ Quick Actions</h3>
+
+<a href="chat.html" class="button">
+🤖 Ask AI
+</a>
+
+<a href="notes.html" class="button">
+📝 New Note
+</a>
+
+<a href="calendar.html" class="button">
+📅 Add Event
+</a>
+
 </div>
 
+<div class="card">
+
+<h2>🤖 AI Assistant</h2>
+
+<p>Need help? Open AI Assistant anytime.</p>
+
+<a href="chat.html" class="button">
+Open AI Chat
+</a>
+
+</div>
+
+<div class="card">
+
+<h2>Today's Tasks</h2>
+
+<input
+type="text"
+id="taskInput"
+placeholder="Enter a new task...">
+
+<button onclick="addTask()" class="button">
+Add Task
+</button>
+
+<ul
+id="taskList"
+style="margin-top:20px;list-style:none;padding:0;">
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>Today's Goal</h2>
+
+<p>🎯 Finish AI Life Assistant Version 1.0</p>
+
+</div>
 
 <div class="grid">
 
@@ -161,113 +133,175 @@ placeholder="🔍 Search notes, goals, events..."
 </div>
 
 <div class="navbar">
-    <a href="dashboard.html">🏠<br>Home</a>
-    <a href="chat.html">🤖<br>AI</a>
-    <a href="notes.html">📝<br>Notes</a>
-    <a href="calendar.html">📅<br>Calendar</a>
-    <a href="profile.html">👤<br>Profile</a>
-</div>
 
-<div class="card">
-<h2>🤖 AI Assistant</h2>
-<p>How can I help you today?</p>
-
-<a href="chat.html" class="button">
-Ask AI
+<a href="dashboard.html">
+🏠<br>Home
 </a>
-</div>
 
-<div class="card">
-    <h2>Today's Tasks</h2>
+<a href="chat.html">
+🤖<br>AI
+</a>
 
-    <input
-        type="text"
-        id="taskInput"
-        placeholder="Enter a new task..."
-        style="width:100%;padding:12px;border-radius:10px;border:none;margin-bottom:10px;">
+<a href="notes.html">
+📝<br>Notes
+</a>
 
-    <button onclick="addTask()" class="button">
-        Add Task
-    </button>
+<a href="calendar.html">
+📅<br>Calendar
+</a>
 
-    <ul id="taskList" style="margin-top:20px;list-style:none;padding:0;">
-        <li>✅ Build AI Life Assistant</li>
-    </ul>
-</div>
-
-<div class="card">
-<h2>Today's Goal</h2>
-
-<p>🎯 Finish Version 1.0 Dashboard</p>
+<a href="profile.html">
+👤<br>Profile
+</a>
 
 </div>
 <script>
-function addTask() {
 
-    let input = document.getElementById("taskInput");
-    let task = input.value.trim();
+// ===============================
+// Welcome Message
+// ===============================
 
-    if (task === "") return;
+const username = localStorage.getItem("username") || "Samuel";
 
-    let list = document.getElementById("taskList");
+document.getElementById("welcomeText").textContent =
+"👋 Welcome Back, " + username;
 
-    let item = document.createElement("li");
-    item.innerHTML = "⬜ " + task;
 
-    item.onclick = function () {
-        if (item.innerHTML.startsWith("⬜")) {
-            item.innerHTML = item.innerHTML.replace("⬜", "✅");
-        } else {
-            item.innerHTML = item.innerHTML.replace("✅", "⬜");
-        }
-    };
+// ===============================
+// Today's Date
+// ===============================
 
-    list.appendChild(item);
-
-    input.value = "";
-}function sendMessage() {
-    document.getElementById("goalCount").textContent =
-(localStorage.getItem("goals") || "").split('class="goal"').length - 1;
-
-document.getElementById("eventCount").textContent =
-(localStorage.getItem("events") || "").split('class="event"').length - 1;
-    const input = document.getElementById("userInput");
-    const messages = document.getElementById("messages");
-
-    if (input.value.trim() === "") return;
-
-    const userMessage = document.createElement("div");
-    userMessage.className = "user-message";
-    userMessage.innerHTML = input.value;
-
-    messages.appendChild(userMessage);
-
-    input.value = "";
-
-    messages.scrollTop = messages.scrollHeight;
-}
-    document.getElementById("goalCount").textContent =
-(localStorage.getItem("goals") || "").split('class="goal"').length - 1;
-
-document.getElementById("eventCount").textContent =
-(localStorage.getItem("events") || "").split('class="event"').length - 1;
- const tips = [
-    "Complete your hardest task first.",
-    "Take a 5-minute break after every hour of work.",
-    "Review your goals every morning.",
-    "Finish one task before starting another.",
-    "Small daily progress leads to big success.",
-    "Stay organized and plan tomorrow before sleeping."
-];
 const today = new Date();
 
 document.getElementById("todayDate").textContent =
 today.toDateString();
 
-const day = today.getDate();
+
+// ===============================
+// AI Tip of the Day
+// ===============================
+
+const tips = [
+"Complete your hardest task first.",
+"Take a 5-minute break after every hour of work.",
+"Review your goals every morning.",
+"Finish one task before starting another.",
+"Small daily progress leads to big success.",
+"Stay organized and plan tomorrow before sleeping."
+];
 
 document.getElementById("tipText").textContent =
-tips[day % tips.length];
+tips[today.getDate() % tips.length];
+
+
+// ===============================
+// Dashboard Counters
+// ===============================
+
+document.getElementById("goalCount").textContent =
+(localStorage.getItem("goals") || "")
+.split('class="goal"').length - 1;
+
+document.getElementById("eventCount").textContent =
+(localStorage.getItem("events") || "")
+.split('class="event"').length - 1;
+
+
+// ===============================
+// Tasks
+// ===============================
+
+const taskList = document.getElementById("taskList");
+
+taskList.innerHTML =
+localStorage.getItem("tasks") || "";
+
+updateTaskCount();
+
+function addTask(){
+
+const input =
+document.getElementById("taskInput");
+
+const task =
+input.value.trim();
+
+if(task==="") return;
+
+const item =
+document.createElement("li");
+
+item.innerHTML = "⬜ " + task;
+
+item.style.cursor = "pointer";
+
+item.onclick = function(){
+
+if(item.innerHTML.startsWith("⬜")){
+
+item.innerHTML =
+item.innerHTML.replace("⬜","✅");
+
+}else{
+
+item.innerHTML =
+item.innerHTML.replace("✅","⬜");
+
+}
+
+saveTasks();
+
+};
+
+taskList.appendChild(item);
+
+input.value = "";
+
+saveTasks();
+
+}
+
+function saveTasks(){
+
+localStorage.setItem(
+"tasks",
+taskList.innerHTML
+);
+
+updateTaskCount();
+
+}
+
+function updateTaskCount(){
+
+document.getElementById("taskCount").textContent =
+taskList.children.length;
+
+}
+
+
+// ===============================
+// Search
+// ===============================
+
+document.getElementById("search")
+.addEventListener("keyup",function(){
+
+const value =
+this.value.toLowerCase();
+
+document.querySelectorAll(".box")
+.forEach(function(box){
+
+box.parentElement.style.display =
+box.innerText.toLowerCase().includes(value)
+? "block"
+: "none";
+
+});
+
+});
+
 </script>
 </body>
 </html>
