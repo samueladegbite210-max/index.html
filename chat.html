@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AI Life Assistant - Chat</title>
+
 <link rel="stylesheet" href="style.css">
+
 <style>
 *{
     margin:0;
@@ -18,7 +21,8 @@ body{
     color:white;
     display:flex;
     flex-direction:column;
-    height:100vh;
+    min-height:100vh;
+    padding-bottom:90px;
 }
 
 .header{
@@ -45,6 +49,7 @@ body{
 
 .ai{
     background:#1F2937;
+    margin-right:auto;
 }
 
 .user{
@@ -76,82 +81,87 @@ body{
     border-radius:10px;
     cursor:pointer;
 }
+
+.bottom button:hover{
+    background:#1D4ED8;
+}
 </style>
 
 </head>
-    <div class="navbar">
-    <a href="dashboard.html">🏠<br>Home</a>
-    <a href="chat.html">🤖<br>AI</a>
-    <a href="notes.html">📝<br>Notes</a>
-    <a href="calendar.html">📅<br>Calendar</a>
-    <a href="profile.html">👤<br>Profile</a>
-</div>
+
 <body>
-</html>
+
 <div class="header">
 🤖 AI Life Assistant
 </div>
 
 <div class="chat" id="chat">
 
-<div class="message ai">
-👋 Hello Samuel! How can I help you today?
-</div>
+    <div class="message ai">
+        👋 Hello Samuel! How can I help you today?
+    </div>
 
 </div>
 
 <div class="bottom">
 
-<input
-type="text"
-id="message"
-placeholder="Ask me anything..."
->
+    <input
+        type="text"
+        id="message"
+        placeholder="Ask me anything...">
 
-<button onclick="sendMessage()">
-Send
-</button>
+    <button onclick="sendMessage()">
+        Send
+    </button>
 
+</div>
+
+<div class="navbar">
+    <a href="dashboard.html">🏠<br>Home</a>
+    <a href="chat.html">🤖<br>AI</a>
+    <a href="notes.html">📝<br>Notes</a>
+    <a href="calendar.html">📅<br>Calendar</a>
+    <a href="profile.html">👤<br>Profile</a>
 </div>
 
 <script>
 
 function sendMessage(){
 
-const input=document.getElementById("message");
-const chat=document.getElementById("chat");
+    const input = document.getElementById("message");
+    const chat = document.getElementById("chat");
 
-const text=input.value.trim();
+    const text = input.value.trim();
 
-if(text==="") return;
+    if(text === "") return;
 
-chat.innerHTML += `
-<div class="message user">
-${text}
-</div>
-`;
+    chat.innerHTML += `
+    <div class="message user">
+        ${text}
+    </div>
+    `;
 
-input.value="";
+    input.value = "";
 
-chat.scrollTop=chat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
 
-setTimeout(function(){
+    setTimeout(function(){
 
-chat.innerHTML += `
-<div class="message ai">
-🤖 You said: "${text}"
+        chat.innerHTML += `
+        <div class="message ai">
+            🤖 You said: "${text}"
 
-<br><br>
+            <br><br>
 
-I'm still under development.
+            I'm still under development.
 
-Soon I'll become a real AI assistant.
-</div>
-`;
+            Soon I'll become a real AI assistant.
+        </div>
+        `;
 
-chat.scrollTop=chat.scrollHeight;
+        chat.scrollTop = chat.scrollHeight;
 
-},1000);
+    },1000);
 
 }
 
