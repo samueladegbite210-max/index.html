@@ -106,7 +106,6 @@
     <p>Finish AI Life Assistant Version 1.0</p>
 
 </div>
-
 <div class="card">
 
     <h3>📈 Productivity Score</h3>
@@ -114,6 +113,9 @@
     <h2 id="productivityScore">0%</h2>
 
     <p>Complete more tasks to increase your score.</p>
+
+</div>
+
 <div class="card">
 
     <h3>📈 Daily Progress</h3>
@@ -323,7 +325,6 @@ function updateTaskCount(){
     taskList.children.length;
 
 }
-
 function updateProductivity(){
 
     let completed = 0;
@@ -332,28 +333,37 @@ function updateProductivity(){
 
         if(taskList.children[i].innerHTML.includes("✅")){
             completed++;
-
         }
 
     }
 
     const total = taskList.children.length;
 
-    const score = total === 0
-        ? 0
-        : Math.round((completed / total) * 100);
+    const score =
+    total === 0
+    ? 0
+    : Math.round((completed / total) * 100);
 
-    const productivity = document.getElementById("productivity");
+const productivity =
+document.getElementById("productivityScore");
 
-    if(productivity){
-        productivity.textContent = score + "%";
+    const progressBar =
+    document.getElementById("progressBar");
+
+    const progressText =
+    document.getElementById("progressText");
+
+    if(progressBar){
+        progressBar.style.width = score + "%";
+    }
+
+    if(progressText){
+        progressText.textContent = score + "% Completed";
     }
 
 }
 
 
-
-}
 
 
 // ===============================
