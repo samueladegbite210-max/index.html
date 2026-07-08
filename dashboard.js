@@ -271,3 +271,60 @@ function updateStatistics(){
 }
 
 updateStatistics();
+// ====================================
+// Smart AI Dashboard Assistant
+// ====================================
+
+function updateAIMessage(){
+
+    const taskCount = taskList.children.length;
+
+    const goalCount =
+    (localStorage.getItem("goals") || "")
+    .split('class="goal"').length - 1;
+
+    const eventCount =
+    (localStorage.getItem("events") || "")
+    .split('class="event"').length - 1;
+
+    let message = "";
+
+    if(taskCount === 0){
+
+        message =
+        "📝 You haven't added any tasks today. Start with one small task!";
+
+    }else if(taskCount < 3){
+
+        message =
+        "💪 Nice start! Add a few more tasks to stay productive.";
+
+    }else if(taskCount >= 3){
+
+        message =
+        "🚀 Great job! You're building a productive day.";
+
+    }
+
+    if(goalCount === 0){
+
+        message +=
+        "<br><br>🎯 Don't forget to create a goal.";
+
+    }
+
+    if(eventCount > 0){
+
+        message +=
+        "<br><br>📅 You have " +
+        eventCount +
+        " event(s) scheduled.";
+
+    }
+
+    document.getElementById("aiMessage").innerHTML =
+    message;
+
+}
+
+updateAIMessage();
