@@ -71,7 +71,7 @@ if(taskList){
     updateTaskCount();
 
     updateProductivity();
-
+updateBadge();
 }
 
 function addTask(){
