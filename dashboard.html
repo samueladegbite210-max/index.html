@@ -330,11 +330,9 @@ function updateProductivity(){
     let completed = 0;
 
     for(let i = 0; i < taskList.children.length; i++){
-
         if(taskList.children[i].innerHTML.includes("✅")){
             completed++;
         }
-
     }
 
     const total = taskList.children.length;
@@ -343,47 +341,50 @@ function updateProductivity(){
     total === 0
     ? 0
     : Math.round((completed / total) * 100);
-// Update Productivity Score
-document.getElementById("productivityScore").textContent =
-score + "%";
 
-// Update Progress Bar
-const progressBar = document.getElementById("progressBar");
+    document.getElementById("productivityScore").textContent =
+    score + "%";
 
-if(progressBar){
-    progressBar.style.width = score + "%";
+    const progressBar = document.getElementById("progressBar");
+
+    if(progressBar){
+        progressBar.style.width = score + "%";
+    }
+
+    const progressText = document.getElementById("progressText");
+
+    if(progressText){
+        progressText.textContent =
+        score + "% Completed";
+    }
+
 }
-
-// Update Progress Text
-const progressText = document.getElementById("progressText");
-
-if(progressText){
-    progressText.textContent = score + "% Completed";
-}
-
 
 // ===============================
 // Search
 // ===============================
 
 document.getElementById("search")
-.addEventListener("keyup",function(){
+.addEventListener("keyup", function(){
 
-const value =
-this.value.toLowerCase();
+    const value = this.value.toLowerCase();
 
-document.querySelectorAll(".box")
-.forEach(function(box){
+    document.querySelectorAll(".box").forEach(function(box){
 
-box.parentElement.style.display =
-box.innerText.toLowerCase().includes(value)
-? "block"
-: "none";
+        box.parentElement.style.display =
+        box.innerText.toLowerCase().includes(value)
+        ? "block"
+        : "none";
 
-});
+    });
 
 });
-    function updateClock(){
+
+// ===============================
+// Live Clock
+// ===============================
+
+function updateClock(){
 
     const now = new Date();
 
@@ -391,51 +392,11 @@ box.innerText.toLowerCase().includes(value)
     now.toLocaleTimeString();
 
 }
-   const productivity =
-document.getElementById("productivityScore").textContent =
-score + "%";
-
-document.getElementById("progressBar").style.width =
-score + "%";
-
-document.getElementById("progressText").textContent =
-score + "% Completed";
-
-const progressBar =
-document.getElementById("progressBar");
-
-const progressText =
-document.getElementById("progressText");
-
-if(progressBar){
-    progressBar.style.width = score + "%";
-}
-
-if(progressText){
-    progressText.textContent = score + "% Completed";
-}
- // Update Productivity Score
-document.getElementById("productivityScore").textContent =
-score + "%";
-
-// Update Progress Bar
-const progressBar = document.getElementById("progressBar");
-
-if(progressBar){
-    progressBar.style.width = score + "%";
-}
-
-// Update Progress Text
-const progressText = document.getElementById("progressText");
-
-if(progressText){
-    progressText.textContent = score + "% Completed";
-}       
 
 updateClock();
 
-setInterval(updateClock, 1000);    
-
+setInterval(updateClock, 1000);
+        
 </script>
 
 </body>
