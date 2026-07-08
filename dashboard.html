@@ -309,7 +309,6 @@ document.getElementById("taskCount").textContent =
 taskList.children.length;
 
 }
-
 function updateProductivity(){
 
 let completed = 0;
@@ -322,7 +321,7 @@ completed++;
 
 }
 
-}
+
 
 const total = taskList.children.length;
 
@@ -331,8 +330,6 @@ total===0
 ?0
 :Math.round((completed/total)*100);
 
-document.getElementById("productivityScore").textContent =
-score + "%";
 
 }
 
