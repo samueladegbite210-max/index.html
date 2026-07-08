@@ -100,7 +100,7 @@ function renderTasks() {
 
         item.innerHTML = `
             <span style="cursor:pointer;">
-                ${task.done ? "✅" : "⬜"} ${task.text}
+                ${task.done ? "✅" : "⬜"} ${task.priority} ${task.text}
             </span>
 
             <button onclick="deleteTask(${index})">🗑️</button>
