@@ -68,10 +68,10 @@ if(taskList){
 
     restoreTaskEvents();
 
-    updateTaskCount();
-
-    updateProductivity();
+updateTaskCount();
+updateProductivity();
 updateBadge();
+updateStatistics();
 }
 
 function addTask(){
