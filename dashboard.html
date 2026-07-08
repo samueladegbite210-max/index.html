@@ -21,7 +21,10 @@
     <h3>📅 Today's Date</h3>
     <p id="todayDate">Loading...</p>
 </div>
-
+<div class="card">
+    <h3>🕒 Current Time</h3>
+    <p id="currentTime">Loading...</p>
+</div>
 <div class="card">
     <input
         type="text"
@@ -374,6 +377,18 @@ box.innerText.toLowerCase().includes(value)
 });
 
 });
+    function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("currentTime").textContent =
+    now.toLocaleTimeString();
+
+}
+
+updateClock();
+
+setInterval(updateClock, 1000);    
 
 </script>
 
