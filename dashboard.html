@@ -250,13 +250,52 @@ updateProductivity();
 
 function addTask(){
 
-const input =
-document.getElementById("taskInput");
+    const input = document.getElementById("taskInput");
 
-const task =
-input.value.trim();
+    const task = input.value.trim();
 
-if(task==="") return;
+    if(task==="") return;
+
+    const item = document.createElement("li");
+
+    item.innerHTML = `
+        <span>⬜ ${task}</span>
+        <button class="deleteBtn">🗑️</button>
+    `;
+
+    item.querySelector("span").onclick = function(){
+
+        if(this.innerHTML.startsWith("⬜")){
+
+            this.innerHTML =
+            this.innerHTML.replace("⬜","✅");
+
+        }else{
+
+            this.innerHTML =
+            this.innerHTML.replace("✅","⬜");
+
+        }
+
+        saveTasks();
+
+    };
+
+    item.querySelector(".deleteBtn").onclick = function(){
+
+        item.remove();
+
+        saveTasks();
+
+    };
+
+    taskList.appendChild(item);
+
+    input.value="";
+
+    saveTasks();
+
+}
 
 const item =
 document.createElement("li");
