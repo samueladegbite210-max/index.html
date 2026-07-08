@@ -345,8 +345,14 @@ function updateProductivity(){
     : Math.round((completed / total) * 100);
 
 const productivity =
-document.getElementById("productivityScore");
+document.getElementById("productivityScore").textContent =
+score + "%";
 
+document.getElementById("progressBar").style.width =
+score + "%";
+
+document.getElementById("progressText").textContent =
+score + "% Completed";
     const progressBar =
     document.getElementById("progressBar");
 
