@@ -343,33 +343,23 @@ function updateProductivity(){
     total === 0
     ? 0
     : Math.round((completed / total) * 100);
-
-const productivity =
+// Update Productivity Score
 document.getElementById("productivityScore").textContent =
 score + "%";
 
-document.getElementById("progressBar").style.width =
-score + "%";
+// Update Progress Bar
+const progressBar = document.getElementById("progressBar");
 
-document.getElementById("progressText").textContent =
-score + "% Completed";
-    const progressBar =
-    document.getElementById("progressBar");
-
-    const progressText =
-    document.getElementById("progressText");
-
-    if(progressBar){
-        progressBar.style.width = score + "%";
-    }
-
-    if(progressText){
-        progressText.textContent = score + "% Completed";
-    }
-
+if(progressBar){
+    progressBar.style.width = score + "%";
 }
 
+// Update Progress Text
+const progressText = document.getElementById("progressText");
 
+if(progressText){
+    progressText.textContent = score + "% Completed";
+}
 
 
 // ===============================
