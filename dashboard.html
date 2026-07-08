@@ -294,6 +294,38 @@ function addTask(){
     input.value="";
 
     saveTasks();
+function saveTasks(){
+    localStorage.setItem("tasks", taskList.innerHTML);
+}
+
+function updateTaskCount(){
+    document.getElementById("taskCount").textContent =
+    taskList.children.length;
+}
+
+function updateProductivity(){
+
+    let completed = 0;
+
+    for(let i = 0; i < taskList.children.length; i++){
+
+        if(taskList.children[i].innerHTML.includes("✅")){
+            completed++;
+        }
+
+    }
+
+    const total = taskList.children.length;
+
+    const score =
+    total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    const productivity = document.getElementById("productivity");
+
+    if(productivity){
+        productivity.textContent = score + "%";
+    }
+
 
 }
 
