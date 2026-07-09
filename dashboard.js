@@ -538,11 +538,16 @@ renderGoals();
 
 function addGoal(){
 
+    alert("Add Goal clicked!");
+
     const input = document.getElementById("goalInput");
 
     const text = input.value.trim();
 
-    if(text === "") return;
+    if(text === ""){
+        alert("Input is empty");
+        return;
+    }
 
     goals.push({
         text: text,
@@ -552,6 +557,10 @@ function addGoal(){
     input.value = "";
 
     saveGoals();
+
+    alert("Goal saved!");
+
+
 
 }
 
