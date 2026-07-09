@@ -66,6 +66,7 @@ if (tipText) {
 
     tipText.textContent =
     tips[day % tips.length];
+}
 // ===============================
 // Tasks (Professional Version)
 // ===============================
@@ -169,7 +170,8 @@ function updateProductivity() {
 
     document.getElementById("progressBar").style.width = score + "%";
 
-    document.getElementById("progressText").textContent = score + "% 
+    document.getElementById("progressText").textContent =
+score + "% Completed";
 
 
     }
@@ -236,6 +238,21 @@ function updateStreak(){
     streak + " Day" + (streak > 1 ? "s" : "");
 
 }
+// ==========================
+// Initialize Dashboard
+// ==========================
+
+renderTasks();
+renderGoals();
+
+updateDate();
+updateClock();
+updateStreak();
+updateAchievement();
+updateTaskCount();
+updateGoalCount();
+updateProductivity();
+updateAITip();
 
 updateStreak();
 // ====================================
@@ -422,7 +439,7 @@ function updateAchievement(){
 // ==========================
 
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
-localStorage.removeItem("goals");
+
 const goalList = document.getElementById("goalList");
 
 renderGoals();
