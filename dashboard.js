@@ -594,3 +594,46 @@ function renderGoals(){
     updateGoalCount();
 
 }
+   function editGoal(index){
+
+    const newGoal = prompt(
+        "Edit Goal:",
+        goals[index].text
+    );
+
+    if(newGoal === null) return;
+
+    if(newGoal.trim() === "") return;
+
+    goals[index].text = newGoal.trim();
+
+    saveGoals();
+
+}
+
+function deleteGoal(index){
+
+    goals.splice(index,1);
+
+    saveGoals();
+
+}
+
+function saveGoals(){
+
+    localStorage.setItem(
+        "goals",
+        JSON.stringify(goals)
+    );
+
+    renderGoals();
+
+}
+
+function updateGoalCount(){
+
+    document.getElementById("goalCount").textContent =
+    goals.length;
+
+} 
+    
