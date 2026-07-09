@@ -74,15 +74,7 @@ function updateAITip() {
 
 }
 
-// ==========================
-// Start Dashboard
-// ==========================
 
-updateDate();
-updateClock();
-updateAITip();
-
-setInterval(updateClock, 1000);// ==========================
 // Tasks
 // ==========================
 
