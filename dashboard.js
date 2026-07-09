@@ -66,11 +66,13 @@ if (tipText) {
 
     tipText.textContent =
     tips[day % tips.length];
+
+
 }
 // ===============================
 // Tasks (Professional Version)
 // ===============================
-    localStorage.removeItem("tasks");
+    
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const taskList = document.getElementById("taskList");
