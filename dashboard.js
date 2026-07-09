@@ -526,3 +526,71 @@ function updateAchievement(){
     text;
 
 }
+// ==========================
+// Goals
+// ==========================
+
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+const goalList = document.getElementById("goalList");
+
+renderGoals();
+
+function addGoal(){
+
+    const input = document.getElementById("goalInput");
+
+    const text = input.value.trim();
+
+    if(text === "") return;
+
+    goals.push({
+        text: text,
+        done: false
+    });
+
+    input.value = "";
+
+    saveGoals();
+
+}
+
+function renderGoals(){
+
+    goalList.innerHTML = "";
+
+    goals.forEach((goal,index)=>{
+
+        const li = document.createElement("li");
+
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.marginBottom = "10px";
+
+        li.innerHTML = `
+            <span style="cursor:pointer;">
+                ${goal.done ? "✅" : "🎯"} ${goal.text}
+            </span>
+
+            <div>
+                <button onclick="editGoal(${index})">✏️</button>
+                <button onclick="deleteGoal(${index})">🗑️</button>
+            </div>
+        `;
+
+        li.querySelector("span").onclick = function(){
+
+            goals[index].done = !goals[index].done;
+
+            saveGoals();
+
+        };
+
+        goalList.appendChild(li);
+
+    });
+
+    updateGoalCount();
+
+}
