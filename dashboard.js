@@ -434,3 +434,54 @@ function updateAIMessage(){
 }
 
 updateAIMessage();
+    // ==========================
+// Daily Streak
+// ==========================
+
+function updateStreak(){
+
+    const today = new Date().toDateString();
+
+    const lastVisit =
+    localStorage.getItem("lastVisit");
+
+    let streak =
+    Number(localStorage.getItem("streak")) || 0;
+
+    if(lastVisit !== today){
+
+        if(lastVisit){
+
+            const yesterday = new Date();
+
+            yesterday.setDate(
+                yesterday.getDate() - 1
+            );
+
+            if(lastVisit === yesterday.toDateString()){
+
+                streak++;
+
+            }else{
+
+                streak = 1;
+
+            }
+
+        }else{
+
+            streak = 1;
+
+        }
+
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("lastVisit", today);
+
+    }
+
+    document.getElementById("streakCount").textContent =
+    streak + " Day" + (streak > 1 ? "s" : "");
+
+}
+
+updateStreak();
