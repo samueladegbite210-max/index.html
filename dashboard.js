@@ -186,13 +186,11 @@ function updateProductivity(){
 // ====================================
 // Daily Streak
 // ====================================
-
 function updateStreak(){
 
-    const today =
-    new Date().toDateString();
+    const today = new Date().toDateString();
 
-    let lastVisit =
+    const lastVisit =
     localStorage.getItem("lastVisit");
 
     let streak =
@@ -200,16 +198,23 @@ function updateStreak(){
 
     if(lastVisit !== today){
 
-        const yesterday =
-        new Date();
+        if(lastVisit){
 
-        yesterday.setDate(
-            yesterday.getDate() - 1
-        );
+            const yesterday = new Date();
 
-        if(lastVisit === yesterday.toDateString()){
+            yesterday.setDate(
+                yesterday.getDate() - 1
+            );
 
-            streak++;
+            if(lastVisit === yesterday.toDateString()){
+
+                streak++;
+
+            }else{
+
+                streak = 1;
+
+            }
 
         }else{
 
@@ -218,7 +223,6 @@ function updateStreak(){
         }
 
         localStorage.setItem("streak", streak);
-
         localStorage.setItem("lastVisit", today);
 
     }
@@ -227,6 +231,7 @@ function updateStreak(){
     streak + " Day" + (streak > 1 ? "s" : "");
 
 }
+
 // ==========================
 // Initialize Dashboard
 // ==========================
@@ -243,7 +248,7 @@ updateGoalCount();
 updateProductivity();
 updateAITip();
 
-updateStreak();
+
 // ====================================
 // Dashboard Statistics
 // ====================================
