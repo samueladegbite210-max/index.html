@@ -103,7 +103,7 @@ function renderTasks(){
         li.innerHTML = `
         <span style="cursor:pointer;">
         ${task.done ? "✅" : "⬜"}
-        ${task.priority}
+     ${task.priority || "🟡 Medium"}
         ${task.text}
         </span>
 
