@@ -134,56 +134,49 @@ placeholder="Enter a task...">
 
     <div class="card">
 
-    <h2>📅 Add New Event</h2>
+  <h2>📅 Add New Event</h2>
 
-    <input
-        type="text"
-        id="eventTitle"
-        placeholder="Event Title">
-<input style="width:100%">
-    <input
-        type="date"
-        id="eventDate">
+<input
+    type="text"
+    id="eventTitle"
+    placeholder="Event Title">
 
-    <input style="width:100%">
->
-    <input
-        type="time"
-        id="eventTime">
-<input style="width:100%">
-    <input
-        type="text"
-        id="eventLocation"
-        placeholder="Location">
-<input style="width:100%">
-    <textarea
-        id="eventNotes"
-        placeholder="Notes"></textarea>
-<input style="width:100%">
-    <select id="eventReminder">
-        <option value="none">🔕 No Reminder</option>
-        <option value="10">10 Minutes Before</option>
-        <option value="30">30 Minutes Before</option>
-        <option value="60">1 Hour Before</option>
-        <option value="1440">1 Day Before</option>
-        <input style="width:100%">
-    </select>
+<input
+    type="date"
+    id="eventDate">
 
-    <select id="eventRepeat">
-        <option value="none">No Repeat</option>
-        <option value="daily">Daily</option>
-        <option value="weekly">Weekly</option>
-        <option value="monthly">Monthly</option>
-        <option value="yearly">Yearly</option>
-        <input style="width:100%">
-    </select>
-    
+<input
+    type="time"
+    id="eventTime">
 
-    <button onclick="addEvent()">
-        Save Event
-    </button>
+<input
+    type="text"
+    id="eventLocation"
+    placeholder="Location">
 
-</div>
+<textarea
+    id="eventNotes"
+    placeholder="Notes"></textarea>
+
+<select id="eventReminder">
+    <option value="none">🔕 No Reminder</option>
+    <option value="10">10 Minutes Before</option>
+    <option value="30">30 Minutes Before</option>
+    <option value="60">1 Hour Before</option>
+    <option value="1440">1 Day Before</option>
+</select>
+
+<select id="eventRepeat">
+    <option value="none">No Repeat</option>
+    <option value="daily">Daily</option>
+    <option value="weekly">Weekly</option>
+    <option value="monthly">Monthly</option>
+    <option value="yearly">Yearly</option>
+</select>
+
+<button onclick="addEvent()">
+    Save Event
+</button>
 
 <div class="card">
 
