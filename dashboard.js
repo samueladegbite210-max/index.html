@@ -296,4 +296,38 @@ function updateGoalCount() {
 
 }
 
+// ==========================
+// Daily Streak
+// ==========================
 
+function updateStreak() {
+
+    const today = new Date().toDateString();
+
+    let streak = Number(localStorage.getItem("streak")) || 0;
+
+    let lastVisit = localStorage.getItem("lastVisit");
+
+    if (lastVisit !== today) {
+
+        streak++;
+
+        localStorage.setItem("streak", streak);
+
+        localStorage.setItem("lastVisit", today);
+
+    }
+
+    const streakElement =
+        document.getElementById("streakCount");
+
+    if (streakElement) {
+
+        streakElement.textContent =
+            streak + " Day" + (streak === 1 ? "" : "s");
+
+    }
+
+}
+
+updateStreak();
