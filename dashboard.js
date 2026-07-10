@@ -1,11 +1,8 @@
-// =====================================
-// AI Life Assistant Dashboard
-// Version 3.0
-// =====================================
+// ===============================
+// AI Life Assistant Dashboard 3.0
+// ===============================
 
 // Welcome Message
-alert("Step 1");
-
 const username = localStorage.getItem("username") || "Samuel";
 
 const welcomeText = document.getElementById("welcomeText");
@@ -14,8 +11,7 @@ if (welcomeText) {
     welcomeText.textContent = "👋 Welcome Back, " + username;
 }
 
-alert("Step 2");
-
+// Today's Date
 function updateDate() {
     const todayDate = document.getElementById("todayDate");
 
@@ -24,8 +20,42 @@ function updateDate() {
     }
 }
 
-alert("Step 3");
+// Live Clock
+function updateClock() {
+    const currentTime = document.getElementById("currentTime");
 
+    if (currentTime) {
+        currentTime.textContent =
+            new Date().toLocaleTimeString();
+    }
+}
+
+// AI Tip
+const tips = [
+    "💪 Complete your hardest task first.",
+    "📚 Learn something new every day.",
+    "🎯 Focus on one task at a time.",
+    "💧 Drink enough water.",
+    "😴 Get enough sleep.",
+    "🚀 Small progress every day leads to big success.",
+    "🧠 Plan tomorrow today."
+];
+
+function updateTip() {
+
+    const tipText = document.getElementById("tipText");
+
+    if (!tipText) return;
+
+    const day = new Date().getDate();
+
+    tipText.textContent =
+        tips[day % tips.length];
+}
+
+// Start Everything
 updateDate();
+updateClock();
+updateTip();
 
-alert("Step 4");
+setInterval(updateClock, 1000);
