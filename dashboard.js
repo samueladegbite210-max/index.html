@@ -156,6 +156,54 @@ function saveTasks(){
 
     renderTasks();
 
+
+}
+// ==========================
+// Productivity
+// ==========================
+
+function updateProductivity(){
+
+    const completed =
+    tasks.filter(task => task.done).length;
+
+    const total = tasks.length;
+
+    const score =
+    total === 0
+    ? 0
+    : Math.round((completed / total) * 100);
+
+    const scoreElement =
+    document.getElementById("productivityScore");
+
+    if(scoreElement){
+
+        scoreElement.textContent =
+        score + "%";
+
+    }
+
+    const progressBar =
+    document.getElementById("progressBar");
+
+    if(progressBar){
+
+        progressBar.style.width =
+        score + "%";
+
+    }
+
+    const progressText =
+    document.getElementById("progressText");
+
+    if(progressText){
+
+        progressText.textContent =
+        score + "% Completed";
+
+    }
+
 }
 // ==========================
 // Goals
@@ -248,25 +296,4 @@ function updateGoalCount() {
 
 }
 
-function updateProductivity(){
 
-    const completed =
-    tasks.filter(task => task.done).length;
-
-    const total = tasks.length;
-
-    const score =
-    total === 0
-    ? 0
-    : Math.round((completed / total) * 100);
-
-    document.getElementById("productivityScore").textContent =
-    score + "%";
-
-    document.getElementById("progressBar").style.width =
-    score + "%";
-
-    document.getElementById("progressText").textContent =
-    score + "% Completed";
-
-}
