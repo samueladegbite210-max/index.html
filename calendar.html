@@ -139,34 +139,85 @@ button:hover{
 </div>
 
 <script>
-const eventsDiv = document.getElementById("events");
 
-function loadEvents(){
-    eventsDiv.innerHTML = localStorage.getItem("events") || "";
+let events = JSON.parse(localStorage.getItem("events")) || [];
+
+const eventList = document.getElementById("eventList");
+
+renderEvents();
+
+function addEvent() {
+
+    const title = document.getElementById("eventTitle").value.trim();
+    const date = document.getElementById("eventDate").value;
+    const time = document.getElementById("eventTime").value;
+    const location = document.getElementById("eventLocation").value.trim();
+    const notes = document.getElementById("eventNotes").value.trim();
+    const reminder = document.getElementById("eventReminder").value;
+    const repeat = document.getElementById("eventRepeat").value;
+
+    if (title === "" || date === "") {
+        alert("Please enter an Event Title and Date.");
+        return;
+    }
+
+    events.push({
+        title,
+        date,
+        time,
+        location,
+        notes,
+        reminder,
+        repeat
+    });
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    renderEvents();
+
+    document.getElementById("eventTitle").value = "";
+    document.getElementById("eventDate").value = "";
+    document.getElementById("eventTime").value = "";
+    document.getElementById("eventLocation").value = "";
+    document.getElementById("eventNotes").value = "";
+    document.getElementById("eventReminder").value = "none";
+    document.getElementById("eventRepeat").value = "none";
+
 }
 
-loadEvents();
+function renderEvents() {
 
-function saveEvent(){
+    eventList.innerHTML = "";
 
-    const date = document.getElementById("date").value;
-    const event = document.getElementById("event").value;
+    events.forEach((event, index) => {
 
-    if(date === "" || event === "") return;
+        const li = document.createElement("li");
 
-    eventsDiv.innerHTML += `
-        <div class="event">
-            📅 <b>${date}</b><br>
-            ${event}
-        </div>
-    `;
+        li.innerHTML = `
+            <strong>${event.title}</strong><br>
+            📅 ${event.date}
+            ${event.time ? "<br>🕒 " + event.time : ""}
+            ${event.location ? "<br>📍 " + event.location : ""}
+            <br>
+            <button onclick="deleteEvent(${index})">🗑️ Delete</button>
+        `;
 
-    localStorage.setItem("events", eventsDiv.innerHTML);
+        eventList.appendChild(li);
 
-    document.getElementById("event").value = "";
-    document.getElementById("date").value = "";
+    });
+
 }
+
+function deleteEvent(index){
+
+    events.splice(index,1);
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    renderEvents();
+
+}
+
 </script>
-
 </body>
 </html>
