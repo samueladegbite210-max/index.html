@@ -135,11 +135,19 @@ button:hover,
 /* Search */
 #search{
     width:100%;
-    padding:14px;
+    height:65px;
+    padding:0 22px;
     border:none;
-    border-radius:12px;
-    font-size:16px;
-    margin-top:15px;
+    border-radius:18px;
+    font-size:22px;
+    background:white;
+    color:#111;
+    outline:none;
+    display:block;
+}
+
+.search-card{
+    padding:25px;
 }
 
 /* Date */
@@ -357,8 +365,13 @@ button:hover,
 }
 
 .welcome h1{
-    font-size:34px;
+    #welcomeTitle{
+    font-size:48px;
+    font-weight:700;
+    line-height:1.2;
+    margin-top:15px;
     margin-bottom:10px;
+}
 }
 
 .welcome p{
