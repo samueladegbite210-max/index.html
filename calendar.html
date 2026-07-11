@@ -150,15 +150,24 @@ function testButton() {
     alert("Button is working!");
 }
 function addEvent() {
-alert("addEvent started");
-    const title = document.getElementById("eventTitle").value.trim();
-    const date = document.getElementById("eventDate").value;
-    const time = document.getElementById("eventTime").value;
-    const location = document.getElementById("eventLocation").value.trim();
-    const notes = document.getElementById("eventNotes").value.trim();
-    const reminder = document.getElementById("eventReminder").value;
-    const repeat = document.getElementById("eventRepeat").value;
 
+    alert("1");
+
+    const title = document.getElementById("eventTitle").value.trim();
+
+    alert("2");
+
+    const date = document.getElementById("eventDate").value;
+
+    alert("3");
+
+    const time = document.getElementById("eventTime").value;
+
+    alert("4");
+
+    const location = document.getElementById("eventLocation").value.trim();
+
+    alert("5");
     if (title === "" || date === "") {
         alert("Please enter an Event Title and Date.");
         return;
