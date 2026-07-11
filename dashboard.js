@@ -428,3 +428,14 @@ function openMenu() {
 function closeMenu() {
     document.getElementById("sideMenu").style.left = "-280px";
 }
+const sideMenu = document.getElementById("sideMenu");
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+
+menuBtn.onclick = function () {
+    sideMenu.classList.add("active");
+};
+
+closeBtn.onclick = function () {
+    sideMenu.classList.remove("active");
+};
