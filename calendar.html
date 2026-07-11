@@ -115,9 +115,9 @@ button:hover{
             <option value="yearly">Yearly</option>
         </select>
 
-        <button onclick="addEvent()">
-            Save Event
-        </button>
+        <button onclick="testButton()">
+    Save Event
+</button>
 
     </div>
 
@@ -146,7 +146,9 @@ let events = JSON.parse(localStorage.getItem("events")) || [];
 const eventList = document.getElementById("eventList");
 
 renderEvents();
-
+function testButton() {
+    alert("Button is working!");
+}
 function addEvent() {
 
     const title = document.getElementById("eventTitle").value.trim();
