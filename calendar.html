@@ -65,68 +65,66 @@ button:hover{
 <body>
 
 <header>
-📅 Calendar
+    📅 Calendar
 </header>
 
 <div class="container">
 
- <div class="card">
+    <div class="card">
 
-    <h2>📅 Add New Event</h2>
+        <h2>📅 Add New Event</h2>
 
-    <input
-        type="text"
-        id="eventTitle"
-        placeholder="Event Title">
+        <input
+            type="text"
+            id="eventTitle"
+            placeholder="Event Title">
 
-    <input
-        type="date"
-        id="eventDate">
+        <input
+            type="date"
+            id="eventDate">
 
-    <input
-        type="time"
-        id="eventTime">
+        <input
+            type="time"
+            id="eventTime">
 
-    <input
-        type="text"
-        id="eventLocation"
-        placeholder="Location">
+        <input
+            type="text"
+            id="eventLocation"
+            placeholder="Location">
 
-    <textarea
-        id="eventNotes"
-        placeholder="Notes"></textarea>
+        <textarea
+            id="eventNotes"
+            placeholder="Notes"></textarea>
 
-    <select id="eventReminder">
-        <option value="none">🔕 No Reminder</option>
-        <option value="10">10 Minutes Before</option>
-        <option value="30">30 Minutes Before</option>
-        <option value="60">1 Hour Before</option>
-        <option value="1440">1 Day Before</option>
-    </select>
+        <select id="eventReminder">
+            <option value="none">🔕 No Reminder</option>
+            <option value="10">10 Minutes Before</option>
+            <option value="30">30 Minutes Before</option>
+            <option value="60">1 Hour Before</option>
+            <option value="1440">1 Day Before</option>
+        </select>
 
-    <select id="eventRepeat">
-        <option value="none">No Repeat</option>
-        <option value="daily">Daily</option>
-        <option value="weekly">Weekly</option>
-        <option value="monthly">Monthly</option>
-        <option value="yearly">Yearly</option>
-    </select>
+        <select id="eventRepeat">
+            <option value="none">No Repeat</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+        </select>
 
-    <button onclick="addEvent()">
-        Save Event
-    </button>
+        <button onclick="addEvent()">
+            Save Event
+        </button>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="card">
 
-    <h2>📆 Upcoming Events</h2>
+        <h2>📆 Upcoming Events</h2>
 
-    <ul id="eventList"></ul>
+        <ul id="eventList"></ul>
 
-</div>
-
-    <div id="events"></div>
+    </div>
 
 </div>
 
@@ -162,19 +160,19 @@ function addEvent() {
     }
 
     events.push({
-        title,
-        date,
-        time,
-        location,
-        notes,
-        reminder,
-        repeat
+        title: title,
+        date: date,
+        time: time,
+        location: location,
+        notes: notes,
+        reminder: reminder,
+        repeat: repeat
     });
-alert("Step 1: Event added");
+
     localStorage.setItem("events", JSON.stringify(events));
-alert("Step 2: Saved to localStorage");
+
     renderEvents();
-alert("Step 3: Events rendered");
+
     document.getElementById("eventTitle").value = "";
     document.getElementById("eventDate").value = "";
     document.getElementById("eventTime").value = "";
@@ -182,7 +180,6 @@ alert("Step 3: Events rendered");
     document.getElementById("eventNotes").value = "";
     document.getElementById("eventReminder").value = "none";
     document.getElementById("eventRepeat").value = "none";
-
 }
 
 function renderEvents() {
@@ -198,7 +195,8 @@ function renderEvents() {
             📅 ${event.date}
             ${event.time ? "<br>🕒 " + event.time : ""}
             ${event.location ? "<br>📍 " + event.location : ""}
-            <br>
+            ${event.notes ? "<br>📝 " + event.notes : ""}
+            <br><br>
             <button onclick="deleteEvent(${index})">🗑️ Delete</button>
         `;
 
@@ -208,9 +206,9 @@ function renderEvents() {
 
 }
 
-function deleteEvent(index){
+function deleteEvent(index) {
 
-    events.splice(index,1);
+    events.splice(index, 1);
 
     localStorage.setItem("events", JSON.stringify(events));
 
