@@ -464,3 +464,34 @@ button:hover,
     background:#2563EB;
     transform:translateY(-5px);
 }
+/* Quick Actions */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.quick-box{
+    background:#111827;
+    border-radius:20px;
+    padding:30px 20px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    font-size:36px;
+    transition:.3s;
+}
+
+.quick-box span{
+    display:block;
+    margin-top:12px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.quick-box:hover{
+    background:#2563EB;
+    transform:translateY(-5px);
+}
