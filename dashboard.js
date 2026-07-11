@@ -483,3 +483,70 @@ function loadNextEvent(){
 }
 
 loadNextEvent();
+// ==========================
+// Profile Statistics
+// ==========================
+
+function loadProfileStats(){
+
+    const taskCountProfile =
+    document.getElementById("taskCountProfile");
+
+    if(taskCountProfile){
+
+        taskCountProfile.textContent = tasks.length;
+
+    }
+
+    const goalCountProfile =
+    document.getElementById("goalCountProfile");
+
+    if(goalCountProfile){
+
+        goalCountProfile.textContent = goals.length;
+
+    }
+
+    const eventCountProfile =
+    document.getElementById("eventCountProfile");
+
+    if(eventCountProfile){
+
+        const events =
+        JSON.parse(localStorage.getItem("events")) || [];
+
+        eventCountProfile.textContent = events.length;
+
+    }
+
+    const streakProfile =
+    document.getElementById("streakProfile");
+
+    if(streakProfile){
+
+        streakProfile.textContent =
+        (localStorage.getItem("streak") || 0) + " Days";
+
+    }
+
+    const productivityProfile =
+    document.getElementById("productivityProfile");
+
+    if(productivityProfile){
+
+        const completed =
+        tasks.filter(task => task.done).length;
+
+        const score =
+        tasks.length === 0
+        ? 0
+        : Math.round((completed/tasks.length)*100);
+
+        productivityProfile.textContent =
+        score + "%";
+
+    }
+
+}
+
+loadProfileStats();
