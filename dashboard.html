@@ -12,13 +12,43 @@
 
 <body>
 
+<div id="sideMenu" class="side-menu">
 
+    <span class="close-btn" onclick="closeMenu()">✖</span>
+
+    <h2>🤖 AI Life Assistant</h2>
+
+    <a href="dashboard.html">🏠 Dashboard</a>
+
+    <a href="chat.html">🤖 AI Chat</a>
+
+    <a href="tasks.html">✅ Tasks</a>
+
+    <a href="goals.html">🎯 Goals</a>
+
+    <a href="notes.html">📝 Notes</a>
+
+    <a href="calendar.html">📅 Calendar</a>
+
+    <a href="profile.html">👤 Profile</a>
+
+    <a href="settings.html">⚙️ Settings</a>
+
+</div>
 <div class="header">
+
+    <div class="menu-btn" onclick="openMenu()">
+        ☰
+    </div>
+
     <h1 id="welcomeText">👋 Welcome Back, Samuel</h1>
-    <p id="assistantMessage" style="font-size:18px; color:#B0B8C5; margin-top:10px;">
-Loading your assistant...
-</p>
+
+    <p id="assistantMessage">
+        Loading your assistant...
+    </p>
+
     <p>Your AI-powered productivity assistant</p>
+
 </div>
 
 <div class="card">
