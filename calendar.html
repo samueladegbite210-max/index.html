@@ -188,10 +188,14 @@ function addEvent() {
 function renderEvents() {
 
     eventList.innerHTML = "";
-
+if (events.length === 0) {
+    eventList.innerHTML = "<p>No upcoming events.</p>";
+    return;
+}
     events.forEach((event, index) => {
 
-        const li = document.createElement("li");
+        const li = document.createElement("div");
+li.className = "event";
 
         li.innerHTML = `
             <strong>${event.title}</strong><br>
