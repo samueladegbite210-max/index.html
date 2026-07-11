@@ -21,14 +21,21 @@ function updateDate() {
 }
 
 // Live Clock
-function updateClock() {
-    const currentTime = document.getElementById("currentTime");
+function updateClock(){
 
-    if (currentTime) {
-        currentTime.textContent =
-            new Date().toLocaleTimeString();
-    }
+    const now = new Date();
+
+    document.getElementById("todayDate").textContent =
+        now.toDateString();
+
+    document.getElementById("currentTime").textContent =
+        now.toLocaleTimeString();
+
 }
+
+updateClock();
+
+setInterval(updateClock,1000);
 
 // AI Tip
 const tips = [
