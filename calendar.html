@@ -145,33 +145,25 @@ let events = JSON.parse(localStorage.getItem("events")) || [];
 
 const eventList = document.getElementById("eventList");
 
+// Load events when page opens
 renderEvents();
 
 function addEvent() {
 
-    alert("1");
-
     const title = document.getElementById("eventTitle").value.trim();
-
-    alert("2");
-
     const date = document.getElementById("eventDate").value;
-
-    alert("3");
-
     const time = document.getElementById("eventTime").value;
-
-    alert("4");
-
     const location = document.getElementById("eventLocation").value.trim();
+    const notes = document.getElementById("eventNotes").value.trim();
+    const reminder = document.getElementById("eventReminder").value;
+    const repeat = document.getElementById("eventRepeat").value;
 
-    alert("5");
     if (title === "" || date === "") {
         alert("Please enter an Event Title and Date.");
         return;
     }
 
-    events.push({
+    const newEvent = {
         title: title,
         date: date,
         time: time,
@@ -179,12 +171,15 @@ function addEvent() {
         notes: notes,
         reminder: reminder,
         repeat: repeat
-    });
+    };
+
+    events.push(newEvent);
 
     localStorage.setItem("events", JSON.stringify(events));
 
     renderEvents();
 
+    // Clear form
     document.getElementById("eventTitle").value = "";
     document.getElementById("eventDate").value = "";
     document.getElementById("eventTime").value = "";
@@ -192,19 +187,25 @@ function addEvent() {
     document.getElementById("eventNotes").value = "";
     document.getElementById("eventReminder").value = "none";
     document.getElementById("eventRepeat").value = "none";
+
+    alert("✅ Event saved successfully!");
+
 }
 
 function renderEvents() {
 
     eventList.innerHTML = "";
-if (events.length === 0) {
-    eventList.innerHTML = "<p>No upcoming events.</p>";
-    return;
-}
-    events.forEach((event, index) => {
 
-        const li = document.createElement("div");
-li.className = "event";
+    if (events.length === 0) {
+        eventList.innerHTML = "<li>No upcoming events.</li>";
+        return;
+    }
+
+    events.forEach(function(event, index){
+
+        const li = document.createElement("li");
+
+        li.className = "event";
 
         li.innerHTML = `
             <strong>${event.title}</strong><br>
@@ -213,7 +214,10 @@ li.className = "event";
             ${event.location ? "<br>📍 " + event.location : ""}
             ${event.notes ? "<br>📝 " + event.notes : ""}
             <br><br>
-            <button onclick="deleteEvent(${index})">🗑️ Delete</button>
+
+            <button onclick="deleteEvent(${index})">
+                🗑️ Delete
+            </button>
         `;
 
         eventList.appendChild(li);
@@ -222,16 +226,20 @@ li.className = "event";
 
 }
 
-function deleteEvent(index) {
+function deleteEvent(index){
 
-    events.splice(index, 1);
+    if(confirm("Delete this event?")){
 
-    localStorage.setItem("events", JSON.stringify(events));
+        events.splice(index,1);
 
-    renderEvents();
+        localStorage.setItem("events", JSON.stringify(events));
 
+        renderEvents();
+
+    }
+    
 }
-
+    
 </script>
 
 </body>
