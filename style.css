@@ -386,3 +386,53 @@ button:hover,
     text-decoration:none;
     box-shadow:0 5px 20px rgba(37,99,235,.4);
 }
+.top-bar{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.menu-btn{
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:20px;
+    background:#1D232D;
+    color:white;
+    font-size:34px;
+}
+
+.clock-section{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+#todayDate{
+    color:#5B8DFF;
+    font-size:26px;
+    font-weight:bold;
+}
+
+#currentTime{
+    color:white;
+    font-size:48px;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.welcome{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.welcome h1{
+    font-size:52px;
+    margin-bottom:15px;
+}
+
+.welcome p{
+    color:#AAB4C5;
+    font-size:23px;
+    line-height:1.5;
+}
