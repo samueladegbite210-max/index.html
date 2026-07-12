@@ -610,3 +610,42 @@ function backupData(){
     alert("🚀 Backup feature coming soon!");
 
 }
+// ==========================
+// Notifications
+// ==========================
+
+function loadNotifications(){
+
+    const box = document.getElementById("notificationBox");
+
+    if(!box) return;
+
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    const tasksDue = tasks.filter(task => !task.done);
+
+    let html = "";
+
+    if(tasksDue.length > 0){
+
+        html += `<p>✅ You have <strong>${tasksDue.length}</strong> unfinished task(s).</p>`;
+
+    }
+
+    if(events.length > 0){
+
+        html += `<p>📅 You have <strong>${events.length}</strong> upcoming event(s).</p>`;
+
+    }
+
+    if(html === ""){
+
+        html = "<p>🎉 You're all caught up!</p>";
+
+    }
+
+    box.innerHTML = html;
+
+}
+
+loadNotifications();
