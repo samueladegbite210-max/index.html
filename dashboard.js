@@ -387,9 +387,27 @@ if (assistant) {
 
         🎯 ${goals.length} Goal(s)<br><br>
 
-        💡 <b>Today's AI Advice:</b><br>
+        const tips = [
 
-        Focus on completing your highest-priority task first.
+"💪 Start with your most important task.",
+
+"📅 Review your calendar before starting work.",
+
+"⏰ Finish one task completely before beginning another.",
+
+"💧 Remember to drink water and take short breaks.",
+
+"🎯 Small progress every day leads to big success.",
+
+"📚 Learn something new today.",
+
+"🚀 Stay focused. You're building something amazing!"
+
+];
+
+const today = new Date().getDate();
+
+const todayTip = tips[today % tips.length];
     `;
 
 
