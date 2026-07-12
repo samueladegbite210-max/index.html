@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Life Assistant</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- Side Menu -->
+<div id="sideMenu" class="side-menu">
+
+    <span id="closeBtn" class="close-btn">✖</span>
+
+    <h2>🤖 AI Life Assistant</h2>
+
+    <a href="dashboard.html">🏠 Dashboard</a>
+    <a href="tasks.html">✅ Tasks</a>
+    <a href="goals.html">🎯 Goals</a>
+    <a href="calendar.html">📅 Calendar</a>
+    <a href="notes.html">📝 Notes</a>
+    <a href="profile.html">👤 Profile</a>
+    <a href="settings.html">⚙️ Settings</a>
+
+</div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+
+    <button id="menuBtn" class="menu-btn">☰</button>
+
+</div>
+
+<!-- Clock -->
+<div class="clock-section">
+
+    <h2 id="todayDate"></h2>
+
+    <h1 id="currentTime"></h1>
+
+</div>
+
+<!-- Welcome -->
+<div class="welcome">
+
+    <h1 id="welcomeText"></h1>
+
+    <p id="assistantMessage"></p>
+
+</div>
+
+<!-- Search -->
+<div class="card">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search...">
+
+</div>
