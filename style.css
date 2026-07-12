@@ -616,3 +616,32 @@ button:hover,
     font-size:16px;
 
 }
+#searchResults{
+
+    margin-top:15px;
+
+}
+
+#searchResults p{
+
+    padding:10px;
+
+    border-bottom:1px solid #374151;
+
+    cursor:pointer;
+
+}
+
+#searchResults p:last-child{
+
+    border-bottom:none;
+
+}
+
+#searchResults p:hover{
+
+    background:#2563EB;
+
+    border-radius:8px;
+
+}
