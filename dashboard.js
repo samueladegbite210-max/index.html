@@ -182,3 +182,21 @@ Start by adding your first task to begin your productive journey. 🚀
 }
 
 loadDailyBrief();
+// ==========================
+// Notifications
+// ==========================
+
+function loadNotifications(){
+
+    const box = document.getElementById("notificationBox");
+
+    if(!box) return;
+
+    box.innerHTML = `
+<p>🎉 Welcome back, ${username}!</p>
+<p>🤖 AI Assistant is ready.</p>
+`;
+
+}
+
+loadNotifications();
