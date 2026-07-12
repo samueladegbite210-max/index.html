@@ -85,20 +85,30 @@ function updateSummary(){
     const goals = JSON.parse(localStorage.getItem("goals")) || [];
     const events = JSON.parse(localStorage.getItem("events")) || [];
 
-    const taskCount = document.getElementById("taskCount");
-    const goalCount = document.getElementById("goalCount");
-    const eventCount = document.getElementById("eventCount");
+    const completed = tasks.filter(task => task.done).length;
 
-    if(taskCount){
-        taskCount.textContent = tasks.length;
+    if(document.getElementById("taskCount")){
+        document.getElementById("taskCount").textContent = tasks.length;
     }
 
-    if(goalCount){
-        goalCount.textContent = goals.length;
+    if(document.getElementById("goalCount")){
+        document.getElementById("goalCount").textContent = goals.length;
     }
 
-    if(eventCount){
-        eventCount.textContent = events.length;
+    if(document.getElementById("eventCount")){
+        document.getElementById("eventCount").textContent = events.length;
+    }
+
+    const score = document.getElementById("productivityScore");
+
+    if(score){
+
+        const percent = tasks.length === 0
+            ? 0
+            : Math.round((completed / tasks.length) * 100);
+
+        score.textContent = percent + "%";
+
     }
 
 }
