@@ -252,3 +252,42 @@ function loadNextEvent(){
 }
 
 loadNextEvent();
+
+// ==========================
+// Productivity Score
+// ==========================
+
+function updateProductivity(){
+
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    const score = document.getElementById("productivityScore");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    if(!score || !progressBar || !progressText) return;
+
+    if(tasks.length === 0){
+
+        score.textContent = "0%";
+        progressBar.style.width = "0%";
+        progressText.textContent = "0% Completed";
+
+        return;
+
+    }
+
+    const completed = tasks.filter(task => task.done).length;
+
+    const percent = Math.round((completed / tasks.length) * 100);
+
+    score.textContent = percent + "%";
+
+    progressBar.style.width = percent + "%";
+
+    progressText.textContent =
+        completed + " of " + tasks.length + " Tasks Completed";
+
+}
+
+updateProductivity();
