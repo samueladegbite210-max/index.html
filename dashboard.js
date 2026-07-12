@@ -697,27 +697,52 @@ function loadDailyBrief(){
 
     const completedTasks = tasks.filter(task => task.done).length;
 
+    const tips = [
+
+        "💪 Start with your most important task.",
+
+        "📅 Review your calendar before starting work.",
+
+        "⏰ Finish one task completely before beginning another.",
+
+        "💧 Remember to drink water and take short breaks.",
+
+        "🎯 Small progress every day leads to big success.",
+
+        "📚 Learn something new today.",
+
+        "🚀 Stay focused. You're building something amazing!"
+
+    ];
+
+    const today = new Date().getDate();
+
+    const todayTip = tips[today % tips.length];
+
     let message = "";
 
     if(events.length === 0 && pendingTasks === 0){
 
-        message =
-        "🎉 Amazing! You have no pending tasks or events today. Enjoy your day!";
+        message = `
+            🎉 Amazing! You have no pending tasks or events today.<br><br>
+
+            💡 <b>Today's AI Advice:</b><br>
+
+            ${todayTip}
+        `;
 
     }else{
 
         message = `
-        👋 Good job, Samuel!<br><br>
+            📅 Upcoming Events: <b>${events.length}</b><br>
 
-        ✅ Pending Tasks: <b>${pendingTasks}</b><br>
+            ✅ Pending Tasks: <b>${pendingTasks}</b><br>
 
-        📅 Upcoming Events: <b>${events.length}</b><br>
+            🎯 Completed Tasks: <b>${completedTasks}</b><br><br>
 
-        🎯 Completed Tasks: <b>${completedTasks}</b><br><br>
+            💡 <b>Today's AI Advice:</b><br>
 
-        💡 AI Tip:<br>
-
-        Finish your highest-priority task first for a productive day.
+            ${todayTip}
         `;
 
     }
