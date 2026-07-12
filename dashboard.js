@@ -54,44 +54,47 @@ updateDateTime();
 
 function updateGreeting(){
 
-    const welcome =
-    document.getElementById("welcomeText");
+    const welcome = document.getElementById("welcomeText");
+    const assistant = document.getElementById("assistantMessage");
 
     if(!welcome) return;
 
-    const hour =
-    new Date().getHours();
+    const hour = new Date().getHours();
 
-    let greeting="";
+    let greeting = "";
 
-    if(hour>=5 && hour<12){
+    if(hour >= 5 && hour < 12){
 
-        greeting="🌅 Good Morning";
+        greeting = "🌅 Good Morning";
 
-    }
+    }else if(hour >= 12 && hour < 17){
 
-    else if(hour<17){
+        greeting = "☀️ Good Afternoon";
 
-        greeting="☀️ Good Afternoon";
+    }else if(hour >= 17 && hour < 21){
 
-    }
+        greeting = "🌇 Good Evening";
 
-    else if(hour<21){
+    }else{
 
-        greeting="🌇 Good Evening";
-
-    }
-
-    else{
-
-        greeting="🌙 Good Night";
+        greeting = "🌙 Good Night";
 
     }
 
-    welcome.textContent =
-    `${greeting}, ${username}`;
+    welcome.textContent = `${greeting}, ${username}`;
+
+    if(assistant){
+
+        assistant.innerHTML = `
+        Welcome back! 😊<br><br>
+
+        I'm ready to help you stay organized today.
+
+        🚀 Let's make today productive!
+        `;
+
+    }
 
 }
 
 updateGreeting();
-
