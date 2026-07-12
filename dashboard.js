@@ -210,3 +210,45 @@ function loadNotifications(){
 }
 
 loadNotifications();
+// ==========================
+// Next Upcoming Event
+// ==========================
+
+function loadNextEvent(){
+
+    const nextEvent = document.getElementById("nextEvent");
+
+    if(!nextEvent) return;
+
+    let events = JSON.parse(localStorage.getItem("events")) || [];
+
+    if(events.length === 0){
+
+        nextEvent.innerHTML = "<p>No upcoming events.</p>";
+
+        return;
+
+    }
+
+    events.sort(function(a,b){
+
+        return new Date(a.date + " " + (a.time || "00:00")) -
+               new Date(b.date + " " + (b.time || "00:00"));
+
+    });
+
+    const event = events[0];
+
+    nextEvent.innerHTML = `
+        <strong>📅 ${event.title}</strong><br><br>
+
+        📅 ${event.date}<br>
+
+        ${event.time ? "🕒 " + event.time + "<br>" : ""}
+
+        ${event.location ? "📍 " + event.location : ""}
+    `;
+
+}
+
+loadNextEvent();
