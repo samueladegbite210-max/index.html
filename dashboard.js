@@ -580,3 +580,33 @@ function saveProfile() {
 }
 
 loadProfile();
+// ==========================
+// Settings
+// ==========================
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light-mode");
+
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("light-mode")
+    );
+
+}
+
+window.onload = function(){
+
+    if(localStorage.getItem("theme") === "true"){
+
+        document.body.classList.add("light-mode");
+
+    }
+
+};
+
+function backupData(){
+
+    alert("🚀 Backup feature coming soon!");
+
+}
