@@ -359,24 +359,7 @@ button:hover,
     color:#60A5FA;
 }
 
-.welcome{
-    text-align:center;
-    margin-bottom:30px;
-}
 
-.welcome h1{
-    font-size:48px;
-    font-weight:700;
-    line-height:1.2;
-    margin-top:15px;
-    margin-bottom:10px;
-
-}
-
-.welcome p{
-    color:#B0B8C5;
-    font-size:18px;
-}
 .side-menu{
     left:-300px;
     transition:0.3s ease;
@@ -629,19 +612,4 @@ button:hover,
 
     font-size:16px;
 
-}
-.welcome{
-    text-align:center;
-    margin-bottom:35px;
-}
-
-.welcome h1{
-    font-size:52px;
-    margin-bottom:15px;
-}
-
-.welcome p{
-    color:#AAB4C5;
-    font-size:23px;
-    line-height:1.5;
 }
