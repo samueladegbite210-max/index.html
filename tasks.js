@@ -1,17 +1,14 @@
 // ==========================
-// AI Life Assistant
-// Tasks System
+// AI Life Assistant - Tasks
 // ==========================
 
-// Load saved tasks
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-// Get HTML elements
 const taskInput = document.getElementById("taskInput");
 const taskPriority = document.getElementById("taskPriority");
 const taskList = document.getElementById("taskList");
 
-// Add a new task
+// Add Task
 function addTask(){
 
     const text = taskInput.value.trim();
@@ -26,6 +23,8 @@ function addTask(){
 
     tasks.push({
 
+        id: Date.now(),
+
         text: text,
 
         priority: taskPriority.value,
@@ -38,11 +37,9 @@ function addTask(){
 
     taskInput.value = "";
 
-    taskPriority.value = "Medium";
-
 }
 
-// Save tasks
+// Save Tasks
 function saveTasks(){
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -51,18 +48,31 @@ function saveTasks(){
 
 }
 
-// Show tasks
+// Render Tasks
 function renderTasks(){
 
     taskList.innerHTML = "";
 
-    tasks.forEach((task,index)=>{
+    if(tasks.length === 0){
+
+        taskList.innerHTML = "<p>No tasks yet.</p>";
+
+        return;
+
+    }
+
+    tasks.forEach(task=>{
 
         const li = document.createElement("li");
 
         li.innerHTML = `
 
-        <span onclick="toggleTask(${index})">
+        <span
+        onclick="toggleTask(${task.id})"
+        style="
+        cursor:pointer;
+        text-decoration:${task.done ? "line-through" : "none"};
+        ">
 
         ${task.done ? "✅" : "⬜"}
 
@@ -72,8 +82,9 @@ function renderTasks(){
 
         </span>
 
-        <button class="deleteBtn"
-        onclick="deleteTask(${index})">
+        <button
+        class="deleteBtn"
+        onclick="deleteTask(${task.id})">
 
         🗑️
 
@@ -87,23 +98,33 @@ function renderTasks(){
 
 }
 
-// Complete task
-function toggleTask(index){
+// Complete Task
+function toggleTask(id){
 
-    tasks[index].done = !tasks[index].done;
+    tasks = tasks.map(task=>{
+
+        if(task.id === id){
+
+            task.done = !task.done;
+
+        }
+
+        return task;
+
+    });
 
     saveTasks();
 
 }
 
-// Delete task
-function deleteTask(index){
+// Delete Task
+function deleteTask(id){
 
-    tasks.splice(index,1);
+    tasks = tasks.filter(task=>task.id !== id);
 
     saveTasks();
 
 }
 
-// Load tasks when page opens
+// Start
 renderTasks();
