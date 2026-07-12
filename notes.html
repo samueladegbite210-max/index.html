@@ -70,13 +70,19 @@ button:hover{
 <textarea
 id="notes"
 placeholder="Write your notes here..."></textarea>
-
+<input
+type="text"
+id="searchNote"
+placeholder="🔍 Search notes..."
+style="margin-top:15px;">
 <button onclick="saveNote()">
 Save Note
 </button>
 
 </div>
-
+<button onclick="clearNote()">
+🗑 Clear Note
+</button>
 <div class="navbar">
     <a href="dashboard.html">🏠<br>Home</a>
     <a href="chat.html">🤖<br>AI</a>
