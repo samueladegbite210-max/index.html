@@ -67,90 +67,47 @@ button:hover{
 <body>
 
 <header>
-🎯 Goals
+🎯 My Goals
 </header>
 
 <div class="container">
 
-<input
-    id="goal"
-    placeholder="Enter a new goal">
+<div class="card">
 
-<button onclick="saveGoal()">
-    Add Goal
+<input
+type="text"
+id="goalInput"
+placeholder="Enter a new goal">
+
+<button onclick="addGoal()">
+Add Goal
 </button>
 
-<div id="goals"></div>
+</div>
+
+<div class="card">
+
+<ul id="goalList"></ul>
+
+</div>
 
 </div>
 
 <div class="navbar">
-    <a href="dashboard.html">🏠<br>Home</a>
-    <a href="chat.html">🤖<br>AI</a>
-    <a href="notes.html">📝<br>Notes</a>
-    <a href="calendar.html">📅<br>Calendar</a>
-    <a href="profile.html">👤<br>Profile</a>
+
+<a href="dashboard.html">🏠<br>Home</a>
+
+<a href="chat.html">🤖<br>AI</a>
+
+<a href="tasks.html">✅<br>Tasks</a>
+
+<a href="calendar.html">📅<br>Calendar</a>
+
+<a href="profile.html">👤<br>Profile</a>
+
 </div>
-
-<script>
-
-
-    const goals = document.getElementById("goals");
-
-goals.innerHTML = localStorage.getItem("goals") || "";
-
-function saveGoal(){
-
-    const input = document.getElementById("goal");
-
-    if(input.value.trim() === "") return;
-
-   goals.innerHTML += `
-<div class="goal">
-    <span onclick="toggleGoal(this)" style="cursor:pointer;">
-        ⬜ ${input.value}
-    </span>
-
-    <br><br>
-goals.innerHTML += `
-<div class="goal">
-    <span onclick="toggleGoal(this)" style="cursor:pointer;">
-        ⬜ ${input.value}
-    </span>
-
-    <br><br>
-
-    <button onclick="deleteGoal(this)">
-        🗑 Delete
-    </button>
-</div>
-`;
-    <button onclick="deleteGoal(this)">
-        🗑 Delete
-    </button>
-</div>
-`;
-
-    localStorage.setItem("goals", goals.innerHTML);
-
-    input.value = "";
-    input.focus();
-}
-
-function deleteGoal(button){
-
-    button.parentElement.remove();
-
-    localStorage.setItem("goals", goals.innerHTML);
-
-}
-
-document.getElementById("goal").addEventListener("keypress", function(event){
-    if(event.key === "Enter"){
-        saveGoal();
-    }
-});
 
 <script src="goals.js"></script>
+    
 </body>
 </html>
