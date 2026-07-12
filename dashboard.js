@@ -349,36 +349,49 @@ function updateAssistant() {
 
     const hour = new Date().getHours();
 
-    let greeting = "";
+let greeting = "";
 
-    if (hour < 12) {
+if (hour >= 5 && hour < 12) {
 
-        greeting = "🌅 Good Morning";
+    greeting = "🌅 Good Morning";
 
-    } else if (hour < 18) {
+} else if (hour >= 12 && hour < 17) {
 
-        greeting = "☀️ Good Afternoon";
+    greeting = "☀️ Good Afternoon";
 
-    } else {
+} else if (hour >= 17 && hour < 21) {
 
-        greeting = "🌙 Good Evening";
+    greeting = "🌇 Good Evening";
 
-    }
+} else {
 
-    const completed =
-        tasks.filter(task => task.done).length;
+    greeting = "🌙 Good Night";
 
-    const total = tasks.length;
+}
+    const completed = tasks.filter(task => task.done).length;
+const total = tasks.length;
 
-    const message =
-        `${greeting}, ${username}! You have ${total} task${total === 1 ? "" : "s"} and ${goals.length} goal${goals.length === 1 ? "" : "s"} today. You've completed ${completed} task${completed === 1 ? "" : "s"}. Keep going! 🚀`;
+const events = JSON.parse(localStorage.getItem("events")) || [];
+const pendingTasks = total - completed;
 
-    const assistant =
-        document.getElementById("assistantMessage");
+const assistant = document.getElementById("assistantMessage");
 
-    if (assistant) {
+if (assistant) {
 
-        assistant.textContent = message;
+    assistant.innerHTML = `
+        <b>${greeting}, ${username}!</b><br><br>
+
+        📅 ${events.length} Upcoming Event(s)<br>
+
+        ✅ ${pendingTasks} Pending Task(s)<br>
+
+        🎯 ${goals.length} Goal(s)<br><br>
+
+        💡 <b>Today's AI Advice:</b><br>
+
+        Focus on completing your highest-priority task first.
+    `;
+
 
     }
 
