@@ -63,3 +63,116 @@ id="search"
 placeholder="🔍 Search...">
 
 </div>
+<!-- Quick Actions -->
+
+<div class="card">
+
+    <h2>⚡ Quick Actions</h2>
+
+    <div class="grid">
+
+        <a href="tasks.html" class="box">
+            ✅<br>Tasks
+        </a>
+
+        <a href="goals.html" class="box">
+            🎯<br>Goals
+        </a>
+
+        <a href="calendar.html" class="box">
+            📅<br>Calendar
+        </a>
+
+        <a href="notes.html" class="box">
+            📝<br>Notes
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Summary -->
+
+<div class="summary">
+
+    <div class="card">
+
+        <h2 id="taskCount">0</h2>
+
+        <p>Tasks</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2 id="goalCount">0</h2>
+
+        <p>Goals</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2 id="eventCount">0</h2>
+
+        <p>Events</p>
+
+    </div>
+
+</div>
+
+<!-- AI Tip -->
+
+<div class="card">
+
+    <h3>💡 AI Tip of the Day</h3>
+
+    <p id="tipText">
+
+        Stay focused and finish one important task first.
+
+    </p>
+
+</div>
+
+<!-- Next Event -->
+
+<div class="card">
+
+    <h3>📅 Next Event</h3>
+
+    <div id="nextEvent">
+
+        No upcoming events.
+
+    </div>
+
+</div>
+
+<!-- Notifications -->
+
+<div class="card">
+
+    <h3>🔔 Notifications</h3>
+
+    <div id="notificationBox">
+
+        No notifications.
+
+    </div>
+
+</div>
+
+<!-- Daily Brief -->
+
+<div class="card">
+
+    <h3>🤖 AI Daily Brief</h3>
+
+    <div id="dailyBrief">
+
+        Loading...
+
+    </div>
+
+</div>
