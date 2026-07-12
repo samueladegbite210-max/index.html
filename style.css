@@ -365,13 +365,12 @@ button:hover,
 }
 
 .welcome h1{
-    #welcomeTitle{
     font-size:48px;
     font-weight:700;
     line-height:1.2;
     margin-top:15px;
     margin-bottom:10px;
-}
+
 }
 
 .welcome p{
@@ -401,9 +400,10 @@ button:hover,
 }
 .top-bar{
     display:flex;
-    justify-content:flex-start;
+    justify-content:space-between;
     align-items:center;
     margin-bottom:25px;
+
 }
 
 .menu-btn{
@@ -629,4 +629,19 @@ button:hover,
 
     font-size:16px;
 
+}
+.welcome{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.welcome h1{
+    font-size:52px;
+    margin-bottom:15px;
+}
+
+.welcome p{
+    color:#AAB4C5;
+    font-size:23px;
+    line-height:1.5;
 }
