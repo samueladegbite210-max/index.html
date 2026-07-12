@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,152 +10,98 @@
 
 <link rel="stylesheet" href="style.css">
 
-<style>
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0B0F1A;
-    color:white;
-    padding-bottom:100px;
-}
-
-header{
-    background:#111827;
-    padding:20px;
-    text-align:center;
-    font-size:24px;
-    font-weight:bold;
-}
-
-.container{
-    padding:20px;
-}
-
-.setting{
-    background:#1F2937;
-    padding:18px;
-    border-radius:12px;
-    margin-bottom:15px;
-    font-size:18px;
-}
-
-button{
-    width:100%;
-    padding:15px;
-    background:#2563EB;
-    color:white;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-    margin-top:10px;
-}
-
-button:hover{
-    background:#1D4ED8;
-}
-
-.reset{
-    background:#DC2626;
-}
-
-.reset:hover{
-    background:#B91C1C;
-}
-
-.version{
-    text-align:center;
-    color:#9CA3AF;
-    margin-top:25px;
-    font-size:14px;
-}
-
-</style>
-
 </head>
 
 <body>
 
-<header>
-⚙️ Settings
+<header class="header">
+
+<h1>⚙️ Settings</h1>
+
+<p>Customize your AI Life Assistant</p>
+
 </header>
 
 <div class="container">
 
-<div class="setting">
-🌙 Dark Mode
-<br>
-<small>Coming in Version 2.0</small>
+<div class="card">
+
+<h3>👤 Profile</h3>
+
+<button onclick="location.href='profile.html'">
+Edit Profile
+</button>
+
 </div>
 
-<div class="setting">
-🔔 Notifications
-<br>
-<small>Coming in Version 2.0</small>
+<div class="card">
+
+<h3>🌙 Appearance</h3>
+
+<button id="themeBtn" onclick="toggleTheme()">
+Dark Mode
+</button>
+
 </div>
 
-<div class="setting">
-🌍 Language
-<br>
-<small>English</small>
+<div class="card">
+
+<h3>🔔 Notifications</h3>
+
+<label>
+
+<input type="checkbox" id="notifySwitch">
+
+ Enable Notifications
+
+</label>
+
 </div>
 
-<div class="setting">
-🔒 Privacy
-<br>
-<small>Your data is stored only on this device.</small>
+<div class="card">
+
+<h3>💾 Backup</h3>
+
+<button onclick="backupData()">
+
+Export My Data
+
+</button>
+
 </div>
 
-<div class="setting">
-ℹ️ About
-<br><br>
+<div class="card">
+
+<h3>ℹ️ About</h3>
+
+<p>
 
 AI Life Assistant
 
-Version 1.0
+Version 2.0
 
-Developer:
+</p>
 
-<b>Adegbite Samuel Abayomi</b>
-
-</div>
-
-<button class="reset" onclick="resetApp()">
-🗑 Reset All App Data
-</button>
-
-<div class="version">
-AI Life Assistant Version 1.0
 </div>
 
 </div>
 
 <div class="navbar">
-    <a href="dashboard.html">🏠<br>Home</a>
-    <a href="chat.html">🤖<br>AI</a>
-    <a href="notes.html">📝<br>Notes</a>
-    <a href="calendar.html">📅<br>Calendar</a>
-    <a href="profile.html">👤<br>Profile</a>
+
+<a href="dashboard.html">🏠<br>Home</a>
+
+<a href="chat.html">🤖<br>AI</a>
+
+<a href="tasks.html">✅<br>Tasks</a>
+
+<a href="goals.html">🎯<br>Goals</a>
+
+<a href="profile.html">👤<br>Profile</a>
+
 </div>
 
-<script>
-
-function resetApp(){
-
-    if(confirm("Are you sure you want to delete all saved data?")){
-
-        localStorage.clear();
-
-        alert("✅ All app data has been deleted.");
-
-        location.reload();
-
-    }
-
-}
-
-</script>
+<script src="dashboard.js"></script>
 
 </body>
+
 </html>
