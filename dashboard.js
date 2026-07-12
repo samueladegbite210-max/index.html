@@ -550,3 +550,33 @@ function loadProfileStats(){
 }
 
 loadProfileStats();
+// ==========================
+// Profile
+// ==========================
+
+function loadProfile() {
+
+    const savedName = localStorage.getItem("profileName");
+
+    if (savedName) {
+        document.getElementById("profileName").value = savedName;
+    }
+
+}
+
+function saveProfile() {
+
+    const name = document.getElementById("profileName").value.trim();
+
+    if (name === "") {
+        alert("Please enter your name.");
+        return;
+    }
+
+    localStorage.setItem("profileName", name);
+
+    alert("✅ Profile saved successfully!");
+
+}
+
+loadProfile();
