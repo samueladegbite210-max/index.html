@@ -55,9 +55,21 @@ function sendMessage(){
         }
 
         // Productivity
-        else if(msg.includes("task")){
-            reply = "✅ Keep completing your tasks one at a time.";
-        }
+        else if(msg.includes("how many tasks")){
+
+    const savedTasks = localStorage.getItem("tasks") || "";
+
+    const total = (savedTasks.match(/<li/g) || []).length;
+
+    reply = `✅ You currently have ${total} task(s).`;
+
+}
+
+else if(msg.includes("task")){
+
+    reply = "✅ Keep completing your tasks one at a time.";
+
+}
 
         else if(msg.includes("how many goals")){
 
