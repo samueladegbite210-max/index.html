@@ -240,24 +240,8 @@ else if(
     else if(msg.includes("thank") || msg.includes("thanks")){
         reply = "😊 You're welcome!";
     }
-else if(
-    msg.includes("how many tasks") ||
-    msg.includes("task count") ||
-    msg.includes("my tasks")
-){
-
-    if(tasks.length === 0){
-
-        reply = "✅ You don't have any tasks yet.";
-
-    }else{
-
-        reply = "✅ You currently have " + tasks.length + " task(s).";
-
-    }
-
-}
-    else if(msg.startsWith("create a task called ")){
+// Create Task
+else if(msg.startsWith("create a task called ")){
 
     const taskName = text.substring(22).trim();
 
@@ -281,11 +265,8 @@ else if(
     }
 
 }
-    // Default Reply
-    else{
-        reply = "🤖 I'm still learning. More AI features are coming soon!";
-    }
 
-    addMessage("ai", reply);
-
+// Keep this LAST
+else{
+    reply = "🤖 I'm still learning. More AI features are coming soon!";
 }
