@@ -109,7 +109,39 @@ function aiReply(text){
 
         return;
     }
+else if(
+    msg.includes("how many goals") ||
+    msg.includes("goal count") ||
+    msg.includes("my goals")
+){
 
+    if(goals.length === 0){
+
+        reply = "🎯 You don't have any goals yet.";
+
+    }else{
+
+        reply = "🎯 You currently have " + goals.length + " goal(s).";
+
+    }
+
+}
+    else if(
+    msg.includes("how many events") ||
+    msg.includes("event count")
+){
+
+    if(events.length === 0){
+
+        reply = "📅 You don't have any upcoming events.";
+
+    }else{
+
+        reply = "📅 You currently have " + events.length + " event(s).";
+
+    }
+
+}
     // Open Goals
     else if(msg.includes("open goal") || msg.includes("open goals")){
         reply = "🎯 Opening your Goals...";
@@ -208,7 +240,23 @@ function aiReply(text){
     else if(msg.includes("thank") || msg.includes("thanks")){
         reply = "😊 You're welcome!";
     }
+else if(
+    msg.includes("how many tasks") ||
+    msg.includes("task count") ||
+    msg.includes("my tasks")
+){
 
+    if(tasks.length === 0){
+
+        reply = "✅ You don't have any tasks yet.";
+
+    }else{
+
+        reply = "✅ You currently have " + tasks.length + " task(s).";
+
+    }
+
+}
     // Default Reply
     else{
         reply = "🤖 I'm still learning. More AI features are coming soon!";
