@@ -89,14 +89,41 @@ else if(msg.includes("goal")){
 
 }
 
-        else if(msg.includes("calendar") || msg.includes("event")){
-            reply = "📅 Don't forget to check your upcoming events.";
-        }
+        else if(msg.includes("how many events")){
 
-        else if(msg.includes("note")){
-            reply = "📝 Your notes are saved automatically.";
-        }
+    const events = JSON.parse(localStorage.getItem("events")) || [];
 
+    reply = `📅 You currently have ${events.length} event(s).`;
+
+}
+
+else if(msg.includes("calendar") || msg.includes("event")){
+
+    reply = "📅 Don't forget to check your upcoming events.";
+
+}
+
+        else if(msg.includes("how many notes")){
+
+    const notes = localStorage.getItem("notes") || "";
+
+    if(notes.trim() === ""){
+
+        reply = "📝 You don't have any notes yet.";
+
+    }else{
+
+        reply = "📝 You already have notes saved.";
+
+    }
+
+}
+
+else if(msg.includes("note")){
+
+    reply = "📝 Your notes are saved automatically.";
+
+}
         // Motivation
         else if(msg.includes("motivate me")){
             reply = "💙 Don't give up. Consistency beats perfection.";
