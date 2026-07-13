@@ -257,6 +257,30 @@ else if(
     }
 
 }
+    else if(msg.startsWith("create a task called ")){
+
+    const taskName = text.substring(22).trim();
+
+    if(taskName === ""){
+
+        reply = "❌ Please enter a task name.";
+
+    }else{
+
+        tasks.push({
+            id: Date.now(),
+            text: taskName,
+            priority: "Medium",
+            done: false
+        });
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "✅ Task created successfully!";
+
+    }
+
+}
     // Default Reply
     else{
         reply = "🤖 I'm still learning. More AI features are coming soon!";
