@@ -335,6 +335,42 @@ else if(
     }
 
 }
+    // Create Event
+else if(
+    msg.startsWith("create an event called ") ||
+    msg.startsWith("add an event called ")
+){
+
+    let eventTitle = text;
+
+    eventTitle = eventTitle.replace(/create an event called /i, "");
+    eventTitle = eventTitle.replace(/add an event called /i, "");
+
+    eventTitle = eventTitle.trim();
+
+    if(eventTitle === ""){
+
+        reply = "❌ Please enter an event title.";
+
+    }else{
+
+        events.push({
+            title: eventTitle,
+            date: new Date().toISOString().split("T")[0],
+            time: "",
+            location: "",
+            notes: "",
+            reminder: "none",
+            repeat: "none"
+        });
+
+        localStorage.setItem("events", JSON.stringify(events));
+
+        reply = "📅 Event \"" + eventTitle + "\" created successfully!";
+
+    }
+
+}
 // Keep this LAST
 
 else{
