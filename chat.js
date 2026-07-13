@@ -26,35 +26,71 @@ function sendMessage(){
         // Greetings
         if(msg.includes("hello") || msg.includes("hi")){
             reply = "👋 Hello Samuel! How can I help you today?";
-        }else if(msg.includes("open tasks")){
-    reply = "✅ Opening your Tasks...";
-    setTimeout(() => {
-        window.location.href = "tasks.html";
-    },1000);
+        // Calendar
+else if(
+msg.includes("calendar") ||
+msg.includes("show my calendar") ||
+msg.includes("open calendar") ||
+msg.includes("go to calendar") ||
+msg.includes("take me to calendar")
+){
+reply="📅 Opening your Calendar...";
+setTimeout(()=>{
+window.location.href="calendar.html";
+},1000);
 }
-else if(msg.includes("open goals")){
-    reply = "🎯 Opening your Goals...";
-    setTimeout(() => {
-        window.location.href = "goals.html";
-    },1000);
+
+// Tasks
+else if(
+msg.includes("task") ||
+msg.includes("tasks") ||
+msg.includes("open tasks") ||
+msg.includes("show my tasks") ||
+msg.includes("go to tasks")
+){
+reply="✅ Opening your Tasks...";
+setTimeout(()=>{
+window.location.href="tasks.html";
+},1000);
 }
-else if(msg.includes("open calendar")){
-    reply = "📅 Opening your Calendar...";
-    setTimeout(() => {
-        window.location.href = "calendar.html";
-    },1000);
+
+// Goals
+else if(
+msg.includes("goal") ||
+msg.includes("goals") ||
+msg.includes("open goals") ||
+msg.includes("show my goals")
+){
+reply="🎯 Opening your Goals...";
+setTimeout(()=>{
+window.location.href="goals.html";
+},1000);
 }
-else if(msg.includes("open notes")){
-    reply = "📝 Opening your Notes...";
-    setTimeout(() => {
-        window.location.href = "notes.html";
-    },1000);
+
+// Notes
+else if(
+msg.includes("note") ||
+msg.includes("notes") ||
+msg.includes("open notes") ||
+msg.includes("show my notes")
+){
+reply="📝 Opening your Notes...";
+setTimeout(()=>{
+window.location.href="notes.html";
+},1000);
 }
-else if(msg.includes("open profile")){
-    reply = "👤 Opening your Profile...";
-    setTimeout(() => {
-        window.location.href = "profile.html";
-    },1000);
+
+// Profile
+else if(
+msg.includes("profile") ||
+msg.includes("my profile") ||
+msg.includes("open profile")
+){
+reply="👤 Opening your Profile...";
+setTimeout(()=>{
+window.location.href="profile.html";
+},1000);
+}
 }
 
         // Open pages
