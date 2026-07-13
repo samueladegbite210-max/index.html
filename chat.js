@@ -155,9 +155,41 @@ else if(msg.includes("open profile")){
         reply = "😊 You're welcome!";
     }
 
-    else{
-        reply = "🤖 I'm still learning. More AI features are coming soon!";
-    }
+    // Open Calendar
+else if(msg.includes("open calendar")){
+    reply = "📅 Opening Calendar...";
+    setTimeout(() => {
+        window.location.href = "calendar.html";
+    }, 1000);
+}
+
+// Open Tasks
+else if(msg.includes("open task") || msg.includes("open tasks")){
+    reply = "✅ Opening Tasks...";
+    setTimeout(() => {
+        window.location.href = "tasks.html";
+    }, 1000);
+}
+
+// Open Notes
+else if(msg.includes("open notes") || msg.includes("open note")){
+    reply = "📝 Opening Notes...";
+    setTimeout(() => {
+        window.location.href = "notes.html";
+    }, 1000);
+}
+
+// Open Home
+else if(msg.includes("open home") || msg.includes("dashboard")){
+    reply = "🏠 Opening Home...";
+    setTimeout(() => {
+        window.location.href = "dashboard.html";
+    }, 1000);
+}
+
+else{
+    reply = "🤖 I'm still learning. More AI features are coming soon!";
+}
 
     addMessage("ai", reply);
 
