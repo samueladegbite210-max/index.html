@@ -66,10 +66,7 @@ function aiReply(text){
     let reply = "";
 
     // Greetings
-    if(
-        msg.includes("hello") ||
-        msg.includes("hi")
-    ){
+    if(msg.includes("hello") || msg.includes("hi")){
         reply = "👋 Hello Samuel! How can I help you today?";
     }
 
@@ -89,153 +86,133 @@ function aiReply(text){
         reply = "🌙 Good night. Sleep well.";
     }
 
-        // Open Tasks
-else if(msg.includes("open tasks")){
-    reply = "✅ Opening your Tasks...";
-    addMessage("ai", reply);
+    // Open Home
+    else if(msg.includes("open home") || msg.includes("dashboard")){
+        reply = "🏠 Opening Home...";
+        addMessage("ai", reply);
 
-    setTimeout(function(){
-        window.location.href = "tasks.html";
-    },1000);
+        setTimeout(function(){
+            window.location.href = "dashboard.html";
+        },1000);
 
-    return;
-}
+        return;
+    }
 
-// Open Goals
-else if(msg.includes("open goals")){
-    reply = "🎯 Opening your Goals...";
-    addMessage("ai", reply);
+    // Open Tasks
+    else if(msg.includes("open task") || msg.includes("open tasks")){
+        reply = "✅ Opening your Tasks...";
+        addMessage("ai", reply);
 
-    setTimeout(function(){
-        window.location.href = "goals.html";
-    },1000);
+        setTimeout(function(){
+            window.location.href = "tasks.html";
+        },1000);
 
-    return;
-}
+        return;
+    }
 
-// Open Calendar
-else if(msg.includes("open calendar")){
-    reply = "📅 Opening your Calendar...";
-    addMessage("ai", reply);
+    // Open Goals
+    else if(msg.includes("open goal") || msg.includes("open goals")){
+        reply = "🎯 Opening your Goals...";
+        addMessage("ai", reply);
 
-    setTimeout(function(){
-        window.location.href = "calendar.html";
-    },1000);
+        setTimeout(function(){
+            window.location.href = "goals.html";
+        },1000);
 
-    return;
-}
+        return;
+    }
 
-// Open Notes
-else if(msg.includes("open notes")){
-    reply = "📝 Opening your Notes...";
-    addMessage("ai", reply);
+    // Open Calendar
+    else if(msg.includes("open calendar")){
+        reply = "📅 Opening your Calendar...";
+        addMessage("ai", reply);
 
-    setTimeout(function(){
-        window.location.href = "notes.html";
-    },1000);
+        setTimeout(function(){
+            window.location.href = "calendar.html";
+        },1000);
 
-    return;
-}
-    // Number of notes
-else if(
-    msg.includes("how many notes") ||
-    msg.includes("note count")
-){
+        return;
+    }
 
-    if(notes.trim() === ""){
-        reply = "📝 You don't have any notes yet.";
-    }else{
+    // Open Notes
+    else if(msg.includes("open note") || msg.includes("open notes")){
+        reply = "📝 Opening your Notes...";
+        addMessage("ai", reply);
 
-        const words = notes.trim().split(/\s+/).length;
+        setTimeout(function(){
+            window.location.href = "notes.html";
+        },1000);
 
-        reply = "📝 You currently have 1 note with about " + words + " words.";
+        return;
+    }
+
+    // Open Profile
+    else if(msg.includes("open profile")){
+        reply = "👤 Opening your Profile...";
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+            window.location.href = "profile.html";
+        },1000);
+
+        return;
+    }
+
+    // Notes Count
+    else if(msg.includes("how many notes") || msg.includes("note count")){
+
+        if(notes.trim() === ""){
+            reply = "📝 You don't have any notes yet.";
+        }else{
+
+            const words = notes.trim().split(/\s+/).length;
+
+            reply = "📝 You currently have 1 note with about " + words + " words.";
+
+        }
 
     }
 
-}
+    // Next Event
+    else if(
+        msg.includes("next event") ||
+        msg.includes("my next event") ||
+        msg.includes("upcoming event")
+    ){
 
-// Open Profile
-else if(msg.includes("open profile")){
-    reply = "👤 Opening your Profile...";
-    addMessage("ai", reply);
+        if(events.length === 0){
 
-    setTimeout(function(){
-        window.location.href = "profile.html";
-    },1000);
+            reply = "📅 You don't have any upcoming events.";
 
-    return;
-}
+        }else{
+
+            const event = events[0];
+
+            reply =
+            "📅 Your next event is:<br><br>" +
+            "📝 " + event.title + "<br>" +
+            "📆 " + event.date + "<br>" +
+            "🕒 " + event.time + "<br>" +
+            "📍 " + event.location;
+
+        }
+
+    }
+
     // Motivation
     else if(msg.includes("motivate me")){
         reply = "💙 Don't give up. Small progress every day leads to big success.";
     }
 
-    // Thank you
-    else if(
-        msg.includes("thank") ||
-        msg.includes("thanks")
-    ){
+    // Thank You
+    else if(msg.includes("thank") || msg.includes("thanks")){
         reply = "😊 You're welcome!";
     }
 
-    // Open Calendar
-else if(msg.includes("open calendar")){
-    reply = "📅 Opening Calendar...";
-    setTimeout(() => {
-        window.location.href = "calendar.html";
-    }, 1000);
-}
-
-// Open Tasks
-else if(msg.includes("open task") || msg.includes("open tasks")){
-    reply = "✅ Opening Tasks...";
-    setTimeout(() => {
-        window.location.href = "tasks.html";
-    }, 1000);
-}
-
-// Open Notes
-else if(msg.includes("open notes") || msg.includes("open note")){
-    reply = "📝 Opening Notes...";
-    setTimeout(() => {
-        window.location.href = "notes.html";
-    }, 1000);
-}
-
-// Open Home
-else if(msg.includes("open home") || msg.includes("dashboard")){
-    reply = "🏠 Opening Home...";
-    setTimeout(() => {
-        window.location.href = "dashboard.html";
-    }, 1000);
-}
-else if(
-    msg.includes("next event") ||
-    msg.includes("my next event") ||
-    msg.includes("upcoming event")
-){
-
-    if(events.length === 0){
-
-        reply = "📅 You don't have any upcoming events.";
-
-    }else{
-
-        const event = events[0];
-
-        reply =
-        "📅 Your next event is:<br><br>" +
-        "📝 " + event.title + "<br>" +
-        "📆 " + event.date + "<br>" +
-        "🕒 " + event.time + "<br>" +
-        "📍 " + event.location;
-
+    // Default Reply
+    else{
+        reply = "🤖 I'm still learning. More AI features are coming soon!";
     }
-
-}
-else{
-    reply = "🤖 I'm still learning. More AI features are coming soon!";
-}
 
     addMessage("ai", reply);
 
