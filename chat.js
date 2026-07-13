@@ -371,6 +371,36 @@ else if(
     }
 
 }
+    // Show Tasks
+else if(
+    msg.includes("show my tasks") ||
+    msg.includes("list my tasks") ||
+    msg.includes("show tasks")
+){
+
+    if(tasks.length === 0){
+
+        reply = "✅ You don't have any tasks yet.";
+
+    }else{
+
+        reply = "✅ <strong>Your Tasks</strong><br><br>";
+
+        tasks.forEach(function(task, index){
+
+            const status = task.done ? "✅" : "⬜";
+
+            reply +=
+                status + " " +
+                (index + 1) + ". " +
+                task.text +
+                "<br>";
+
+        });
+
+    }
+
+}
 // Keep this LAST
 
 else{
