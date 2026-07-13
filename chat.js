@@ -401,6 +401,36 @@ else if(
     }
 
 }
+    // Show Goals
+else if(
+    msg.includes("show my goals") ||
+    msg.includes("list my goals") ||
+    msg.includes("show goals")
+){
+
+    if(goals.length === 0){
+
+        reply = "🎯 You don't have any goals yet.";
+
+    }else{
+
+        reply = "🎯 <strong>Your Goals</strong><br><br>";
+
+        goals.forEach(function(goal, index){
+
+            const status = goal.done ? "✅" : "⬜";
+
+            reply +=
+                status + " " +
+                (index + 1) + ". " +
+                goal.text +
+                "<br>";
+
+        });
+
+    }
+
+}
 // Keep this LAST
 
 else{
