@@ -54,9 +54,16 @@ input.addEventListener("keypress", function(event){
 // =====================================
 
 function aiReply(text){
+function aiReply(text){
 
     const msg = text.toLowerCase();
-const notes = localStorage.getItem("notes") || "";
+
+    // Load saved data
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const goals = JSON.parse(localStorage.getItem("goals")) || [];
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+    const notes = localStorage.getItem("notes") || "";
+
     let reply = "";
 
     // Greetings
@@ -203,7 +210,30 @@ else if(msg.includes("open home") || msg.includes("dashboard")){
         window.location.href = "dashboard.html";
     }, 1000);
 }
+else if(
+    msg.includes("next event") ||
+    msg.includes("my next event") ||
+    msg.includes("upcoming event")
+){
 
+    if(events.length === 0){
+
+        reply = "📅 You don't have any upcoming events.";
+
+    }else{
+
+        const event = events[0];
+
+        reply =
+        "📅 Your next event is:<br><br>" +
+        "📝 " + event.title + "<br>" +
+        "📆 " + event.date + "<br>" +
+        "🕒 " + event.time + "<br>" +
+        "📍 " + event.location;
+
+    }
+
+}
 else{
     reply = "🤖 I'm still learning. More AI features are coming soon!";
 }
