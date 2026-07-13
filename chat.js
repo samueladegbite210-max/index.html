@@ -64,7 +64,10 @@ function aiReply(text){
 
     let reply = "";
 
+    // =========================
     // Greetings
+    // =========================
+
     if(msg.includes("hello") || msg.includes("hi")){
 
         reply = "👋 Hello Samuel! How can I help you today?";
@@ -74,6 +77,124 @@ function aiReply(text){
     else if(msg.includes("good morning")){
 
         reply = "🌅 Good morning! Have a productive day.";
+
+    }
+
+    else if(msg.includes("good afternoon")){
+
+        reply = "☀️ Good afternoon!";
+
+    }
+
+    else if(msg.includes("good evening")){
+
+        reply = "🌇 Good evening!";
+
+    }
+
+    else if(msg.includes("good night")){
+
+        reply = "🌙 Good night. Sleep well.";
+
+    }
+
+    // =========================
+    // Navigation
+    // =========================
+
+    else if(msg.includes("open home")){
+
+        reply = "🏠 Opening Home...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="dashboard.html";
+
+        },1000);
+
+        return;
+
+    }
+
+    else if(msg.includes("open tasks")){
+
+        reply = "✅ Opening Tasks...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="tasks.html";
+
+        },1000);
+
+        return;
+
+    }
+
+    else if(msg.includes("open goals")){
+
+        reply = "🎯 Opening Goals...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="goals.html";
+
+        },1000);
+
+        return;
+
+    }
+
+    else if(msg.includes("open calendar")){
+
+        reply = "📅 Opening Calendar...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="calendar.html";
+
+        },1000);
+
+        return;
+
+    }
+
+    else if(msg.includes("open notes")){
+
+        reply = "📝 Opening Notes...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="notes.html";
+
+        },1000);
+
+        return;
+
+    }
+
+    else if(msg.includes("open profile")){
+
+        reply = "👤 Opening Profile...";
+
+        addMessage("ai", reply);
+
+        setTimeout(function(){
+
+            window.location.href="profile.html";
+
+        },1000);
+
+        return;
 
     }
 
