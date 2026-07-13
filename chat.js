@@ -266,6 +266,32 @@ else if(msg.startsWith("create a task called ")){
     }
 
 }
+    // Create Note
+else if(msg.startsWith("save a note called ")){
+
+    const noteText = text.replace(/save a note called /i, "").trim();
+
+    if(noteText === ""){
+
+        reply = "❌ Please enter a note.";
+
+    }else{
+
+        let currentNotes = localStorage.getItem("notes") || "";
+
+        if(currentNotes !== ""){
+            currentNotes += "\n\n";
+        }
+
+        currentNotes += noteText;
+
+        localStorage.setItem("notes", currentNotes);
+
+        reply = "📝 Note saved successfully!";
+
+    }
+
+}
 // Keep this LAST
 
 else{
