@@ -369,6 +369,123 @@ else if(
     reply = "📅 Event \"" + eventTitle + "\" created successfully!";
 
 }  
+    // ======================
+// Show Tasks
+// ======================
+
+else if(
+    msg.includes("show my tasks") ||
+    msg.includes("list my tasks") ||
+    msg.includes("show tasks")
+){
+
+    if(tasks.length===0){
+
+        reply="✅ You don't have any tasks.";
+
+    }else{
+
+        reply="✅ <strong>Your Tasks</strong><br><br>";
+
+        tasks.forEach(function(task,index){
+
+            reply+=
+            (task.done?"✅ ":"⬜ ")+
+            (index+1)+". "+
+            task.text+
+            "<br>";
+
+        });
+
+    }
+
+}
+    // ======================
+// Show Goals
+// ======================
+
+else if(
+    msg.includes("show my goals") ||
+    msg.includes("list my goals") ||
+    msg.includes("show goals")
+){
+
+    if(goals.length===0){
+
+        reply="🎯 You don't have any goals.";
+
+    }else{
+
+        reply="🎯 <strong>Your Goals</strong><br><br>";
+
+        goals.forEach(function(goal,index){
+
+            reply+=
+            (goal.done?"✅ ":"⬜ ")+
+            (index+1)+". "+
+            goal.text+
+            "<br>";
+
+        });
+
+    }
+
+}
+    // ======================
+// Show Notes
+// ======================
+
+else if(
+    msg.includes("show my notes") ||
+    msg.includes("show notes")
+){
+
+    if(notes.trim()===""){
+
+        reply="📝 No notes found.";
+
+    }else{
+
+        reply=
+        "<strong>📝 Your Notes</strong><br><br>"+
+        notes.replace(/\n/g,"<br>");
+
+    }
+
+}
+   // ======================
+// Show Events
+// ======================
+
+else if(
+    msg.includes("show my events") ||
+    msg.includes("show events")
+){
+
+    if(events.length===0){
+
+        reply="📅 No events found.";
+
+    }else{
+
+        reply="<strong>📅 Your Events</strong><br><br>";
+
+        events.forEach(function(event,index){
+
+            reply+=
+            (index+1)+". "+
+            event.title+
+            "<br>"+
+
+            "📆 "+event.date+
+
+            "<br><br>";
+
+        });
+
+    }
+
+} 
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
