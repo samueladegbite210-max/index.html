@@ -262,7 +262,108 @@ else if(
     }
 
 }
-    else{
+    // ======================
+// Create Goal
+// ======================
+
+else if(
+    msg.startsWith("create a goal called ") ||
+    msg.startsWith("add a goal called ")
+){
+
+    let goalName=text;
+
+    goalName=goalName.replace(/create a goal called /i,"");
+    goalName=goalName.replace(/add a goal called /i,"");
+
+    goalName=goalName.trim();
+
+    if(goalName===""){
+
+        reply="❌ Please enter a goal.";
+
+    }else{
+
+        goals.push({
+            id:Date.now(),
+            text:goalName,
+            done:false
+        });
+
+        localStorage.setItem("goals",JSON.stringify(goals));
+
+        reply="🎯 Goal \""+goalName+"\" created successfully!";
+
+    }
+
+}
+    // ======================
+// Create Note
+// ======================
+
+else if(
+    msg.startsWith("create a note called ") ||
+    msg.startsWith("save a note called ") ||
+    msg.startsWith("add a note called ")
+){
+
+    let note=text;
+
+    note=note.replace(/create a note called /i,"");
+    note=note.replace(/save a note called /i,"");
+    note=note.replace(/add a note called /i,"");
+
+    note=note.trim();
+
+    let currentNotes=localStorage.getItem("notes")||"";
+
+    if(currentNotes!==""){
+
+        currentNotes+="\n\n";
+
+    }
+
+    currentNotes+=note;
+
+    localStorage.setItem("notes",currentNotes);
+
+    reply="📝 Note saved successfully!";
+
+}
+    // ======================
+// Create Event
+// ======================
+
+else if(
+    msg.startsWith("create an event called ") ||
+    msg.startsWith("add an event called ")
+){
+
+    let event=text;
+
+    event=event.replace(/create an event called /i,"");
+    event=event.replace(/add an event called /i,"");
+
+    event=event.trim();
+
+    events.push({
+
+        title:event,
+        date:new Date().toISOString().split("T")[0],
+        time:"",
+        location:"",
+        notes:"",
+        reminder:"none",
+        repeat:"none"
+
+    });
+
+    localStorage.setItem("events",JSON.stringify(events));
+
+    reply="📅 Event \""+event+"\" created successfully!";
+
+}
+else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
 
