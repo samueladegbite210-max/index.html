@@ -226,7 +226,42 @@ function aiReply(text){
         return;
 
     }
+// ======================
+// Create Task
+// ======================
 
+else if(
+    msg.startsWith("create a task called ") ||
+    msg.startsWith("add a task called ")
+){
+
+    let taskName = text;
+
+    taskName = taskName.replace(/create a task called /i,"");
+    taskName = taskName.replace(/add a task called /i,"");
+
+    taskName = taskName.trim();
+
+    if(taskName===""){
+
+        reply="❌ Please enter a task name.";
+
+    }else{
+
+        tasks.push({
+            id:Date.now(),
+            text:taskName,
+            priority:"Medium",
+            done:false
+        });
+
+        localStorage.setItem("tasks",JSON.stringify(tasks));
+
+        reply="✅ Task \""+taskName+"\" created successfully!";
+
+    }
+
+}
     else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
