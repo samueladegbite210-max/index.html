@@ -571,6 +571,98 @@ else if(
     }
 
 }
+    // ======================
+// Complete Task
+// ======================
+
+else if(msg.startsWith("complete task ")){
+
+    const number = parseInt(msg.replace("complete task ",""));
+
+    if(isNaN(number) || number < 1 || number > tasks.length){
+
+        reply = "❌ Task not found.";
+
+    }else{
+
+        tasks[number - 1].done = true;
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "✅ Task " + number + " completed.";
+
+    }
+
+}
+    // ======================
+// Complete Goal
+// ======================
+
+else if(msg.startsWith("complete goal ")){
+
+    const number = parseInt(msg.replace("complete goal ",""));
+
+    if(isNaN(number) || number < 1 || number > goals.length){
+
+        reply = "❌ Goal not found.";
+
+    }else{
+
+        goals[number - 1].done = true;
+
+        localStorage.setItem("goals", JSON.stringify(goals));
+
+        reply = "🎯 Goal " + number + " completed.";
+
+    }
+
+}
+    // ======================
+// Delete Task
+// ======================
+
+else if(msg.startsWith("delete task ")){
+
+    const number = parseInt(msg.replace("delete task ",""));
+
+    if(isNaN(number) || number < 1 || number > tasks.length){
+
+        reply = "❌ Task not found.";
+
+    }else{
+
+        const deleted = tasks.splice(number - 1, 1);
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "🗑️ Deleted task: " + deleted[0].text;
+
+    }
+
+}
+    // ======================
+// Delete Goal
+// ======================
+
+else if(msg.startsWith("delete goal ")){
+
+    const number = parseInt(msg.replace("delete goal ",""));
+
+    if(isNaN(number) || number < 1 || number > goals.length){
+
+        reply = "❌ Goal not found.";
+
+    }else{
+
+        const deleted = goals.splice(number - 1, 1);
+
+        localStorage.setItem("goals", JSON.stringify(goals));
+
+        reply = "🗑️ Deleted goal: " + deleted[0].text;
+
+    }
+
+}
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
