@@ -234,6 +234,141 @@ else if(
     return;
 
 }
+  // ======================
+// Create Task
+// ======================
+
+else if(
+    msg.startsWith("create a task called ") ||
+    msg.startsWith("add a task called ")
+){
+
+    let taskName = text;
+
+    taskName = taskName.replace(/create a task called /i,"");
+    taskName = taskName.replace(/add a task called /i,"");
+
+    taskName = taskName.trim();
+
+    if(taskName === ""){
+
+        reply = "❌ Please enter a task name.";
+
+    }else{
+
+        tasks.push({
+            id: Date.now(),
+            text: taskName,
+            priority: "Medium",
+            done: false
+        });
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "✅ Task \"" + taskName + "\" created successfully!";
+
+    }
+
+}  
+ // ======================
+// Create Goal
+// ======================
+
+else if(
+    msg.startsWith("create a goal called ") ||
+    msg.startsWith("add a goal called ")
+){
+
+    let goalName = text;
+
+    goalName = goalName.replace(/create a goal called /i,"");
+    goalName = goalName.replace(/add a goal called /i,"");
+
+    goalName = goalName.trim();
+
+    if(goalName === ""){
+
+        reply = "❌ Please enter a goal.";
+
+    }else{
+
+        goals.push({
+            id: Date.now(),
+            text: goalName,
+            done: false
+        });
+
+        localStorage.setItem("goals", JSON.stringify(goals));
+
+        reply = "🎯 Goal \"" + goalName + "\" created successfully!";
+
+    }
+
+}  
+    // ======================
+// Create Note
+// ======================
+
+else if(
+    msg.startsWith("create a note called ") ||
+    msg.startsWith("save a note called ") ||
+    msg.startsWith("add a note called ")
+){
+
+    let noteText = text;
+
+    noteText = noteText.replace(/create a note called /i,"");
+    noteText = noteText.replace(/save a note called /i,"");
+    noteText = noteText.replace(/add a note called /i,"");
+
+    noteText = noteText.trim();
+
+    let currentNotes = localStorage.getItem("notes") || "";
+
+    if(currentNotes !== ""){
+        currentNotes += "\n\n";
+    }
+
+    currentNotes += noteText;
+
+    localStorage.setItem("notes", currentNotes);
+
+    reply = "📝 Note saved successfully!";
+
+}
+  // ======================
+// Create Event
+// ======================
+
+else if(
+    msg.startsWith("create an event called ") ||
+    msg.startsWith("add an event called ")
+){
+
+    let eventTitle = text;
+
+    eventTitle = eventTitle.replace(/create an event called /i,"");
+    eventTitle = eventTitle.replace(/add an event called /i,"");
+
+    eventTitle = eventTitle.trim();
+
+    events.push({
+
+        title: eventTitle,
+        date: new Date().toISOString().split("T")[0],
+        time: "",
+        location: "",
+        notes: "",
+        reminder: "none",
+        repeat: "none"
+
+    });
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    reply = "📅 Event \"" + eventTitle + "\" created successfully!";
+
+}  
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
