@@ -858,6 +858,43 @@ else if(msg.startsWith("set task ")){
     }
 
 }
+   // Complete Task
+else if(
+    msg.startsWith("complete task ") ||
+    msg.startsWith("finish task ") ||
+    msg.startsWith("mark task ")
+){
+
+    let match = msg.match(/\d+/);
+
+    if(match){
+
+        let taskNumber = parseInt(match[0]) - 1;
+
+        if(taskNumber >= 0 && taskNumber < tasks.length){
+
+            tasks[taskNumber].done = true;
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            reply =
+                "✅ Task " +
+                (taskNumber + 1) +
+                " completed!";
+
+        }else{
+
+            reply = "❌ Task not found.";
+
+        }
+
+    }else{
+
+        reply = "❌ Please tell me the task number.";
+
+    }
+
+} 
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
