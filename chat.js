@@ -816,6 +816,46 @@ else if(msg.startsWith("rename task ")){
     }
 
 }
+    // ======================
+// Change Task Priority
+// ======================
+
+else if(msg.startsWith("set task ")){
+
+    const parts = text.match(/set task (\d+) priority to (high|medium|low)/i);
+
+    if(!parts){
+
+        reply = "❌ Use: Set task 1 priority to High";
+
+    }else{
+
+        const taskNumber = parseInt(parts[1]);
+        const priority = parts[2];
+
+        if(taskNumber < 1 || taskNumber > tasks.length){
+
+            reply = "❌ Task not found.";
+
+        }else{
+
+            tasks[taskNumber - 1].priority =
+            priority.charAt(0).toUpperCase() +
+            priority.slice(1).toLowerCase();
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            reply =
+            "⭐ Task " +
+            taskNumber +
+            " priority changed to " +
+            tasks[taskNumber - 1].priority + ".";
+
+        }
+
+    }
+
+}
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
