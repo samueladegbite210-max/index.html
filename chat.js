@@ -113,254 +113,127 @@ function aiReply(text){
     // Navigation
     // ======================
 
-    else if(
-        msg.includes("open home") ||
-        msg.includes("go home") ||
-        msg.includes("dashboard")
-    ){
-
-        reply="🏠 Opening Home...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="dashboard.html";
-
-        },1000);
-
-        return;
-
-    }
-
-    else if(
-        msg.includes("open task") ||
-        msg.includes("open tasks") ||
-        msg.includes("go to tasks")
-    ){
-
-        reply="✅ Opening Tasks...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="tasks.html";
-
-        },1000);
-
-        return;
-
-    }
-
-    else if(
-        msg.includes("open goal") ||
-        msg.includes("open goals")
-    ){
-
-        reply="🎯 Opening Goals...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="goals.html";
-
-        },1000);
-
-        return;
-
-    }
-
-    else if(
-        msg.includes("open calendar")
-    ){
-
-        reply="📅 Opening Calendar...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="calendar.html";
-
-        },1000);
-
-        return;
-
-    }
-
-    else if(
-        msg.includes("open note") ||
-        msg.includes("open notes")
-    ){
-
-        reply="📝 Opening Notes...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="notes.html";
-
-        },1000);
-
-        return;
-
-    }
-
-    else if(
-        msg.includes("open profile")
-    ){
-
-        reply="👤 Opening Profile...";
-
-        addMessage("ai",reply);
-
-        setTimeout(function(){
-
-            window.location.href="profile.html";
-
-        },1000);
-
-        return;
-
-    }
-// ======================
-// Create Task
+    // ======================
+// Navigation
 // ======================
 
+// Home
 else if(
-    msg.startsWith("create a task called ") ||
-    msg.startsWith("add a task called ")
+    msg.includes("open home") ||
+    msg.includes("go home") ||
+    msg.includes("dashboard")
 ){
 
-    let taskName = text;
+    reply = "🏠 Opening Home...";
 
-    taskName = taskName.replace(/create a task called /i,"");
-    taskName = taskName.replace(/add a task called /i,"");
+    addMessage("ai", reply);
 
-    taskName = taskName.trim();
+    setTimeout(function(){
 
-    if(taskName===""){
+        window.location.href = "dashboard.html";
 
-        reply="❌ Please enter a task name.";
+    },1000);
 
-    }else{
-
-        tasks.push({
-            id:Date.now(),
-            text:taskName,
-            priority:"Medium",
-            done:false
-        });
-
-        localStorage.setItem("tasks",JSON.stringify(tasks));
-
-        reply="✅ Task \""+taskName+"\" created successfully!";
-
-    }
+    return;
 
 }
-    // ======================
-// Create Goal
-// ======================
 
+// Tasks
 else if(
-    msg.startsWith("create a goal called ") ||
-    msg.startsWith("add a goal called ")
+    msg.includes("open task") ||
+    msg.includes("open tasks") ||
+    msg.includes("go to tasks")
 ){
 
-    let goalName=text;
+    reply = "✅ Opening Tasks...";
 
-    goalName=goalName.replace(/create a goal called /i,"");
-    goalName=goalName.replace(/add a goal called /i,"");
+    addMessage("ai", reply);
 
-    goalName=goalName.trim();
+    setTimeout(function(){
 
-    if(goalName===""){
+        window.location.href = "tasks.html";
 
-        reply="❌ Please enter a goal.";
+    },1000);
 
-    }else{
-
-        goals.push({
-            id:Date.now(),
-            text:goalName,
-            done:false
-        });
-
-        localStorage.setItem("goals",JSON.stringify(goals));
-
-        reply="🎯 Goal \""+goalName+"\" created successfully!";
-
-    }
+    return;
 
 }
-    // ======================
-// Create Note
-// ======================
 
+// Goals
 else if(
-    msg.startsWith("create a note called ") ||
-    msg.startsWith("save a note called ") ||
-    msg.startsWith("add a note called ")
+    msg.includes("open goal") ||
+    msg.includes("open goals")
 ){
 
-    let note=text;
+    reply = "🎯 Opening Goals...";
 
-    note=note.replace(/create a note called /i,"");
-    note=note.replace(/save a note called /i,"");
-    note=note.replace(/add a note called /i,"");
+    addMessage("ai", reply);
 
-    note=note.trim();
+    setTimeout(function(){
 
-    let currentNotes=localStorage.getItem("notes")||"";
+        window.location.href = "goals.html";
 
-    if(currentNotes!==""){
+    },1000);
 
-        currentNotes+="\n\n";
-
-    }
-
-    currentNotes+=note;
-
-    localStorage.setItem("notes",currentNotes);
-
-    reply="📝 Note saved successfully!";
+    return;
 
 }
-    // ======================
-// Create Event
-// ======================
 
+// Notes
 else if(
-    msg.startsWith("create an event called ") ||
-    msg.startsWith("add an event called ")
+    msg.includes("open note") ||
+    msg.includes("open notes")
 ){
 
-    let event=text;
+    reply = "📝 Opening Notes...";
 
-    event=event.replace(/create an event called /i,"");
-    event=event.replace(/add an event called /i,"");
+    addMessage("ai", reply);
 
-    event=event.trim();
+    setTimeout(function(){
 
-    events.push({
+        window.location.href = "notes.html";
 
-        title:event,
-        date:new Date().toISOString().split("T")[0],
-        time:"",
-        location:"",
-        notes:"",
-        reminder:"none",
-        repeat:"none"
+    },1000);
 
-    });
+    return;
 
-    localStorage.setItem("events",JSON.stringify(events));
+}
 
-    reply="📅 Event \""+event+"\" created successfully!";
+// Calendar
+else if(
+    msg.includes("open calendar")
+){
+
+    reply = "📅 Opening Calendar...";
+
+    addMessage("ai", reply);
+
+    setTimeout(function(){
+
+        window.location.href = "calendar.html";
+
+    },1000);
+
+    return;
+
+}
+
+// Profile
+else if(
+    msg.includes("open profile")
+){
+
+    reply = "👤 Opening Profile...";
+
+    addMessage("ai", reply);
+
+    setTimeout(function(){
+
+        window.location.href = "profile.html";
+
+    },1000);
+
+    return;
 
 }
 else{
