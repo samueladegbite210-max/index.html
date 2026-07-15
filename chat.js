@@ -994,33 +994,33 @@ else if(
 
 else if (
     msg.startsWith("delete goal ") ||
-    msg.startsWith("remove goal ") ||
-    msg.startsWith("delete ") ||
-    msg.startsWith("remove ")
+    msg.startsWith("remove goal ")
 ) {
 
     let goalName = msg
         .replace("delete goal ", "")
         .replace("remove goal ", "")
-        .replace("delete ", "")
-        .replace("remove ", "")
         .trim()
         .toLowerCase();
 
     let originalLength = goals.length;
 
-    const updatedGoals = goals.filter(function(goal){
-        return goal.text.toLowerCase() !== goalName;
-    });
+    const updatedGoals = goals.filter(goal =>
+        goal.text.toLowerCase() !== goalName
+    );
 
     localStorage.setItem("goals", JSON.stringify(updatedGoals));
 
-    if(updatedGoals.length < originalLength){
+    goals.length = 0;
+    goals.push(...updatedGoals);
+
+    if (updatedGoals.length < originalLength) {
         reply = "🗑️ Goal deleted successfully!";
-    }else{
+    } else {
         reply = "❌ I couldn't find that goal.";
     }
 }
+
 else{
 
     reply = "🤖 I'm still learning. More AI features are coming soon!";
