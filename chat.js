@@ -995,7 +995,7 @@ else if(
 else if (
     msg.startsWith("delete goal ") ||
     msg.startsWith("remove goal ")
-) {
+){
 
     let goalName = msg
         .replace("delete goal ", "")
@@ -1003,22 +1003,32 @@ else if (
         .trim()
         .toLowerCase();
 
-    let originalLength = goals.length;
+    let found = false;
 
-    const updatedGoals = goals.filter(goal =>
-        goal.text.toLowerCase() !== goalName
-    );
+    goals = goals.filter(function(goal){
 
-    localStorage.setItem("goals", JSON.stringify(updatedGoals));
+        if(goal.text.trim().toLowerCase() === goalName){
 
-    goals.length = 0;
-    goals.push(...updatedGoals);
+            found = true;
+            return false;
+        }
 
-    if (updatedGoals.length < originalLength) {
+        return true;
+
+    });
+
+    localStorage.setItem("goals", JSON.stringify(goals));
+
+    if(found){
+
         reply = "🗑️ Goal deleted successfully!";
-    } else {
-        reply = "❌ I couldn't find that goal.";
+
+    }else{
+
+        reply = "❌ Goal not found.";
+
     }
+
 }
 
 else{
