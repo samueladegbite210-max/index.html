@@ -987,6 +987,41 @@ else if(
     }
 
 }
+    // =========================
+// Delete Goal By Name
+// =========================
+
+else if(
+    msg.startsWith("delete goal ") ||
+    msg.startsWith("remove goal ")
+){
+
+    let goalName = msg
+        .replace("delete goal ", "")
+        .replace("remove goal ", "")
+        .trim();
+
+    let originalLength = goals.length;
+
+    const updatedGoals = goals.filter(function(goal){
+
+        return !goal.text.toLowerCase().includes(goalName);
+
+    });
+
+    localStorage.setItem("goals", JSON.stringify(updatedGoals));
+
+    if(updatedGoals.length < originalLength){
+
+        reply = "🗑️ Goal deleted successfully!";
+
+    }else{
+
+        reply = "❌ I couldn't find that goal.";
+
+    }
+
+}
 else{
 
         reply="🤖 I'm still learning. More AI features are coming soon!";
