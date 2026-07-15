@@ -994,7 +994,7 @@ else if(
 else if(
     msg.startsWith("delete task ") ||
     msg.startsWith("remove task ")
-)
+    })
 
 
     let goalName = msg
