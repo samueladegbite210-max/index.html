@@ -1187,15 +1187,7 @@ else if(
 // ChatGPT
 // =========================
 
-else if(
-    msg.includes("what is chatgpt")
-){
-
-    reply =
-    "💙 ChatGPT is an AI assistant created by OpenAI. It can answer questions, write content, explain concepts, help with coding, and much more.";
-
-}
-    else {
+else {
 
     let found = false;
 
@@ -1213,13 +1205,9 @@ else if(
 
     if (!found) {
 
-        
+        reply = "🤖 I'm still learning. More AI features are coming soon!";
+
     }
-
-}
-else{
-
-    
 
 }
 
