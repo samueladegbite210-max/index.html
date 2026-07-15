@@ -1213,14 +1213,13 @@ else if(
 
     if (!found) {
 
-        reply = "🤖 I'm still learning that. A future update will let me answer almost anything.";
-
+        
     }
 
 }
 else{
 
-    reply = "🤖 I'm still learning. More AI features are coming soon!";
+    
 
 }
 
