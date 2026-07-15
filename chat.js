@@ -90,11 +90,9 @@ function aiReply(text){
 
     const msg = text.toLowerCase();
 
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const goals = JSON.parse(localStorage.getItem("goals")) || [];
-    const events = JSON.parse(localStorage.getItem("events")) || [];
-    const notes = localStorage.getItem("notes") || "";
-
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+let events = JSON.parse(localStorage.getItem("events")) || [];
     let reply = "";
 
     // ======================
