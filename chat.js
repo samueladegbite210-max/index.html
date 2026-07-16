@@ -53,9 +53,6 @@ function addMessage(type, text){
 
 function sendMessage(){
 
-    // Remove this after testing
-    // alert("Send button works!");
-
     const text = input.value.trim();
 
     if(text === "") return;
@@ -64,14 +61,9 @@ function sendMessage(){
 
     input.value = "";
 
-    setTimeout(function(){
-
-        aiReply(text);
-
-    }, 500);
+    aiReply(text);
 
 }
-
 // ======================
 // Enter Key
 // ======================
