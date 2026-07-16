@@ -394,6 +394,10 @@ else if(
     reply = "📅 Event \"" + eventTitle + "\" created successfully!";
 
 }  
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+let events = JSON.parse(localStorage.getItem("events")) || [];
+let notes = localStorage.getItem("notes") || "";
     // ======================
 // Show Tasks
 // ======================
