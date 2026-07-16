@@ -251,7 +251,7 @@ else if(
     let message = `
 <b>${greeting}</b><br><br>
 
-Today you have:<br>
+Today you have:<br><br>
 
 📋 <b>${tasks.length}</b> Task(s)<br>
 🎯 <b>${goals.length}</b> Goal(s)<br>
@@ -260,11 +260,8 @@ Today you have:<br>
 ${recommendation}
 `;
 
-
-        
-}
     addMessage("ai", message);
 
 }
-    
-    
+
+welcomeMessage();
