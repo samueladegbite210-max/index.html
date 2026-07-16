@@ -34,9 +34,14 @@ input.addEventListener("keypress", function(e){
 });
 function aiReply(text){
 
+    alert("AI is working");
+
     const msg = text.toLowerCase().trim();
 
     let reply = "🤖 I'm still learning.";
+
+    ...
+}
 
     // Greetings
     if(
