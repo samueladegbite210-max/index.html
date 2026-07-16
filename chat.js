@@ -59,7 +59,7 @@ input.addEventListener("keypress", function(e){
 
 });
 
-
+}
 
 // ================================
 // AI Brain
