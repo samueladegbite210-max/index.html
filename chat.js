@@ -1,3 +1,4 @@
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const input = document.getElementById("userInput");
 const chat = document.getElementById("chatBox");
 
@@ -119,6 +120,62 @@ else if(msg.includes("what is ai") || msg.includes("artificial intelligence")){
     reply = "🤖 Artificial Intelligence enables computers to learn, reason and solve problems.";
 
 }  
+    // ======================
+// Create Task
+// ======================
+
+else if(msg.startsWith("create a task called ")){
+
+    let taskName = text.replace(/create a task called /i,"").trim();
+
+    if(taskName === ""){
+
+        reply = "❌ Please enter a task name.";
+
+    }else{
+
+        tasks.push({
+            id: Date.now(),
+            text: taskName,
+            done: false
+        });
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "✅ Task \"" + taskName + "\" created successfully!";
+
+    }
+
+}
+
+// ======================
+// Show Tasks
+// ======================
+
+else if(msg.includes("show my tasks") || msg.includes("show tasks")){
+
+    if(tasks.length === 0){
+
+        reply = "📋 You don't have any tasks.";
+
+    }else{
+
+        reply = "📋 <strong>Your Tasks</strong><br><br>";
+
+        tasks.forEach(function(task,index){
+
+            reply +=
+            (task.done ? "✅ " : "⬜ ") +
+            (index + 1) +
+            ". " +
+            task.text +
+            "<br>";
+
+        });
+
+    }
+
+}
     addMessage("ai", reply);
 
 }
