@@ -2,9 +2,22 @@
 // AI Life Assistant v3.0
 // Chat System
 // =======================================
-alert("chat.js loaded successfully");
-const knowledge = {
+alert("Chat.js is working!");
 
+const input = document.getElementById("userInput");
+const chat = document.getElementById("chatBox");
+
+function sendMessage() {
+    alert("Send button works!");
+
+    const text = input.value.trim();
+
+    if (text === "") return;
+
+    chat.innerHTML += "<p><strong>You:</strong> " + text + "</p>";
+
+    input.value = "";
+}
     "what is javascript":
         "JavaScript is a programming language used to make websites interactive.",
 
