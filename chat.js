@@ -1,5 +1,5 @@
 // ================================
-// AI Life Assistant - Chat.js Part 1
+// AI Life Assistant 
 // ================================
 
 // Storage
@@ -155,6 +155,92 @@ function aiReply(text){
         reply = "🤖 Artificial Intelligence enables computers to learn, reason and solve problems.";
 
     }
+    // ================================
+// Create Task
+// ================================
+
+else if(
+    msg.startsWith("create a task called ") ||
+    msg.startsWith("add a task called ")
+){
+
+    let taskName = text
+        .replace(/create a task called /i,"")
+        .replace(/add a task called /i,"")
+        .trim();
+
+    if(taskName === ""){
+
+        reply = "❌ Please enter a task name.";
+
+    }else{
+
+        tasks.push({
+
+            id: Date.now(),
+            text: taskName,
+            done: false
+
+        });
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        reply = "✅ Task \"" + taskName + "\" created successfully!";
+
+    }
+
+}
+
+// ================================
+// Show Tasks
+// ================================
+
+else if(
+
+    msg.includes("show my tasks") ||
+    msg.includes("show tasks") ||
+    msg.includes("list my tasks") ||
+    msg.includes("list tasks")
+
+){
+
+    if(tasks.length === 0){
+
+        reply = "📋 You don't have any tasks.";
+
+    }else{
+
+        reply = "📋 <b>Your Tasks</b><br><br>";
+
+        tasks.forEach(function(task,index){
+
+            reply +=
+            (task.done ? "✅ " : "⬜ ") +
+            (index + 1) +
+            ". " +
+            task.text +
+            "<br>";
+
+        });
+
+    }
+
+}
+
+// ================================
+// Task Count
+// ================================
+
+else if(
+
+    msg.includes("how many tasks") ||
+    msg.includes("task count")
+
+){
+
+    reply = "📋 You currently have " + tasks.length + " task(s).";
+
+}
 
     addMessage("ai", reply);
 
