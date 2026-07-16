@@ -421,6 +421,158 @@ else if(msg.startsWith("search notes for ")){
     }
 
 }
+    // ================================
+// Create Event
+// ================================
+
+else if(
+    msg.startsWith("create an event called ") ||
+    msg.startsWith("add an event called ")
+){
+
+    let eventTitle = text;
+
+    eventTitle = eventTitle.replace(/create an event called /i,"");
+    eventTitle = eventTitle.replace(/add an event called /i,"");
+
+    eventTitle = eventTitle.trim();
+
+    events.push({
+
+        title: eventTitle,
+        date: new Date().toISOString().split("T")[0],
+        time: "",
+        location: "",
+        notes: "",
+        reminder: "none",
+        repeat: "none"
+
+    });
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    reply = "📅 Event \"" + eventTitle + "\" created successfully!";
+
+}
+
+// ================================
+// Show Events
+// ================================
+
+else if(
+
+    msg.includes("show my event") ||
+    msg.includes("show my events") ||
+    msg.includes("show event") ||
+    msg.includes("show events") ||
+    msg.includes("list my events")
+
+){
+
+    if(events.length === 0){
+
+        reply = "📅 No events found.";
+
+    }else{
+
+        reply = "📅 <strong>Your Events</strong><br><br>";
+
+        events.forEach(function(event,index){
+
+            reply +=
+                (index + 1) + ". " +
+                event.title +
+                "<br>" +
+                "📆 " + event.date +
+                "<br><br>";
+
+        });
+
+    }
+
+}
+
+// ================================
+// Event Count
+// ================================
+
+else if(
+
+    msg.includes("how many events") ||
+    msg.includes("event count")
+
+){
+
+    reply = "📅 You currently have " + events.length + " event(s).";
+
+}
+
+// ================================
+// Next Event
+// ================================
+
+else if(
+
+    msg.includes("next event") ||
+    msg.includes("upcoming event")
+
+){
+
+    if(events.length === 0){
+
+        reply = "📅 You don't have any upcoming events.";
+
+    }else{
+
+        const event = events[0];
+
+        reply =
+        "📅 <strong>Next Event</strong><br><br>" +
+        "📝 " + event.title + "<br>" +
+        "📆 " + event.date + "<br>" +
+        "🕒 " + (event.time || "No time") + "<br>" +
+        "📍 " + (event.location || "No location");
+
+    }
+
+}
+
+// ================================
+// Search Events
+// ================================
+
+else if(msg.startsWith("search events for ")){
+
+    const keyword = msg.replace("search events for ","").trim();
+
+    const results = events.filter(function(event){
+
+        return event.title.toLowerCase().includes(keyword.toLowerCase());
+
+    });
+
+    if(results.length === 0){
+
+        reply = "❌ No matching events found.";
+
+    }else{
+
+        reply = "📅 <strong>Matching Events</strong><br><br>";
+
+        results.forEach(function(event,index){
+
+            reply +=
+                (index + 1) + ". " +
+                event.title +
+                "<br>" +
+                "📆 " + event.date +
+                "<br><br>";
+
+        });
+
+    }
+
+}
     addMessage("ai", reply);
 
 }
