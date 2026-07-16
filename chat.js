@@ -82,7 +82,9 @@ input.addEventListener("keypress", function(e){
 // =======================================
 
 function aiReply(text){
-
+    
+alert("AI function started");
+    
     const msg = text.toLowerCase();
 
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
