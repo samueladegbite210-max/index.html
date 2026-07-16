@@ -189,6 +189,23 @@ else if(
     }
 
 }
-    addMessage("ai", reply);
+    function welcomeMessage(){
+welcomeMessage();
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let goals = JSON.parse(localStorage.getItem("goals")) || [];
+    let events = JSON.parse(localStorage.getItem("events")) || [];
+
+    let message = `
+👋 Welcome back Samuel!<br><br>
+
+📋 Tasks: ${tasks.length}<br>
+🎯 Goals: ${goals.length}<br>
+📅 Events: ${events.length}<br><br>
+
+💡 Let's have a productive day!
+`;
+
+    addMessage("ai", message);
 
 }
+    
