@@ -155,7 +155,33 @@ function aiReply(text){
         reply = "🤖 Artificial Intelligence enables computers to learn, reason and solve problems.";
 
     }
-    
+    else if(
+
+    msg.includes("i need to") ||
+    msg.includes("remind me to") ||
+    msg.includes("don't let me forget to")
+
+){
+
+    let taskName = text;
+
+    taskName = taskName
+        .replace(/i need to/i,"")
+        .replace(/remind me to/i,"")
+        .replace(/don't let me forget to/i,"")
+        .trim();
+
+    tasks.push({
+        id: Date.now(),
+        text: taskName,
+        done: false
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    reply = "✅ I've created a task: \"" + taskName + "\"";
+
+}
 
 // ================================
 // Create Task
