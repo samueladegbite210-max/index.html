@@ -190,22 +190,73 @@ else if(
 
 }
     function welcomeMessage(){
-welcomeMessage();
+
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let goals = JSON.parse(localStorage.getItem("goals")) || [];
     let events = JSON.parse(localStorage.getItem("events")) || [];
 
+    let hour = new Date().getHours();
+
+    let greeting = "";
+
+    if(hour < 12){
+
+        greeting = "🌅 Good morning, Samuel!";
+
+    }
+    else if(hour < 17){
+
+        greeting = "☀️ Good afternoon, Samuel!";
+
+    }
+    else if(hour < 21){
+
+        greeting = "🌇 Good evening, Samuel!";
+
+    }
+    else{
+
+        greeting = "🌙 Good night, Samuel!";
+
+    }
+
+    let recommendation = "";
+
+    if(tasks.length === 0){
+
+        recommendation = "🎉 Great job! You have no pending tasks today.";
+
+    }
+    else if(tasks.length <= 3){
+
+        recommendation = "💡 You're doing well. Try to finish all your tasks today.";
+
+    }
+    else if(tasks.length <= 10){
+
+        recommendation = "💡 My recommendation: Finish your most important task first.";
+
+    }
+    else{
+
+        recommendation = "⚡ You have many tasks today. Focus on your top 3 priorities.";
+
+    }
+
     let message = `
-👋 Welcome back Samuel!<br><br>
+<b>${greeting}</b><br><br>
 
-📋 Tasks: ${tasks.length}<br>
-🎯 Goals: ${goals.length}<br>
-📅 Events: ${events.length}<br><br>
+Today you have:<br>
 
-💡 Let's have a productive day!
+📋 <b>${tasks.length}</b> Task(s)<br>
+🎯 <b>${goals.length}</b> Goal(s)<br>
+📅 <b>${events.length}</b> Event(s)<br><br>
+
+${recommendation}
 `;
 
     addMessage("ai", message);
 
 }
+    
     
