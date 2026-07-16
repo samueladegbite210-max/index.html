@@ -22,3 +22,28 @@ function sendMessage() {
 
     addMessage("ai", "Hello Samuel!");
 }
+function aiReply(text){
+
+    const msg = text.toLowerCase();
+    let reply = "";
+
+    if(msg === "hi" || msg === "hello"){
+
+        reply = "👋 Hello Samuel! How can I help you today?";
+
+    }
+
+    else if(msg.includes("good morning")){
+
+        reply = "🌅 Good morning! Have a productive day.";
+
+    }
+
+    else{
+
+        reply = "🤖 I'm still learning.";
+
+    }
+
+    addMessage("ai", reply);
+}
