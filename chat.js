@@ -76,7 +76,22 @@ function aiReply(text){
     reply = "😊 I'm doing great! How about you?";
 
 }
+function aiReply(text){
 
+    const msg = text.toLowerCase().trim();
+
+    let reply = "🤖 I'm still learning.";
+
+    if(msg === "hi" || msg === "hello"){
+        reply = "👋 Hello Samuel! How can I help you today?";
+    }
+    else if(msg === "how are you"){
+        reply = "😊 I'm doing great! How are you today?";
+    }
+
+    addMessage("ai", reply);
+
+}
     else{
 
         reply = "🤖 I'm still learning.";
