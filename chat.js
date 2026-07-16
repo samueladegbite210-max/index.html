@@ -78,6 +78,46 @@ function aiReply(text){
 
     }
 
-    addMessage("ai", reply);
+  else if(msg.includes("who are you")){
+
+    reply = "🤖 I'm AI Life Assistant, your personal AI companion.";
+
+}
+
+else if(msg.includes("what can you do")){
+
+    reply = "🚀 I can help with coding, studying, planning, notes, tasks, goals and much more.";
+
+}
+
+else if(msg.includes("who made you")){
+
+    reply = "💙 I was built by Samuel with the help of ChatGPT.";
+
+}
+
+else if(msg.includes("what is html")){
+
+    reply = "🌐 HTML is the language used to build the structure of websites.";
+
+}
+
+else if(msg.includes("what is css")){
+
+    reply = "🎨 CSS is used to style websites with colors, layouts and animations.";
+
+}
+
+else if(msg.includes("what is javascript")){
+
+    reply = "💻 JavaScript makes websites interactive.";
+
+}
+
+else if(msg.includes("what is ai") || msg.includes("artificial intelligence")){
+
+    reply = "🤖 Artificial Intelligence enables computers to learn, reason and solve problems.";
+
+}  addMessage("ai", reply);
 
 }
