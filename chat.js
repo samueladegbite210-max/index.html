@@ -152,7 +152,16 @@ else if(msg.startsWith("create a task called ")){
 // Show Tasks
 // ======================
 
-else if(msg.includes("show my tasks") || msg.includes("show tasks")){
+else if(
+
+    msg.includes("show my task") ||
+    msg.includes("show my tasks") ||
+    msg.includes("show task") ||
+    msg.includes("show tasks") ||
+    msg.includes("list my tasks") ||
+    msg.includes("list tasks")
+
+){
 
     if(tasks.length === 0){
 
