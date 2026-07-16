@@ -6,8 +6,8 @@
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
 let events = JSON.parse(localStorage.getItem("events")) || [];
+let notes = localStorage.getItem("notes") || "";
 let memory = JSON.parse(localStorage.getItem("memory")) || {};
-// Elements
 const input = document.getElementById("userInput");
 const chat = document.getElementById("chatBox");
 
@@ -679,9 +679,8 @@ else if(msg.startsWith("my birthday is ")){
     reply = "🎂 I'll remember that your birthday is " + birthday + ".";
 
 }
-/ ======================
-// Recall Memory
 // ======================
+// Recall Memory
 
 else if(msg.includes("what is my name")){
 
@@ -721,4 +720,4 @@ addMessage("ai", reply);
 
 }
 
-}
+
