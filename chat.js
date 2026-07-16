@@ -254,7 +254,47 @@ Today you have:<br>
 
 ${recommendation}
 `;
+// ======================
+// Today's Schedule
+// ======================
 
+else if(
+
+    msg.includes("what is my schedule today") ||
+    msg.includes("what's my schedule today") ||
+    msg.includes("do i have anything today") ||
+    msg.includes("what do i have today") ||
+    msg.includes("today schedule")
+
+){
+
+    let today = new Date().toISOString().split("T")[0];
+
+    let todayEvents = events.filter(function(event){
+
+        return event.date === today;
+
+    });
+
+    if(todayEvents.length === 0){
+
+        reply = "📅 You don't have any events scheduled for today.";
+
+    }else{
+
+        reply = "📅 <strong>Today's Schedule</strong><br><br>";
+
+        todayEvents.forEach(function(event){
+
+            reply +=
+            "📝 " + event.title + "<br>" +
+            "🕒 " + (event.time || "No time set") + "<br><br>";
+
+        });
+
+    }
+
+}
     addMessage("ai", message);
 
 }
