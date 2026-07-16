@@ -59,7 +59,7 @@ input.addEventListener("keypress", function(e){
 
 });
 
-}
+
 
 // ================================
 // AI Brain
@@ -678,7 +678,8 @@ else if(msg.startsWith("my birthday is ")){
 
     reply = "🎂 I'll remember that your birthday is " + birthday + ".";
 
-}// ======================
+}
+/ ======================
 // Recall Memory
 // ======================
 
@@ -705,7 +706,19 @@ else if(msg.includes("when is my birthday")){
         : "I don't know your birthday yet.";
 
 }
-    
-    addMessage("ai", reply);
+
+// ================================
+// Default Reply
+// ================================
+
+else{
+
+    reply = "🤖 I'm still learning.";
+
+}
+
+addMessage("ai", reply);
+
+}
 
 }
