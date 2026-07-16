@@ -10,7 +10,6 @@ function addMessage(type, text) {
 }
 
 function sendMessage() {
-    alert("chat.js works!");
 
     const text = input.value.trim();
 
@@ -20,7 +19,8 @@ function sendMessage() {
 
     input.value = "";
 
-    addMessage("ai", "Hello Samuel!");
+    aiReply(text);
+
 }
 function aiReply(text){
 
