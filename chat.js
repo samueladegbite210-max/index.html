@@ -235,7 +235,84 @@ else if(
     reply = "📋 You currently have " + tasks.length + " task(s).";
 
 }
+// ================================
+// Create Goal
+// ================================
 
+else if(msg.startsWith("create a goal called ")){
+
+    let goalName = text.replace(/create a goal called /i,"").trim();
+
+    if(goalName === ""){
+
+        reply = "❌ Please enter a goal.";
+
+    }else{
+
+        goals.push({
+            id: Date.now(),
+            text: goalName,
+            done: false
+        });
+
+        localStorage.setItem("goals", JSON.stringify(goals));
+
+        reply = "🎯 Goal \"" + goalName + "\" created successfully!";
+
+    }
+
+}
+
+// ================================
+// Show Goals
+// ================================
+
+else if(
+
+    msg.includes("show my goals") ||
+    msg.includes("show goals") ||
+    msg.includes("list my goals") ||
+    msg.includes("list goals")
+
+){
+
+    if(goals.length === 0){
+
+        reply = "🎯 You don't have any goals.";
+
+    }else{
+
+        reply = "🎯 <strong>Your Goals</strong><br><br>";
+
+        goals.forEach(function(goal,index){
+
+            reply +=
+            (goal.done ? "✅ " : "⬜ ") +
+            (index + 1) +
+            ". " +
+            goal.text +
+            "<br>";
+
+        });
+
+    }
+
+}
+
+// ================================
+// Goal Count
+// ================================
+
+else if(
+
+    msg.includes("how many goals") ||
+    msg.includes("goal count")
+
+){
+
+    reply = "🎯 You currently have " + goals.length + " goal(s).";
+
+}
     addMessage("ai", reply);
 
 }
