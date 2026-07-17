@@ -822,10 +822,7 @@ else if (/^[0-9+\-*/(). x]+$/i.test(msg)) {
     
 
 
-// ================================
-// Date & Time
-// ================================
-
+/l
 // ================================
 // Date & Time
 // ================================
@@ -921,6 +918,111 @@ else if(
 ){
 
     reply = "📅 The current year is " + new Date().getFullYear();
+
+}
+    // ================================
+// Natural Conversation
+// ================================
+
+else if(
+    msg.includes("i'm tired") ||
+    msg.includes("im tired") ||
+    msg.includes("i am tired")
+){
+
+    reply = "😴 You sound tired. Try to get some rest, drink some water, and don't overwork yourself.";
+
+}
+
+else if(
+    msg.includes("i'm hungry") ||
+    msg.includes("im hungry") ||
+    msg.includes("i am hungry")
+){
+
+    reply = "🍽️ Maybe it's time for a good meal. Don't skip your meals!";
+
+}
+
+else if(
+    msg.includes("i'm happy") ||
+    msg.includes("im happy") ||
+    msg.includes("i am happy")
+){
+
+    reply = "😊 That's wonderful! I'm happy to hear that.";
+
+}
+
+else if(
+    msg.includes("i'm sad") ||
+    msg.includes("im sad") ||
+    msg.includes("i am sad")
+){
+
+    reply = "💙 I'm sorry you're feeling sad. If you want to talk, I'm here for you.";
+
+}
+
+else if(
+    msg.includes("i'm bored") ||
+    msg.includes("im bored") ||
+    msg.includes("i am bored")
+){
+
+    reply = "🎮 Let's do something productive! You could create a goal, review your tasks, or learn something new.";
+
+}
+
+else if(
+    msg.includes("i'm going to work") ||
+    msg.includes("im going to work") ||
+    msg.includes("going to work")
+){
+
+    reply = "💼 Have a productive day at work. Stay safe and do your best!";
+
+}
+
+else if(
+    msg.includes("good luck")
+){
+
+    reply = "🍀 Thank you! I wish you good luck too.";
+
+}
+
+else if(
+    msg.includes("thank you") ||
+    msg.includes("thanks")
+){
+
+    reply = "❤️ You're welcome! I'm always happy to help.";
+
+}
+
+else if(
+    msg.includes("i love you")
+){
+
+    reply = "❤️ Thank you! I'm always here to help and support you.";
+
+}
+
+else if(
+    msg.includes("good job")
+){
+
+    reply = "😊 Thank you! That means a lot.";
+
+}
+
+else if(
+    msg.includes("bye") ||
+    msg.includes("goodbye")
+){
+
+    reply = "👋 Goodbye! Have a wonderful day. I'll be here whenever you need me.";
 
 }
 // Default Reply
