@@ -798,21 +798,21 @@ else if(msg.includes("who is samuel")){
     reply = "💙 Samuel is my creator and the developer of AI Life Assistant.";
 }
 
-    // ================================
+  // ================================
 // Calculator
 // ================================
 
-else if(/^[0-9+\-*/(). x]+$/i.test(msg)){
+else if (/^[0-9+\-*/(). x]+$/i.test(msg)) {
 
-    try{
+    try {
 
-        let expression = msg.replace(/x/gi,"*");
+        let expression = msg.replace(/x/gi, "*");
 
         let result = eval(expression);
 
         reply = "🧮 Answer: <strong>" + result + "</strong>";
 
-    }catch{
+    } catch (error) {
 
         reply = "❌ Sorry, I couldn't calculate that.";
 
@@ -820,7 +820,6 @@ else if(/^[0-9+\-*/(). x]+$/i.test(msg)){
 
 }
     
-
 
 
 // ================================
