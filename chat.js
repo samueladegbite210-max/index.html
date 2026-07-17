@@ -1065,6 +1065,23 @@ else if(
     reply = "👋 Goodbye! Have a wonderful day. I'll be here whenever you need me.";
 
 }
+    // ================================
+// Weather
+// ================================
+
+else if(
+
+    msg.includes("weather") ||
+    msg.includes("is it raining") ||
+    msg.includes("is it sunny") ||
+    msg.includes("temperature") ||
+    msg.includes("forecast")
+
+){
+
+    reply = "🌤️ I can't check live weather yet, but that feature is coming soon! In Version 2.0 I'll be able to show real-time weather for any city.";
+
+}
 // Default Reply
 // ================================
 
