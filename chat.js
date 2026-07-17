@@ -823,17 +823,108 @@ else if(/^[0-9+\-*/(). x]+$/i.test(msg)){
 
 
 
-
 // ================================
-// Date
+// Date & Time
 // ================================
 
-else if(msg.includes("date")){
+else if(
 
-    reply = "✅ DATE CODE IS WORKING";
+    msg.includes("what is today's date") ||
+    msg.includes("what is today date") ||
+    msg.includes("what's today's date") ||
+    msg.includes("what's today date") ||
+    msg.includes("today's date") ||
+    msg.includes("today date") ||
+    msg.includes("date today") ||
+    msg.includes("current date") ||
+    msg.includes("what is the date") ||
+    msg.includes("what's the date") ||
+    msg === "date"
+
+){
+
+    reply = "📅 Today is " + new Date().toDateString();
 
 }
-// ================================
+
+else if(
+
+    msg.includes("what time is it") ||
+    msg.includes("current time") ||
+    msg.includes("time now") ||
+    msg.includes("what's the time") ||
+    msg.includes("tell me the time") ||
+    msg === "time"
+
+){
+
+    reply = "🕒 The current time is " +
+        new Date().toLocaleTimeString();
+
+}
+
+else if(
+
+    msg.includes("what day is today") ||
+    msg.includes("today is what day") ||
+    msg.includes("current day")
+
+){
+
+    const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+    reply = "📆 Today is " + days[new Date().getDay()];
+
+}
+
+else if(
+
+    msg.includes("what month is this") ||
+    msg.includes("current month") ||
+    msg.includes("what month is it")
+
+){
+
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+    reply = "📅 This month is " +
+        months[new Date().getMonth()];
+
+}
+
+else if(
+
+    msg.includes("what year is it") ||
+    msg.includes("current year")
+
+){
+
+    reply = "📅 The current year is " +
+        new Date().getFullYear();
+
+}  
+ / / ================
 // Default Reply
 // ================================
 
