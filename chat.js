@@ -639,7 +639,7 @@ else if(msg.startsWith("search events for ")){
 
     }
 
-
+}
     // ======================
 // Remember Information
 // ======================
@@ -877,7 +877,7 @@ else if(
         "Saturday"
     ];
 
-    reply = "📆 Today is " + days[new Date().getDay()]
+    reply = "📆 Today is " + days[new Date().getDay()];
 
 }
 
