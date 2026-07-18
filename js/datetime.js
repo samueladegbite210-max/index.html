@@ -3,7 +3,6 @@ function dateTimeReply(msg){
 
     // Date
     if(
-        msg.includes("date") ||
         msg.includes("today's date") ||
         msg.includes("today date") ||
         msg.includes("current date") ||
@@ -19,21 +18,18 @@ function dateTimeReply(msg){
 
     // Time
     if(
-        msg.includes("time") ||
         msg.includes("what time is it") ||
         msg.includes("current time") ||
         msg.includes("time now") ||
         msg.includes("tell me the time")
     ){
 
-        return "🕒 The current time is " +
-            new Date().toLocaleTimeString();
+        return "🕒 The current time is " + new Date().toLocaleTimeString();
 
     }
 
     // Day
     if(
-        msg.includes("day") ||
         msg.includes("what day is today") ||
         msg.includes("today is what day") ||
         msg.includes("current day")
@@ -55,31 +51,37 @@ function dateTimeReply(msg){
 
     // Month
     if(
-        msg.includes("month") ||
         msg.includes("what month is it") ||
         msg.includes("current month") ||
         msg.includes("what month is this")
     ){
 
         const months = [
-            "January","February","March","April","May","June",
-            "July","August","September","October","November","December"
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
         ];
 
-        return "📅 This month is " +
-            months[new Date().getMonth()];
+        return "📅 This month is " + months[new Date().getMonth()];
 
     }
 
     // Year
     if(
-        msg.includes("year") ||
         msg.includes("what year is it") ||
         msg.includes("current year")
     ){
 
-        return "📅 The current year is " +
-            new Date().getFullYear();
+        return "📅 The current year is " + new Date().getFullYear();
 
     }
 
