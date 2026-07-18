@@ -1003,7 +1003,9 @@ else if(
 else if(
     msg.includes("tired") ||
     msg.includes("exhausted") ||
-    msg.includes("sleepy")
+    msg.includes("sleepy") ||
+    msg.includes("worn out") ||
+    msg.includes("need rest")
 ){
 
     reply = "😴 You sound tired. Get some rest, drink water, and take care of yourself.";
@@ -1014,7 +1016,8 @@ else if(
 else if(
     msg.includes("hungry") ||
     msg.includes("need food") ||
-    msg.includes("starving")
+    msg.includes("starving") ||
+    msg.includes("want food")
 ){
 
     reply = "🍽️ Sounds like you're hungry. Go grab something delicious to eat!";
@@ -1026,7 +1029,9 @@ else if(
     msg.includes("happy") ||
     msg.includes("excited") ||
     msg.includes("feeling good") ||
-    msg.includes("i feel good")
+    msg.includes("i feel good") ||
+    msg.includes("great today") ||
+    msg.includes("life is good")
 ){
 
     reply = "😊 That's wonderful! I'm really happy you're feeling good today.";
@@ -1038,10 +1043,25 @@ else if(
     msg.includes("sad") ||
     msg.includes("upset") ||
     msg.includes("depressed") ||
-    msg.includes("feeling down")
+    msg.includes("feeling down") ||
+    msg.includes("crying") ||
+    msg.includes("heartbroken")
 ){
 
     reply = "💙 I'm sorry you're feeling that way. I'm here if you want to talk.";
+
+}
+
+// STRESSED
+else if(
+    msg.includes("stressed") ||
+    msg.includes("stress") ||
+    msg.includes("overwhelmed") ||
+    msg.includes("frustrated") ||
+    msg.includes("pressure")
+){
+
+    reply = "💙 Take a deep breath. One step at a time—you've handled difficult days before, and you can handle this one too.";
 
 }
 
@@ -1058,9 +1078,10 @@ else if(
 else if(
     msg.includes("going to work") ||
     msg.includes("at work") ||
-    msg.includes("i'm working") ||
     msg.includes("working now") ||
-    msg.includes("im working")
+    msg.includes("im working") ||
+    msg.includes("i'm working") ||
+    msg.includes("just got to work")
 ){
 
     reply = "💼 Have a productive day! Stay safe and do your best.";
