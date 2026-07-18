@@ -106,40 +106,32 @@ function aiReply(text){
 let conversation = conversationReply(msg, text);
 
 if(conversation){
-
     addMessage("ai", conversation);
-
     return;
-
 }
- let calculator = calculatorReply(msg);
 
-if(calculator){
-
-    addMessage("ai", calculator);
-
-    return;
-
-}
- let dateTime = dateTimeReply(msg);
-
-if(dateTime){
-
-    addMessage("ai", dateTime);
-
-    return;
-
-}
- let knowledge = knowledgeReply(msg);
+let knowledge = knowledgeReply(msg);
 
 if(knowledge){
-
     addMessage("ai", knowledge);
-
     return;
-
 }
-    let reply = "🤖 I'm still learning.";
+
+let calculator = calculatorReply(msg);
+
+if(calculator){
+    addMessage("ai", calculator);
+    return;
+}
+
+let dateTime = dateTimeReply(msg);
+
+if(dateTime){
+    addMessage("ai", dateTime);
+    return;
+}
+
+let reply = "🤖 I'm still learning.";
 
 
 // ================================
