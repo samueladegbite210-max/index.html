@@ -16,6 +16,8 @@ let memory = JSON.parse(localStorage.getItem("memory")) || {
     phone:"",
     language:""
 };
+console.log("memory.js loaded");
+
 function memoryReply(msg, text){
 
     // Save Name
