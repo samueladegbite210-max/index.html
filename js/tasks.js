@@ -1,9 +1,6 @@
 function taskReply(msg, text){
 
-    // ================================
-    // Natural Task Creation
-    // ================================
-
+    // Create Task
     if(
         msg.includes("i need to") ||
         msg.includes("remind me to") ||
@@ -19,84 +16,74 @@ function taskReply(msg, text){
         tasks.push({
             id: Date.now(),
             text: taskName,
-            done: false
+            done:false
         });
 
         localStorage.setItem("tasks", JSON.stringify(tasks));
 
         return "✅ I've created a task: \"" + taskName + "\"";
-    }
 
-    // ================================
-    // Create Task
-    // ================================
+    }
 
     if(msg.startsWith("create a task called ")){
 
         let taskName = text.replace(/create a task called /i,"").trim();
 
-        if(taskName === ""){
-            return "❌ Please enter a task name.";
+        if(taskName===""){
+            return "❌ Please enter a task.";
         }
 
         tasks.push({
-            id: Date.now(),
-            text: taskName,
-            done: false
+            id:Date.now(),
+            text:taskName,
+            done:false
         });
 
         localStorage.setItem("tasks", JSON.stringify(tasks));
 
-        return "✅ Task \"" + taskName + "\" created successfully!";
+        return "✅ Task \"" + taskName + "\" created.";
+
     }
 
-    // ================================
     // Show Tasks
-    // ================================
 
     if(hasAny(msg,[
         "show my tasks",
         "show tasks",
-        "task list",
-        "list tasks",
         "list my tasks",
-        "what are my tasks",
+        "task list",
+        "my tasks",
         "what's on my to-do list",
         "what's on my todo list",
         "do i have any tasks",
-        "do i have tasks",
-        "my tasks",
-        "to do list",
-        "todo list"
+        "do i have tasks"
     ])){
 
-        if(tasks.length === 0){
+        if(tasks.length===0){
             return "📋 You don't have any tasks.";
         }
 
-        let reply = "📋 <strong>Your Tasks</strong><br><br>";
+        let reply="📋 <strong>Your Tasks</strong><br><br>";
 
         tasks.forEach(function(task,index){
 
             reply +=
             (task.done ? "✅ " : "⬜ ") +
-            (index + 1) +
-            ". " +
-            task.text +
+            (index+1)+". "+
+            task.text+
             "<br>";
 
         });
 
         return reply;
+
     }
 
-    // ================================
     // Task Count
-    // ================================
 
     if(hasAny(msg,[
-        "how many tasks",
         "task count",
+        "how many tasks",
         "number of tasks",
         "total tasks"
     ])){
@@ -108,5 +95,3 @@ function taskReply(msg, text){
     return null;
 
 }
-
-
