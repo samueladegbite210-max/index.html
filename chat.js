@@ -76,7 +76,19 @@ input.addEventListener("keypress", function(e){
 
 });
 
+// ================================
+// Smart Intent Recognition
+// ================================
 
+function hasIntent(msg, phrases){
+
+    return phrases.some(function(phrase){
+
+        return msg.includes(phrase);
+
+    });
+
+}
 
 // ================================
 // AI Brain
@@ -234,15 +246,24 @@ else if(msg.startsWith("create a task called ")){
 // Show Tasks
 // ================================
 
+
 else if(
 
-    msg.includes("show my tasks") ||
-    msg.includes("show tasks") ||
-    msg.includes("list my tasks") ||
-    msg.includes("list tasks")
+    hasIntent(msg,[
+        "show my tasks",
+        "show tasks",
+        "list my tasks",
+        "list tasks",
+        "what are my tasks",
+        "my tasks",
+        "do i have any tasks",
+        "pending tasks",
+        "to do list",
+        "todo list",
+        "what should i do today"
+    ])
 
 ){
-
     if(tasks.length === 0){
 
         reply = "📋 You don't have any tasks.";
@@ -314,10 +335,16 @@ else if(msg.startsWith("create a goal called ")){
 
 else if(
 
-    msg.includes("show my goals") ||
-    msg.includes("show goals") ||
-    msg.includes("list my goals") ||
-    msg.includes("list goals")
+    hasIntent(msg,[
+        "show my goals",
+        "show goals",
+        "list my goals",
+        "list goals",
+        "my goals",
+        "what are my goals",
+        "do i have any goals",
+        "goal list"
+    ])
 
 ){
 
@@ -434,11 +461,15 @@ else if(
 // ======================
 
 else if(
-    msg.includes("show my note") ||
-    msg.includes("show my notes") ||
-    msg.includes("show note") ||
-    msg.includes("show notes") ||
-    msg.includes("list my notes")
+
+    hasIntent(msg,[
+        "show notes",
+        "show my notes",
+        "list my notes",
+        "my notes",
+        "what are my notes"
+    ])
+
 ){
 
     let notes = localStorage.getItem("notes") || "";
@@ -545,11 +576,14 @@ else if(
 
 else if(
 
-    msg.includes("show my event") ||
-    msg.includes("show my events") ||
-    msg.includes("show event") ||
-    msg.includes("show events") ||
-    msg.includes("list my events")
+    hasIntent(msg,[
+        "show events",
+        "show my events",
+        "my events",
+        "list my events",
+        "what are my events",
+        "upcoming events"
+    ])
 
 ){
 
