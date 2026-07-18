@@ -1,3 +1,4 @@
+alert("goals.js loaded");
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
 console.log("goals.js loaded");
 
