@@ -1,11 +1,16 @@
-function conversationReply(msg, text){
+function conversationReply(msg){
 
-    // Greetings
-    if(hasAny(msg,["hi","hello","hey"])){
-
+    if(
+        msg === "hi" ||
+        msg === "hello" ||
+        msg === "hey"
+    ){
         return "👋 Hello Samuel! How can I help you today?";
-
     }
+
+    return null;
+
+}
 
     if(msg.includes("good morning")){
 
