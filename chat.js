@@ -103,89 +103,73 @@ function hasAny(msg, words){
 function aiReply(text){
 
     const msg = text.toLowerCase().trim();
-let conversation = conversationReply(msg, text);
-if (conversation) {
-    addMessage("ai", conversation);
-    return;
-}
 
-let knowledge = knowledgeReply(msg);
-if (knowledge) {
-    addMessage("ai", knowledge);
-    return;
-}
+    let conversation = conversationReply(msg, text);
+    if(conversation){
+        addMessage("ai", conversation);
+        return;
+    }
 
-let calculator = calculatorReply(msg);
-if (calculator) {
-    addMessage("ai", calculator);
-    return;
-}
+    let knowledge = knowledgeReply(msg);
+    if(knowledge){
+        addMessage("ai", knowledge);
+        return;
+    }
 
-let dateTime = dateTimeReply(msg);
-if (dateTime) {
-    addMessage("ai", dateTime);
-    return;
-}
+    let calculator = calculatorReply(msg);
+    if(calculator){
+        addMessage("ai", calculator);
+        return;
+    }
 
-let task = taskReply(msg, text);
-if (task) {
-    addMessage("ai", task);
-    return;
-}
+    let dateTime = dateTimeReply(msg);
+    if(dateTime){
+        addMessage("ai", dateTime);
+        return;
+    }
 
-let goal = goalReply(msg, text);
-if (goal) {
-    addMessage("ai", goal);
-    return;
-}
+    let task = taskReply(msg, text);
+    if(task){
+        addMessage("ai", task);
+        return;
+    }
 
-let note = noteReply(msg, text);
-if (note) {
-    addMessage("ai", note);
-    return;
-}
+    let goal = goalReply(msg, text);
+    if(goal){
+        addMessage("ai", goal);
+        return;
+    }
 
-let event = eventReply(msg, text);
-if (event) {
-    addMessage("ai", event);
-    return;
-}
+    let note = noteReply(msg, text);
+    if(note){
+        addMessage("ai", note);
+        return;
+    }
 
-let memory = memoryReply(msg, text);
-if (memory) {
-    addMessage("ai", memory);
-    return;
-}
+    let event = eventReply(msg, text);
+    if(event){
+        addMessage("ai", event);
+        return;
+    }
 
-let natural = naturalReply(msg);
-if (natural) {
-    addMessage("ai", natural);
-    return;
-}
+    let memoryAnswer = memoryReply(msg, text);
+    if(memoryAnswer){
+        addMessage("ai", memoryAnswer);
+        return;
+    }
 
-let weather = weatherReply(msg);
-if (weather) {
-    addMessage("ai", weather);
-    return;
-}
+    let natural = naturalReply(msg);
+    if(natural){
+        addMessage("ai", natural);
+        return;
+    }
 
-addMessage("ai", "🤖 I'm still learning.");
- 
+    let weather = weatherReply(msg);
+    if(weather){
+        addMessage("ai", weather);
+        return;
+    }
 
-  
-
- 
-
-
-// Default Reply
-// ================================
-
-else{
-
-    reply = "🤖 I'm still learning.";
-
-}
-
-addMessage("ai", reply);
+    addMessage("ai", "🤖 I'm still learning.");
 
 }
