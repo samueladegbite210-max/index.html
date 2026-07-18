@@ -120,7 +120,16 @@ if(calculator){
 
     return;
 
+}let dateTime = dateTimeReply(msg);
+
+if(dateTime){
+
+    addMessage("ai", dateTime);
+
+    return;
+
 }
+ 
     let reply = "🤖 I'm still learning.";
 
 
