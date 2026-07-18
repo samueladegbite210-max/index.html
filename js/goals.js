@@ -1,4 +1,6 @@
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
+console.log("goals.js loaded");
+
 function goalReply(msg, text){
 
     // ================================
