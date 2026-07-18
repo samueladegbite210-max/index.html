@@ -1095,13 +1095,28 @@ else if(msg.startsWith("my name is ")){
 
 }
 
-else if(msg.startsWith("i live in ")){
+else if(
+    msg.includes("i live in") ||
+    msg.includes("i do live in") ||
+    msg.includes("i'm from") ||
+    msg.includes("im from") ||
+    msg.includes("i come from")
+){
 
-    memory.city = text.replace(/i live in/i,"").trim();
+    let city = text
+        .replace(/i do live in/i,"")
+        .replace(/i live in/i,"")
+        .replace(/i'm from/i,"")
+        .replace(/im from/i,"")
+        .replace(/i come from/i,"")
+        .trim();
+
+    memory.city = city;
 
     localStorage.setItem("memory", JSON.stringify(memory));
 
-    reply = "📍 I'll remember that you live in " + memory.city + ".";
+    reply = "📍 I'll remember that you live in " + city + ".";
+
 
 }
 
