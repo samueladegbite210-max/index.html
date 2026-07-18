@@ -120,7 +120,8 @@ if(calculator){
 
     return;
 
-}let dateTime = dateTimeReply(msg);
+}
+ let dateTime = dateTimeReply(msg);
 
 if(dateTime){
 
