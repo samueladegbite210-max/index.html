@@ -143,19 +143,7 @@ let reply = "🤖 I'm still learning.";
 
 
 
-// ================================
-// Goal Count (Smart)
-// ================================
 
-else if(hasAny(msg,[
-
-    "how many goals",
-    "goal count",
-    "number of goals",
-    "total goals",
-    "how much goals"
-
-])){
 
     reply = "🎯 You currently have " + goals.length + " goal(s).";
 
