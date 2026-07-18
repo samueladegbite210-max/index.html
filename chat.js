@@ -103,7 +103,15 @@ function hasAny(msg, words){
 function aiReply(text){
 
     const msg = text.toLowerCase().trim();
+let conversation = conversationReply(msg, text);
 
+if(conversation){
+
+    addMessage("ai", conversation);
+
+    return;
+
+}
     let reply = "🤖 I'm still learning.";
 
     // Greetings
