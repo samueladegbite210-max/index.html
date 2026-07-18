@@ -1,3 +1,4 @@
+alert("tasks.js loaded");
 function taskReply(msg, text){
 
     if(msg.includes("task")){
