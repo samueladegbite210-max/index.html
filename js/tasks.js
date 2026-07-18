@@ -1,3 +1,6 @@
+console.log("tasks.js loaded");
+
+function taskReply(msg, text){
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 function taskReply(msg, text){
 
