@@ -1,8 +1,8 @@
-console.log("tasks.js loaded");
-
-function taskReply(msg, text){
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-function taskReply(msg, text){
+
+console.log("goals.js loaded");
+
+function goalReply(msg, text){
 
     // Create Task
     if(
