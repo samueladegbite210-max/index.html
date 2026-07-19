@@ -161,6 +161,12 @@ if(brain){
     addMessage("ai", brain);
     return;
 }
+ let advice = adviceReply(msg);
+
+if(advice){
+    addMessage("ai", advice);
+    return;
+}
     addMessage("ai", "🤖 I'm still learning.");
 
 }
