@@ -1,3 +1,4 @@
+alert("goals.js");
 function goalReply(msg, text){
 
     // Create Goal
