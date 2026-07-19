@@ -113,7 +113,11 @@ function aiReply(text){
         return;
     }
 
-    let goal = goalReply(msg, text);
+alert("Calling goalReply...");
+
+let goal = goalReply(msg, text);
+
+alert("Goal returned: " + goal);
     if(goal){
         addMessage("ai", goal);
         return;
