@@ -1,3 +1,4 @@
+alert("Knowledge loaded");
 function knowledgeReply(msg){
 
     // Programming
