@@ -2,20 +2,28 @@
 // Calculator
 // ================================
 alert("Calculator loaded");
-else if (/^[0-9+\-*/(). x]+$/i.test(msg)) {
+function calculatorReply(msg){
 
-    try {
+    let expression = msg.replace(/what is|calculate|solve|=/gi,"").trim();
 
-        let expression = msg.replace(/x/gi, "*");
+    if(expression === "") return null;
 
-        let result = eval(expression);
+    if(/^[0-9+\-*/().\s]+$/.test(expression)){
 
-        reply = "🧮 Answer: <strong>" + result + "</strong>";
+        try{
 
-    } catch (error) {
+            let result = Function("return " + expression)();
 
-        reply = "❌ Sorry, I couldn't calculate that.";
+            return "🧮 Answer: " + result;
+
+        }catch(e){
+
+            return "❌ I couldn't calculate that.";
+
+        }
 
     }
+
+    return null;
 
 }
