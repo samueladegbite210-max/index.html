@@ -22,12 +22,15 @@ function dateTimeReply(msg){
 
     }
 
-    if(msg.includes("day")){
+    if(
+    msg === "day" ||
+    msg.includes("what day is today") ||
+    msg.includes("what day is it")
+){
 
-        return "📆 Today is " + now.toLocaleDateString(undefined,{weekday:"long"});
-
-    }
-
-    return null;
+    return "📆 Today is " +
+    now.toLocaleDateString(undefined,{
+        weekday:"long"
+    });
 
 }
