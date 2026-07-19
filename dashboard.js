@@ -497,4 +497,23 @@ document
     }
 
 });
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const goals = JSON.parse(localStorage.getItem("goals")) || [];
+const events = JSON.parse(localStorage.getItem("events")) || [];
 
+let recommendation = "";
+
+if(tasks.length > 0){
+    recommendation = "✅ Your next task is: " + tasks[0].text;
+}
+else if(goals.length > 0){
+    recommendation = "🎯 Work towards your goal: " + goals[0].text;
+}
+else if(events.length > 0){
+    recommendation = "📅 Upcoming event: " + events[0].title;
+}
+else{
+    recommendation = "💙 You have nothing planned today. Let's create something productive!";
+}
+
+document.getElementById("aiRecommendation").innerHTML = recommendation;
