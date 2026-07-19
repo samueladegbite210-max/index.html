@@ -1,7 +1,7 @@
 // ================================
 // Calculator
 // ================================
-alert("Calculator loaded");
+alert
 function calculatorReply(msg){
 
     let expression = msg.replace(/what is|calculate|solve|=/gi,"").trim();
