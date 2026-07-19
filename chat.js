@@ -155,6 +155,12 @@ if(search){
     addMessage("ai", search);
     return;
 }
+ let brain = brainReply(msg, text);
+
+if(brain){
+    addMessage("ai", brain);
+    return;
+}
     addMessage("ai", "🤖 I'm still learning.");
 
 }
