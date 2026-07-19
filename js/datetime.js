@@ -7,9 +7,7 @@ function dateTimeReply(msg){
         msg.includes("current time") ||
         msg.includes("what time is it")
     ){
-
         return "🕒 Current time: " + now.toLocaleTimeString();
-
     }
 
     if(
@@ -17,20 +15,19 @@ function dateTimeReply(msg){
         msg.includes("today") ||
         msg.includes("what is today's date")
     ){
-
         return "📅 Today is " + now.toDateString();
-
     }
 
     if(
-    msg === "day" ||
-    msg.includes("what day is today") ||
-    msg.includes("what day is it")
-){
+        msg === "day" ||
+        msg.includes("what day is today") ||
+        msg.includes("what day is it")
+    ){
+        return "📆 Today is " +
+        now.toLocaleDateString(undefined,{
+            weekday:"long"
+        });
+    }
 
-    return "📆 Today is " +
-    now.toLocaleDateString(undefined,{
-        weekday:"long"
-    });
-
+    return null;
 }
