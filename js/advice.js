@@ -1,3 +1,4 @@
+alert("Advice received: " + msg);
 function adviceReply(msg){
 
     // Food
