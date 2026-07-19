@@ -78,77 +78,10 @@ function hasAny(msg, words){
 // ================================
 // AI Brain
 // ================================
-
 function aiReply(text){
 
-    const msg = text.toLowerCase().trim();
-alert("AI received: " + msg);
-    let conversation = conversationReply(msg, text);
-    if(conversation){
-        addMessage("ai", conversation);
-        return;
-    }
-
-    let knowledge = knowledgeReply(msg);
-    if(knowledge){
-        addMessage("ai", knowledge);
-        return;
-    }
-
-    let calculator = calculatorReply(msg);
-    if(calculator){
-        addMessage("ai", calculator);
-        return;
-    }
-
-    let dateTime = dateTimeReply(msg);
-    if(dateTime){
-        addMessage("ai", dateTime);
-        return;
-    }
-
-    let task = taskReply(msg, text);
-    if(task){
-        addMessage("ai", task);
-        return;
-    }
-
-    let goal = goalReply(msg, text);
-    if(goal){
-        addMessage("ai", goal);
-        return;
-    }
-
-    let note = noteReply(msg, text);
-    if(note){
-        addMessage("ai", note);
-        return;
-    }
-
-    let event = eventReply(msg, text);
-    if(event){
-        addMessage("ai", event);
-        return;
-    }
-
-    let memoryAnswer = memoryReply(msg, text);
-    if(memoryAnswer){
-        addMessage("ai", memoryAnswer);
-        return;
-    }
-
-    let natural = naturalReply(msg);
-    if(natural){
-        addMessage("ai", natural);
-        return;
-    }
-
-    let weather = weatherReply(msg);
-    if(weather){
-        addMessage("ai", weather);
-        return;
-    }
-
-    addMessage("ai", "🤖 I'm still learning.");
+    addMessage("ai","🤖 AI is alive!");
 
 }
+
+        
