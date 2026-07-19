@@ -1,3 +1,4 @@
+alert("Conversation loaded");
 function conversationReply(msg, text){
 
     alert("Message received: " + msg);
