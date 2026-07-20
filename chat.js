@@ -162,9 +162,8 @@ if(online){
     addMessage("ai", online);
     return;
 }
- 
+ alert("Reached Brain");
 
-// Brain
 let brain = aiBrainReply(msg);
 
 alert("Message: " + msg);
