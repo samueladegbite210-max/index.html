@@ -39,6 +39,16 @@ function brainReply(msg, text){
     ){
         return "🍽️ I'd recommend something healthy like rice, chicken, eggs, beans, fruit or vegetables.";
     }
+    // ===== Sleep =====
+if(
+    msg.includes("sleep") ||
+    msg.includes("sleeping") ||
+    msg.includes("i feel like sleeping") ||
+    msg.includes("i want to sleep") ||
+    msg.includes("need sleep")
+){
+    return "😴 You should get some rest. A good sleep helps your body and mind recover.";
+}
     // ===== Motivation =====
     if(
         msg.includes("motivate me")
@@ -51,12 +61,15 @@ function brainReply(msg, text){
     ){
         return "😂 Why do programmers prefer dark mode? Because light attracts bugs!";
     }
-    // ===== Creator =====
-    if(
-        msg.includes("who created you") ||
-        msg.includes("who made you")
-    ){
-        return "🤖 I was built by Samuel with the help of ChatGPT.";
+// ===== Creator =====
+if(
+    msg.includes("who create you") ||
+    msg.includes("who created you") ||
+    msg.includes("who made you") ||
+    msg.includes("who built you")
+){
+    return "🤖 I was built by Samuel with the help of ChatGPT.";
+ChatGPT.";
     }
     // ===== Identity =====
     if(
