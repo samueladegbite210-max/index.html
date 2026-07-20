@@ -40,14 +40,14 @@ function brainReply(msg, text){
         return "🍽️ I'd recommend something healthy like rice, chicken, eggs, beans, fruit or vegetables.";
     }
     // ===== Sleep =====
-if(
-    msg.includes("sleep") ||
-    msg.includes("sleeping") ||
-    msg.includes("i feel like sleeping") ||
-    msg.includes("i want to sleep") ||
-    msg.includes("need sleep")
-){
-    return "😴 You should get some rest. A good sleep helps your body and mind recover.";
+if(hasAny(msg,[
+    "sleep",
+    "sleeping",
+    "need sleep",
+    "i want to sleep",
+    "i feel like sleeping"
+])){
+    return "😴 You should get some rest.";
 }
     // ===== Motivation =====
     if(
