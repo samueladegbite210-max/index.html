@@ -2,7 +2,7 @@ alert("food.jsloaded");
 function foodReply(msg){
 
     if(
-        if(
+    
     msg.includes("what should i eat") ||
     msg.includes("what can i eat") ||
     msg.includes("recommend food") ||
