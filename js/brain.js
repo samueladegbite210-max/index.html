@@ -1,4 +1,4 @@
-
+alert("brain.js");
 function brainReply(msg, text){
     // ===== Greetings =====
     if(hasAny(msg,[
