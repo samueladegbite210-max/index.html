@@ -48,3 +48,22 @@ const intents = {
     ]
 
 };
+function detectIntent(msg){
+
+    for(const key in intents){
+
+        for(const phrase of intents[key]){
+
+            if(msg.includes(phrase)){
+
+                return key;
+
+            }
+
+        }
+
+    }
+
+    return null;
+
+}
