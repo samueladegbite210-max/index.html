@@ -175,6 +175,12 @@ if(advice){
     addMessage("ai", advice);
     return;
 }
+ let online = searchOnlineReply(msg);
+
+if(online){
+    addMessage("ai", online);
+    return;
+}
     addMessage("ai", "🤖 I'm still learning.");
 
 }
