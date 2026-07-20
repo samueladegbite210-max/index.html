@@ -168,6 +168,15 @@ if(brain){
 let advice = adviceReply(msg);
 
 if(advice){
+ addMessage("ai", advice);
+    return;
+}
+ let food = foodReply(msg);
+
+if(food){
+    addMessage("ai", food);
+    return;
+}
     addMessage("ai", advice);
     return;
 }
