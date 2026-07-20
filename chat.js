@@ -138,11 +138,13 @@ if(goal){
     }
 
     let natural = naturalReply(msg);
-    if(natural){
-        addMessage("ai", natural);
-        return;
-    }
 
+console.log("Natural:", natural);
+
+if(natural){
+    addMessage("ai", natural);
+    return;
+}
  let food = foodReply(msg);
 
 if(food){
