@@ -14,12 +14,16 @@ alert("Advice received: " + msg);
 
     // Sleep
     if(
-        msg.includes("should i sleep") ||
-        msg.includes("i am tired") ||
-        msg.includes("i'm tired")
-    ){
-        return "😴 If you're tired, get some rest. A good sleep helps your body and mind recover.";
-    }
+    msg.includes("should i sleep") ||
+    msg.includes("i am tired") ||
+    msg.includes("i'm tired") ||
+    msg.includes("i feel like sleeping") ||
+    msg.includes("feel like sleeping") ||
+    msg.includes("sleeping") ||
+    msg.includes("sleep")
+){
+    return "😴 You sound tired. Get some rest. Sleep is important for your body and mind.";
+}
 
     // Study
     if(
