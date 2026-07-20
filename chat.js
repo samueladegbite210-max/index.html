@@ -167,6 +167,9 @@ if(online){
 // Brain
 let brain = aiBrainReply(msg);
 
+alert("Message: " + msg);
+alert("Brain reply: " + brain);
+
 if(brain){
     addMessage("ai", brain);
     return;
