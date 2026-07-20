@@ -154,12 +154,7 @@ if(search){
     addMessage("ai", search);
     return;
 }
- let online = searchOnlineReply(msg);
-
-if(online){
-    addMessage("ai", online);
-    return;
-}
+ 
 
 // Brain
 let brain = brainReply(msg, text);
@@ -176,7 +171,12 @@ if(advice){
     addMessage("ai", advice);
     return;
 }
+let online = searchOnlineReply(msg);
 
+if(online){
+    addMessage("ai", online);
+    return;
+}
 // Default reply
 addMessage("ai","🤖 I'm still learning. Ask me another question!");
 }
