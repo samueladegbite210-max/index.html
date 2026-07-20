@@ -148,10 +148,10 @@ if(goal){
         addMessage("ai", weather);
         return;
     }
-let search = searchReply(msg);
+let online = searchOnlineReply(msg);
 
-if(search){
-    addMessage("ai", search);
+if(online){
+    addMessage("ai", online);
     return;
 }
  
@@ -171,16 +171,7 @@ if(advice){
     addMessage("ai", advice);
     return;
 }
-alert("Reached search");
 
-let online = searchOnlineReply(msg);
-
-alert("Online = " + online);
-
-if(online){
-    addMessage("ai", online);
-    return;
-}
 // Default reply
 addMessage("ai","🤖 I'm still learning. Ask me another question!");
 }
