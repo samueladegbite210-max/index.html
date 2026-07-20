@@ -31,23 +31,33 @@ function brainReply(msg, text){
     ){
         return "💙 Take a deep breath. One step at a time. You've overcome difficult days before.";
     }
+    
     // ===== Food =====
-    if(
-        msg.includes("hungry") ||
-        msg.includes("what should i eat") ||
-        msg.includes("food")
-    ){
-        return "🍽️ I'd recommend something healthy like rice, chicken, eggs, beans, fruit or vegetables.";
-    }
-    // ===== Sleep =====
+if(hasAny(msg,[
+    "hungry",
+    "food",
+    "eat",
+    "meal",
+    "breakfast",
+    "lunch",
+    "dinner",
+    "what should i eat",
+    "what can i eat",
+    "recommend food"
+])){
+    return "🍽️ I'd recommend something healthy like rice, chicken, eggs, beans, fruits or vegetables. Drink plenty of water too!";
+}
+
+// ===== Sleep =====
 if(hasAny(msg,[
     "sleep",
     "sleeping",
-    "need sleep",
+    "i feel like sleeping",
     "i want to sleep",
-    "i feel like sleeping"
+    "need sleep",
+    "should i sleep"
 ])){
-    return "😴 You should get some rest.";
+    return "😴 You sound tired. Get some rest. A good sleep will help you recover.";
 }
     // ===== Motivation =====
     if(
@@ -61,15 +71,16 @@ if(hasAny(msg,[
     ){
         return "😂 Why do programmers prefer dark mode? Because light attracts bugs!";
     }
+
 // ===== Creator =====
-if(
-    msg.includes("who create you") ||
-    msg.includes("who created you") ||
-    msg.includes("who made you") ||
-    msg.includes("who built you")
-){
+if(hasAny(msg,[
+    "who create you",
+    "who created you",
+    "who made you",
+    "who built you"
+])){
     return "🤖 I was built by Samuel with the help of ChatGPT.";
-ChatGPT.";
+}
     }
     // ===== Identity =====
     if(
