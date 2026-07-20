@@ -3,7 +3,6 @@
 // ================================
 
 // Storage
-
 const input = document.getElementById("userInput");
 const chat = document.getElementById("chatBox");
 
@@ -179,3 +178,4 @@ if(advice){
     addMessage("ai", "🤖 I'm still learning.");
 
 }
+
