@@ -1,6 +1,7 @@
-alert("searchOnline.js loaded");
-function searchOnlineReply(msg){
-    // Internet Search Placeholder
+alert("search.js loaded");
+
+function searchReply(msg){
+
     if(
         msg.includes("search") ||
         msg.includes("look up") ||
@@ -8,5 +9,6 @@ function searchOnlineReply(msg){
     ){
         return "🌐 Internet Search is coming in AI Life Assistant Version 2.0.";
     }
+
     return null;
 }
