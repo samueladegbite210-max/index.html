@@ -165,13 +165,12 @@ if(online){
  
 
 // Brain
-let brain = brainReply(msg, text);
+let brain = aiBrainReply(msg);
 
 if(brain){
     addMessage("ai", brain);
     return;
 }
-
 // Advice
 let advice = adviceReply(msg);
 
