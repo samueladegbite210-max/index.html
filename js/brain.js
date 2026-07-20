@@ -1,11 +1,32 @@
 alert("brain.js loaded");
 function brainReply(msg, text){
     // ===== Greetings =====
-    if(hasAny(msg,[
-        "hi","hello","hey"
-    ])){
-        return "👋 Hello! How can I help you today?";
-    }
+    // ==========================
+// GREETINGS
+// ==========================
+if (
+    msg.includes("hi") ||
+    msg.includes("hello") ||
+    msg.includes("hey")
+){
+    return "👋 Hello Samuel! How can I help you today?";
+}
+
+if(msg.includes("good morning")){
+    return "🌅 Good morning Samuel! I hope you have a productive day.";
+}
+
+if(msg.includes("good afternoon")){
+    return "☀️ Good afternoon Samuel! How is your day going?";
+}
+
+if(msg.includes("good evening")){
+    return "🌇 Good evening Samuel! Hope your day went well.";
+}
+
+if(msg.includes("good night")){
+    return "🌙 Good night Samuel! Sleep well and recharge for tomorrow.";
+}
     // ===== Feelings =====
     if(
         msg.includes("i'm sad") ||
@@ -32,7 +53,7 @@ function brainReply(msg, text){
         return "💙 Take a deep breath. One step at a time. You've overcome difficult days before.";
     }
     
-    // ===== Food =====
+    
 // FOOD
 if(
     msg.includes("eat") ||
@@ -46,7 +67,7 @@ if(
     return "🍽️ I recommend eating something healthy like rice, chicken, beans, eggs, vegetables, fruits, or whatever balanced meal you enjoy.";
 }
 
-// ===== Sleep =====
+
 // SLEEP
 if(
     msg.includes("sleep") ||
@@ -63,6 +84,17 @@ if(
     ){
         return "💪 Success comes from small consistent steps. Keep building your AI Life Assistant—you are creating something amazing.";
     }
+    if(msg.includes("how are you")){
+    return "😊 I'm doing great, Samuel! Thanks for asking. How are you today?";
+}
+
+if(msg.includes("what are you doing")){
+    return "🤖 I'm here waiting to help you with your tasks, goals, notes, questions, and anything else you need.";
+}
+
+if(msg.includes("do you know me")){
+    return "💙 Of course! You're Samuel, and we've been building your AI Life Assistant together.";
+}
     // ===== Joke =====
     if(
         msg.includes("joke")
