@@ -1,109 +1,200 @@
-// ==========================
-// AI Life Assistant Dashboard
-// ==========================
+// =====================================
+// AI LIFE ASSISTANT DASHBOARD
+// Part 1
+// =====================================
 
+// Username
 const username = localStorage.getItem("profileName") || "Samuel";
 
-// Date & Time
-function updateDateTime() {
+// =====================================
+// CLOCK
+// =====================================
+
+function updateDateTime(){
 
     const now = new Date();
 
     const date = document.getElementById("todayDate");
     const time = document.getElementById("currentTime");
 
-    if (date) {
+    if(date){
         date.textContent = now.toDateString();
     }
 
-    if (time) {
-        time.textContent = now.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
+    if(time){
+        time.textContent = now.toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit"
         });
     }
+
 }
 
-// Greeting
-function updateGreeting() {
+// =====================================
+// GREETING
+// =====================================
 
-    const welcome = document.getElementById("welcomeText");
-    const assistant = document.getElementById("assistantMessage");
+function updateGreeting(){
 
-    let greeting;
+    const welcome =
+        document.getElementById("welcomeText");
 
-    const hour = new Date().getHours();
-
-    if (hour < 12) {
-        greeting = "🌅 Good Morning";
-    } else if (hour < 17) {
-        greeting = "☀️ Good Afternoon";
-    } else if (hour < 21) {
-        greeting = "🌇 Good Evening";
-    } else {
-        greeting = "🌙 Good Night";
-    }
-
-    if (welcome) {
-        welcome.textContent = `${greeting}, ${username}`;
-    }
-
-    if (assistant) {
-        assistant.innerHTML = `
-📅 Today is a brand-new opportunity.<br><br>
-I'm here to help you manage your tasks, goals and events.<br><br>
-💙 Let's make today productive together!
-`;
-    }
-}
-// AI Greeting
-function loadAIGreeting() {
-
-    const hour = new Date().getHours();
+    const assistant =
+        document.getElementById("assistantMessage");
 
     let greeting = "";
 
-    if (hour < 12) {
-        greeting = "🌅 Good morning, Samuel!";
-    } else if (hour < 18) {
-        greeting = "☀️ Good afternoon, Samuel!";
-    } else {
-        greeting = "🌙 Good evening, Samuel!";
+    const hour = new Date().getHours();
+
+    if(hour < 12){
+
+        greeting = "🌅 Good Morning";
+
+    }else if(hour < 17){
+
+        greeting = "☀️ Good Afternoon";
+
+    }else if(hour < 21){
+
+        greeting = "🌇 Good Evening";
+
+    }else{
+
+        greeting = "🌙 Good Night";
+
     }
 
-    document.getElementById("aiGreeting").innerHTML = greeting;
+    if(welcome){
 
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const goals = JSON.parse(localStorage.getItem("goals")) || [];
-    const events = JSON.parse(localStorage.getItem("events")) || [];
+        welcome.textContent =
+            greeting + ", " + username;
 
-    document.getElementById("aiRecommendation").innerHTML =
-        "💡 Today you have <strong>" +
-        tasks.length +
-        "</strong> task(s), <strong>" +
-        goals.length +
-        "</strong> goal(s), and <strong>" +
-        events.length +
-        "</strong> event(s).<br><br>" +
-        "My recommendation: Finish your most important task first.";
+    }
+
+    if(assistant){
+
+        assistant.innerHTML = `
+📅 Today is a brand-new opportunity.<br><br>
+
+I'm here to help you manage your tasks, goals and events.<br><br>
+
+💙 Let's make today productive together!
+`;
+
+    }
 
 }
+
+// =====================================
+// AI GREETING
+// =====================================
+
+function loadAIGreeting(){
+
+    const aiGreeting =
+        document.getElementById("aiGreeting");
+
+    const aiRecommendation =
+        document.getElementById("aiRecommendation");
+
+    if(!aiGreeting || !aiRecommendation){
+        return;
+    }
+
+    let greeting = "";
+
+    const hour = new Date().getHours();
+
+    if(hour < 12){
+
+        greeting = "🌅 Good morning, " + username + "!";
+
+    }else if(hour < 18){
+
+        greeting = "☀️ Good afternoon, " + username + "!";
+
+    }else{
+
+        greeting = "🌙 Good evening, " + username + "!";
+
+    }
+
+    aiGreeting.innerHTML = greeting;
+
+    const tasks =
+        JSON.parse(localStorage.getItem("tasks")) || [];
+
+    const goals =
+        JSON.parse(localStorage.getItem("goals")) || [];
+
+    const events =
+        JSON.parse(localStorage.getItem("events")) || [];
+
+    aiRecommendation.innerHTML =
+`
+💡 Today you have
+<strong>${tasks.length}</strong> task(s),
+
+<strong>${goals.length}</strong> goal(s),
+
+and
+
+<strong>${events.length}</strong> event(s).
+
+<br><br>
+
+My recommendation:
+
+Finish your most important task first.
+`;
+
+}
+
+// =====================================
+// MENU
+// =====================================
+
+const sideMenu =
+document.getElementById("sideMenu");
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const closeBtn =
+document.getElementById("closeBtn");
+
+if(menuBtn && sideMenu){
+
+    menuBtn.onclick=function(){
+
+        sideMenu.classList.add("active");
+
+    };
+
+}
+
+if(closeBtn && sideMenu){
+
+    closeBtn.onclick=function(){
+
+        sideMenu.classList.remove("active");
+
+    };
+
+}
+
+// =====================================
+// START
+// =====================================
+
+updateDateTime();
+
+updateGreeting();
 
 loadAIGreeting();
 
-// Menu
-const sideMenu = document.getElementById("sideMenu");
-const menuBtn = document.getElementById("menuBtn");
-const closeBtn = document.getElementById("closeBtn");
-
-if (menuBtn && sideMenu) {
-    menuBtn.onclick = () => sideMenu.classList.add("active");
-}
-
-if (closeBtn && sideMenu) {
-    closeBtn.onclick = () => sideMenu.classList.remove("active");
-}
+setInterval(updateDateTime,1000);
 
 // Start Dashboard
 updateDateTime();
