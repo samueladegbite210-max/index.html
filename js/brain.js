@@ -15,16 +15,17 @@ function aiBrainReply(msg){
 
     // ===== FOOD =====
     if(match(msg,[
-        "eat",
-        "food",
-        "hungry",
-        "meal",
-        "breakfast",
-        "lunch",
-        "dinner"
-    ])){
-        return "🍽️ I recommend eating something healthy like rice, chicken, eggs, beans, vegetables and fruits.";
-    }
+    "eat",
+    "food",
+    "hungry",
+    "meal",
+    "breakfast",
+    "lunch",
+    "dinner"
+])){
+    alert("Food matched");
+    return "🍽️ I recommend eating something healthy like rice, chicken, eggs, beans, vegetables and fruits.";
+}
 
     // ===== SLEEP =====
     if(match(msg,[
