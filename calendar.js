@@ -166,3 +166,59 @@ function loadNextEvent(){
 }
 
 loadNextEvent();
+document.getElementById("searchEvent").addEventListener("input", function(){
+
+    const keyword = this.value.toLowerCase();
+
+    const container = document.getElementById("eventList");
+
+    container.innerHTML = "";
+
+    events
+        .filter(function(event){
+
+            return (
+
+                event.title.toLowerCase().includes(keyword) ||
+
+                event.location.toLowerCase().includes(keyword) ||
+
+                event.notes.toLowerCase().includes(keyword)
+
+            );
+
+        })
+
+        .forEach(function(event, index){
+
+            const card = document.createElement("div");
+
+            card.className = "card";
+
+            card.innerHTML = `
+
+                <h3>📅 ${event.title}</h3>
+
+                <p><strong>Date:</strong> ${event.date}</p>
+
+                ${event.time ? `<p>🕒 ${event.time}</p>` : ""}
+
+                ${event.location ? `<p>📍 ${event.location}</p>` : ""}
+
+                ${event.notes ? `<p>📝 ${event.notes}</p>` : ""}
+
+                <button onclick="editEvent(${index})">
+                ✏️ Edit
+                </button>
+
+                <button onclick="deleteEvent(${index})">
+                🗑 Delete
+                </button>
+
+            `;
+
+            container.appendChild(card);
+
+        });
+
+});
