@@ -30,13 +30,7 @@ function saveGoal(){
     goals.push({
 
     
-<label for="goalDeadline">📅 Deadline</label>
-
-<input
-type="date"
-id="goalDeadline"
-class="goal-input">
-
+id: Date.now(),
         title: title,
 
         description: description,
