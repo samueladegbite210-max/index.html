@@ -1,200 +1,111 @@
 // =====================================
 // AI LIFE ASSISTANT DASHBOARD
-// Part 1
+
 // =====================================
 
 // Username
 const username = localStorage.getItem("profileName") || "Samuel";
 
-// =====================================
-// CLOCK
-// =====================================
-
-function updateDateTime(){
+// Date & Time
+function updateDateTime() {
 
     const now = new Date();
 
     const date = document.getElementById("todayDate");
     const time = document.getElementById("currentTime");
 
-    if(date){
+    if (date) {
         date.textContent = now.toDateString();
     }
 
-    if(time){
-        time.textContent = now.toLocaleTimeString([],{
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit"
+    if (time) {
+        time.textContent = now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
         });
     }
-
 }
 
-// =====================================
-// GREETING
-// =====================================
+// Greeting
+function updateGreeting() {
 
-function updateGreeting(){
+    const welcome = document.getElementById("welcomeText");
+    const assistant = document.getElementById("assistantMessage");
 
-    const welcome =
-        document.getElementById("welcomeText");
-
-    const assistant =
-        document.getElementById("assistantMessage");
-
-    let greeting = "";
+    let greeting;
 
     const hour = new Date().getHours();
 
-    if(hour < 12){
-
+    if (hour < 12) {
         greeting = "🌅 Good Morning";
-
-    }else if(hour < 17){
-
+    } else if (hour < 17) {
         greeting = "☀️ Good Afternoon";
-
-    }else if(hour < 21){
-
+    } else if (hour < 21) {
         greeting = "🌇 Good Evening";
-
-    }else{
-
+    } else {
         greeting = "🌙 Good Night";
-
     }
 
-    if(welcome){
-
-        welcome.textContent =
-            greeting + ", " + username;
-
+    if (welcome) {
+        welcome.textContent = `${greeting}, ${username}`;
     }
 
-    if(assistant){
-
+    if (assistant) {
         assistant.innerHTML = `
 📅 Today is a brand-new opportunity.<br><br>
-
 I'm here to help you manage your tasks, goals and events.<br><br>
-
 💙 Let's make today productive together!
 `;
-
     }
-
 }
-
-// =====================================
-// AI GREETING
-// =====================================
-
-function loadAIGreeting(){
-
-    const aiGreeting =
-        document.getElementById("aiGreeting");
-
-    const aiRecommendation =
-        document.getElementById("aiRecommendation");
-
-    if(!aiGreeting || !aiRecommendation){
-        return;
-    }
-
-    let greeting = "";
+// AI Greeting
+function loadAIGreeting() {
 
     const hour = new Date().getHours();
 
-    if(hour < 12){
+    let greeting = "";
 
-        greeting = "🌅 Good morning, " + username + "!";
-
-    }else if(hour < 18){
-
-        greeting = "☀️ Good afternoon, " + username + "!";
-
-    }else{
-
-        greeting = "🌙 Good evening, " + username + "!";
-
+    if (hour < 12) {
+        greeting = "🌅 Good morning, Samuel!";
+    } else if (hour < 18) {
+        greeting = "☀️ Good afternoon, Samuel!";
+    } else {
+        greeting = "🌙 Good evening, Samuel!";
     }
 
-    aiGreeting.innerHTML = greeting;
+    document.getElementById("aiGreeting").innerHTML = greeting;
 
-    const tasks =
-        JSON.parse(localStorage.getItem("tasks")) || [];
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const goals = JSON.parse(localStorage.getItem("goals")) || [];
+    const events = JSON.parse(localStorage.getItem("events")) || [];
 
-    const goals =
-        JSON.parse(localStorage.getItem("goals")) || [];
-
-    const events =
-        JSON.parse(localStorage.getItem("events")) || [];
-
-    aiRecommendation.innerHTML =
-`
-💡 Today you have
-<strong>${tasks.length}</strong> task(s),
-
-<strong>${goals.length}</strong> goal(s),
-
-and
-
-<strong>${events.length}</strong> event(s).
-
-<br><br>
-
-My recommendation:
-
-Finish your most important task first.
-`;
+    document.getElementById("aiRecommendation").innerHTML =
+        "💡 Today you have <strong>" +
+        tasks.length +
+        "</strong> task(s), <strong>" +
+        goals.length +
+        "</strong> goal(s), and <strong>" +
+        events.length +
+        "</strong> event(s).<br><br>" +
+        "My recommendation: Finish your most important task first.";
 
 }
-
-// =====================================
-// MENU
-// =====================================
-
-const sideMenu =
-document.getElementById("sideMenu");
-
-const menuBtn =
-document.getElementById("menuBtn");
-
-const closeBtn =
-document.getElementById("closeBtn");
-
-if(menuBtn && sideMenu){
-
-    menuBtn.onclick=function(){
-
-        sideMenu.classList.add("active");
-
-    };
-
-}
-
-if(closeBtn && sideMenu){
-
-    closeBtn.onclick=function(){
-
-        sideMenu.classList.remove("active");
-
-    };
-
-}
-
-// =====================================
-// START
-// =====================================
-
-updateDateTime();
-
-updateGreeting();
 
 loadAIGreeting();
 
-setInterval(updateDateTime,1000);
+// Menu
+const sideMenu = document.getElementById("sideMenu");
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+
+if (menuBtn && sideMenu) {
+    menuBtn.onclick = () => sideMenu.classList.add("active");
+}
+
+if (closeBtn && sideMenu) {
+    closeBtn.onclick = () => sideMenu.classList.remove("active");
+}
 
 // Start Dashboard
 updateDateTime();
@@ -500,50 +411,7 @@ function updateDailyStreak(){
 }
 
 updateDailyStreak();
-// ==========================
-// Daily Streak
-// ==========================
 
-function updateDailyStreak(){
-
-    const streakCount = document.getElementById("streakCount");
-    const streakMessage = document.getElementById("streakMessage");
-
-    if(!streakCount || !streakMessage) return;
-
-    const today = new Date().toDateString();
-
-    let streak = parseInt(localStorage.getItem("dailyStreak")) || 0;
-    const lastVisit = localStorage.getItem("lastVisit");
-
-    if(lastVisit !== today){
-
-        streak++;
-
-        localStorage.setItem("dailyStreak", streak);
-        localStorage.setItem("lastVisit", today);
-
-    }
-
-    streakCount.textContent = streak + (streak === 1 ? " Day" : " Days");
-
-    if(streak >= 30){
-
-        streakMessage.textContent = "🏆 Incredible! 30-day streak!";
-
-    }else if(streak >= 7){
-
-        streakMessage.textContent = "🔥 Amazing! Keep your streak alive!";
-
-    }else{
-
-        streakMessage.textContent = "💪 Keep opening the app every day!";
-
-    }
-
-}
-
-updateDailyStreak();
 function clearNote(){
 
     if(confirm("Delete this note?")){
@@ -588,10 +456,9 @@ document
     }
 
 });
-const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-const goals = JSON.parse(localStorage.getItem("goals")) || [];
-const events = JSON.parse(localStorage.getItem("events")) || [];
-
+const dashboardTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const dashboardGoals = JSON.parse(localStorage.getItem("goals")) || [];
+const dashboardEvents = JSON.parse(localStorage.getItem("events")) || [];
 let recommendation = "";
 
 if(tasks.length > 0){
