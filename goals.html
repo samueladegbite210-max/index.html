@@ -74,25 +74,72 @@ button:hover{
 
 <div class="card">
 
+<h2>🎯 Add New Goal</h2>
+
 <input
 type="text"
-id="goalInput"
-placeholder="Enter a new goal">
+id="goalTitle"
+placeholder="Goal Title">
 
-<button onclick="addGoal()">
-Add Goal
+<textarea
+id="goalDescription"
+placeholder="Describe your goal..."></textarea>
+
+<input
+type="date"
+id="goalDeadline">
+
+<select id="goalCategory">
+
+<option value="Personal">Personal</option>
+
+<option value="Work">Work</option>
+
+<option value="School">School</option>
+
+<option value="Health">Health</option>
+
+<option value="Finance">Finance</option>
+
+</select>
+
+<button onclick="saveGoal()">
+💾 Save Goal
 </button>
 
 </div>
 
 <div class="card">
 
-<ul id="goalList"></ul>
+<h2>📊 Goal Summary</h2>
+
+<p>Total Goals:
+<span id="totalGoals">0</span></p>
+
+<p>Completed:
+<span id="completedGoals">0</span></p>
+
+<p>Pending:
+<span id="pendingGoals">0</span></p>
+
+</div>
+
+<div class="card">
+
+<input
+type="text"
+id="searchGoal"
+placeholder="🔍 Search Goals">
+
+</div>
+
+<div class="card">
+
+<div id="goalList"></div>
 
 </div>
 
 </div>
-
 <div class="navbar">
 
 <a href="dashboard.html">🏠<br>Home</a>
