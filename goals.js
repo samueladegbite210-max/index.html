@@ -92,9 +92,7 @@ function renderGoals(){
 
         ${goal.deadline ? `<p>📅 ${goal.deadline}</p>` : ""}
 
-        <button onclick="editGoal(${goal.id})">
-✏️ Edit
-</button>
+    
 
 <button onclick="editGoal(${goal.id})">
 ✏️ Edit
@@ -224,17 +222,17 @@ document.getElementById("searchGoal").addEventListener("input", function(){
 
         ${goal.deadline ? `<p>📅 ${goal.deadline}</p>` : ""}
 
-        <button onclick="toggleGoal(${goal.id})">
+        <button onclick="editGoal(${goal.id})">
+✏️ Edit
+</button>
 
-            ${goal.done ? "↩ Mark Pending" : "✅ Complete"}
+<button onclick="toggleGoal(${goal.id})">
+${goal.done ? "↩ Mark Pending" : "✅ Complete"}
+</button>
 
-        </button>
-
-        <button onclick="deleteGoal(${goal.id})">
-
-            🗑 Delete
-
-        </button>
+<button onclick="deleteGoal(${goal.id})">
+🗑 Delete
+</button>
 
         `;
 
