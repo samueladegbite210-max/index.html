@@ -87,7 +87,11 @@ async function aiReply(text){
         addMessage("ai", answer);
         return;
     }
-window.addEventListener("load", function () {
+
+    addMessage("ai","🤖 I'm still learning.");
+
+}
+    window.addEventListener("load", function () {
     startVoiceRecognition();
 });
  function startVoiceRecognition(){
@@ -116,7 +120,3 @@ window.addEventListener("load", function () {
     recognition.start();
 
 }
-    addMessage("ai","🤖 I'm still learning.");
-
-}
-    
