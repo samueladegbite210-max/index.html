@@ -65,6 +65,22 @@ button:hover{
 📝 Notes
 </header>
 
+    <input
+type="text"
+id="noteTitle"
+placeholder="📝 Note Title">
+
+<textarea
+id="notes"
+placeholder="Write your note here..."></textarea>
+
+<button onclick="saveNote()">
+💾 Save Note
+</button>
+
+<hr>
+
+<div id="notesList"></div>
 <div class="container">
 
 <textarea
@@ -99,11 +115,33 @@ notes.value = localStorage.getItem("notes") || "";
 
 function saveNote(){
 
-    localStorage.setItem("notes", notes.value);
+    const title = document.getElementById("noteTitle").value.trim();
+    const content = notes.value.trim();
+
+    if(title === "" || content === ""){
+
+        alert("Please enter a title and note.");
+
+        return;
+
+    }
+
+    let allNotes = JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    allNotes.push({
+        id: Date.now(),
+        title: title,
+        content: content
+    });
+
+    localStorage.setItem("allNotes", JSON.stringify(allNotes));
+
+    document.getElementById("noteTitle").value = "";
+    notes.value = "";
+
+    loadNotes();
 
     alert("✅ Note Saved!");
-
-    notes.focus();
 
 }
 
