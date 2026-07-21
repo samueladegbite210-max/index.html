@@ -220,3 +220,65 @@ document.getElementById("searchEvent").addEventListener("input", function(){
     }
 
 });
+// ==========================
+// Calendar Summary
+// ==========================
+
+function updateCalendarSummary(){
+
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const upcoming = events.filter(event => event.date >= today);
+
+    const todayEvents = events.filter(event => event.date === today);
+
+    document.getElementById("totalEvents").textContent = events.length;
+
+    document.getElementById("todayEvents").textContent = todayEvents.length;
+
+    document.getElementById("upcomingEvents").textContent = upcoming.length;
+
+}
+// ==========================
+// Today's Event
+// ==========================
+
+function loadTodayEvent(){
+
+    const box = document.getElementById("todayEvent");
+
+    if(!box) return;
+
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const todayEvents = events.filter(event => event.date === today);
+
+    if(todayEvents.length === 0){
+
+        box.innerHTML = "No events today.";
+
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    todayEvents.forEach(function(event){
+
+        box.innerHTML += `
+            <strong>${event.title}</strong><br>
+            📅 ${event.date}<br>
+            ${event.time ? "🕒 " + event.time : ""}
+            <br><br>
+        `;
+
+    });
+
+}
+renderEvents();
+updateCalendarSummary();
+loadTodayEvent();
