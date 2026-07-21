@@ -36,7 +36,8 @@ function addEvent() {
     localStorage.setItem("events", JSON.stringify(events));
 
     renderEvents();
-
+updateCalendarSummary();
+loadTodayEvent();
     // Clear form
     document.getElementById("eventTitle").value = "";
     document.getElementById("eventDate").value = "";
@@ -104,7 +105,8 @@ function deleteEvent(index){
         localStorage.setItem("events", JSON.stringify(events));
 
         renderEvents();
-
+updateCalendarSummary();
+loadTodayEvent();
     }
     
 }
@@ -168,57 +170,53 @@ function loadNextEvent(){
 loadNextEvent();
 document.getElementById("searchEvent").addEventListener("input", function(){
 
-    const keyword = this.value.toLowerCase();
+    const keyword = this.value.toLowerCase().trim();
+
+    // If search box is empty, show all events again
+    if(keyword === ""){
+        renderEvents();
+        return;
+    }
 
     const container = document.getElementById("eventList");
-
     container.innerHTML = "";
 
     events
-        .filter(function(event){
+    .filter(function(event){
 
-            return (
+        return (
+            (event.title || "").toLowerCase().includes(keyword) ||
+            (event.location || "").toLowerCase().includes(keyword) ||
+            (event.notes || "").toLowerCase().includes(keyword)
+        );
 
-                event.title.toLowerCase().includes(keyword) ||
+    })
+    .forEach(function(event, index){
 
-                event.location.toLowerCase().includes(keyword) ||
+        const card = document.createElement("div");
+        card.className = "card";
 
-                event.notes.toLowerCase().includes(keyword)
+        card.innerHTML = `
+            <h3>📅 ${event.title}</h3>
 
-            );
+            <p><strong>Date:</strong> ${event.date}</p>
 
-        })
+            ${event.time ? `<p>🕒 ${event.time}</p>` : ""}
+            ${event.location ? `<p>📍 ${event.location}</p>` : ""}
+            ${event.notes ? `<p>📝 ${event.notes}</p>` : ""}
 
-        .forEach(function(event, index){
+            <button onclick="editEvent(${index})">✏️ Edit</button>
 
-            const card = document.createElement("div");
+            <button onclick="deleteEvent(${index})">🗑 Delete</button>
+        `;
 
-            card.className = "card";
+        container.appendChild(card);
 
-            card.innerHTML = `
+    });
 
-                <h3>📅 ${event.title}</h3>
-
-                <p><strong>Date:</strong> ${event.date}</p>
-
-                ${event.time ? `<p>🕒 ${event.time}</p>` : ""}
-
-                ${event.location ? `<p>📍 ${event.location}</p>` : ""}
-
-                ${event.notes ? `<p>📝 ${event.notes}</p>` : ""}
-
-                <button onclick="editEvent(${index})">
-                ✏️ Edit
-                </button>
-
-                <button onclick="deleteEvent(${index})">
-                🗑 Delete
-                </button>
-
-            `;
-
-            container.appendChild(card);
-
-        });
+    // If nothing matches
+    if(container.innerHTML === ""){
+        container.innerHTML = "<p>❌ No matching events found.</p>";
+    }
 
 });
