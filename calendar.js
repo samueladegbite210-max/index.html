@@ -63,15 +63,12 @@ events.sort(function(a, b){
         eventList.innerHTML = "<li>No upcoming events.</li>";
         return;
     }
-events.sort(function(a, b){
 
-    return new Date(a.date + " " + (a.time || "00:00")) -
-           new Date(b.date + " " + (b.time || "00:00"));
-
-});
     events.forEach(function(event, index){
 
-        const li = document.createElement("li");
+        const card = document.createElement("div");
+
+card.className = "card";
 
         li.className = "event";
 
