@@ -156,7 +156,7 @@ if(food){
         addMessage("ai", weather);
         return;
     }
-let online = searchOnlineReply(msg);
+let online = await internetReply(msg);
 
 if(online){
     addMessage("ai", online);
