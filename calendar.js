@@ -70,21 +70,25 @@ events.sort(function(a, b){
 
 card.className = "card";
 
-        li.className = "event";
+card.innerHTML = `
+    <h3>📅 ${event.title}</h3>
 
-        li.innerHTML = `
-            <strong>${event.title}</strong><br>
-            📅 ${event.date}
-            ${event.time ? "<br>🕒 " + event.time : ""}
-            ${event.location ? "<br>📍 " + event.location : ""}
-            ${event.notes ? "<br>📝 " + event.notes : ""}
-            <br><br>
+    <p><strong>Date:</strong> ${event.date}</p>
 
-            <button onclick="deleteEvent(${index})">
-                🗑️ Delete
-            </button>
-        `;
+    ${event.time ? `<p><strong>Time:</strong> ${event.time}</p>` : ""}
 
+    ${event.location ? `<p><strong>Location:</strong> ${event.location}</p>` : ""}
+
+    ${event.notes ? `<p><strong>Notes:</strong> ${event.notes}</p>` : ""}
+
+    <button onclick="editEvent(${index})">
+        ✏️ Edit
+    </button>
+
+    <button onclick="deleteEvent(${index})">
+        🗑 Delete
+    </button>
+`;
         eventList.appendChild(li);
 
     });
