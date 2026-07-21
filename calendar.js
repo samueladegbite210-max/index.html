@@ -282,3 +282,4 @@ function loadTodayEvent(){
 renderEvents();
 updateCalendarSummary();
 loadTodayEvent();
+loadNextEvent();
