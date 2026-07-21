@@ -168,7 +168,7 @@ document.addEventListener("keydown", function(event){
 
     container.innerHTML = "";
 
-    allNotes.forEach(function(note){
+    allNotes.reverse().forEach(function(note){
 
         container.innerHTML += `
         <div class="card">
@@ -192,6 +192,51 @@ document.addEventListener("keydown", function(event){
     });
 
 }
+    document.getElementById("searchNote").addEventListener("input", function(){
+
+    const keyword = this.value.toLowerCase();
+
+    let allNotes =
+        JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    const container =
+        document.getElementById("notesList");
+
+    container.innerHTML = "";
+
+    allNotes
+        .reverse()
+        .filter(function(note){
+
+            return (
+                note.title.toLowerCase().includes(keyword) ||
+                note.content.toLowerCase().includes(keyword)
+            );
+
+        })
+        .forEach(function(note){
+
+            container.innerHTML += `
+            <div class="card">
+
+                <h3>${note.title}</h3>
+
+                <p>${note.content}</p>
+
+                <button onclick="editNote(${note.id})">
+                ✏️ Edit
+                </button>
+
+                <button onclick="deleteNote(${note.id})">
+                🗑 Delete
+                </button>
+
+            </div>
+            `;
+
+        });
+
+});
     function clearNote(){
 
     if(confirm("Delete current note?")){
