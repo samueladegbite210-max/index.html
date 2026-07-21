@@ -204,13 +204,43 @@ document.addEventListener("keydown", function(event){
 }
     function editNote(id){
 
-    alert("Edit feature coming next.");
+    let allNotes =
+        JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    const note = allNotes.find(function(n){
+
+        return n.id === id;
+
+    });
+
+    if(!note) return;
+
+    document.getElementById("noteTitle").value = note.title;
+
+    document.getElementById("notes").value = note.content;
+
+    deleteNote(id);
 
 }
 
 function deleteNote(id){
 
-    alert("Delete feature coming next.");
+    if(!confirm("🗑 Delete this note?")){
+        return;
+    }
+
+    let allNotes =
+        JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    allNotes = allNotes.filter(function(note){
+
+        return note.id !== id;
+
+    });
+
+    localStorage.setItem("allNotes", JSON.stringify(allNotes));
+
+    loadNotes();
 
 }
     loadNotes();
