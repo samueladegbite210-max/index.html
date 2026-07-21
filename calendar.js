@@ -89,7 +89,7 @@ card.innerHTML = `
         🗑 Delete
     </button>
 `;
-        eventList.appendChild(li);
+        eventList.appendChild(card);
 
     });
 
@@ -107,6 +107,25 @@ function deleteEvent(index){
 
     }
     
+}
+function editEvent(index){
+
+    const event = events[index];
+
+    document.getElementById("eventTitle").value = event.title;
+    document.getElementById("eventDate").value = event.date;
+    document.getElementById("eventTime").value = event.time;
+    document.getElementById("eventLocation").value = event.location;
+    document.getElementById("eventNotes").value = event.notes;
+    document.getElementById("eventReminder").value = event.reminder;
+    document.getElementById("eventRepeat").value = event.repeat;
+
+    events.splice(index,1);
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    renderEvents();
+
 }
     
 // ==========================
