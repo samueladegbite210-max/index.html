@@ -250,4 +250,6 @@ document.getElementById("searchGoal").addEventListener("input", function(){
 
 });
 // Start
+localStorage.removeItem("goals");
+goals = [];
 renderGoals();
