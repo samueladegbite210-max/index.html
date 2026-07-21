@@ -84,7 +84,7 @@ function renderGoals(){
 
         card.innerHTML = `
 
-        <h3>${goal.done ? "✅" : "🎯"} ${goal.title}</h3>
+        <h3>${goal.done ? "✅" : "🎯"} ${goal.title || goal.text}</h3>
 
         ${goal.description ? `<p>${goal.description}</p>` : ""}
 
@@ -214,7 +214,7 @@ document.getElementById("searchGoal").addEventListener("input", function(){
 
         card.innerHTML = `
 
-        <h3>${goal.done ? "✅" : "🎯"} ${goal.title}</h3>
+        <h3>${goal.done ? "✅" : "🎯"} ${goal.title || goal.text}</h3>
 
         ${goal.description ? `<p>${goal.description}</p>` : ""}
 
