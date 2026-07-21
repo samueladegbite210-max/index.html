@@ -80,7 +80,7 @@ function hasAny(msg, words){
 async function aiReply(text){
 
     const msg = text.toLowerCase().trim();
-
+const goalSummary = getGoalSummary();
     let answer = await smartAIReply(msg);
 
     if(answer){
