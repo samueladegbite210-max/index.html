@@ -280,6 +280,41 @@ if (
     return;
 }
  // ==========================
+// Smart Task Detection
+// ==========================
+
+if(
+    msg.startsWith("remind me to ") ||
+    msg.startsWith("i need to ") ||
+    msg.startsWith("don't let me forget ")
+){
+
+    let task = msg
+        .replace("remind me to","")
+        .replace("i need to","")
+        .replace("don't let me forget","")
+        .trim();
+
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    tasks.push({
+        id: Date.now(),
+        text: task,
+        priority: "Medium",
+        done: false
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    addMessage(
+        "ai",
+        "✅ I'll remember that.\n\n📌 Task added:\n" + task
+    );
+
+    return;
+
+}
+ // ==========================
 // AI Add Task
 // ==========================
 
