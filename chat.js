@@ -419,6 +419,52 @@ if(
 
 }
  // ==========================
+// AI Add Event
+// ==========================
+
+if(
+    msg.startsWith("add event ") ||
+    msg.startsWith("create event ")
+){
+
+    const title = msg
+        .replace("add event","")
+        .replace("create event","")
+        .trim();
+
+    if(title === ""){
+
+        addMessage("ai","❌ Please tell me the event.");
+
+        return;
+
+    }
+
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    events.push({
+
+        title: title,
+        date: "",
+        time: "",
+        location: "",
+        notes: "",
+        reminder: "none",
+        repeat: "none"
+
+    });
+
+    localStorage.setItem("events", JSON.stringify(events));
+
+    addMessage(
+        "ai",
+        "📅 Event created successfully!\n\n📌 " + title + "\n\nNow open Calendar and edit the date and time."
+    );
+
+    return;
+
+}
+ // ==========================
 // Tasks Summary
 // ==========================
 
