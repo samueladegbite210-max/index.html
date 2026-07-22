@@ -326,6 +326,56 @@ if(
 
 }
  // ==========================
+// AI Add Goal
+// ==========================
+
+if(
+    msg.startsWith("add goal ") ||
+    msg.startsWith("create goal ")
+){
+
+    const title = msg
+        .replace("add goal","")
+        .replace("create goal","")
+        .trim();
+
+    if(title === ""){
+
+        addMessage("ai","❌ Please tell me the goal.");
+
+        return;
+
+    }
+
+    const goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+    goals.push({
+
+        id: Date.now(),
+
+        title: title,
+
+        description: "",
+
+        deadline: "",
+
+        category: "Personal",
+
+        done: false
+
+    });
+
+    localStorage.setItem("goals", JSON.stringify(goals));
+
+    addMessage(
+        "ai",
+        "🎯 Goal added successfully!\n\n🎯 " + title
+    );
+
+    return;
+
+}
+ // ==========================
 // Tasks Summary
 // ==========================
 
