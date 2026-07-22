@@ -153,7 +153,20 @@ function updateTaskProgress(){
         percent + "% Completed";
 
 }
+function getTaskSummary(){
 
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.done).length;
+    const pending = total - completed;
+
+    return {
+        total,
+        completed,
+        pending,
+        tasks
+    };
+
+}
 // Start
 renderTasks();
 updateTaskSummary();
