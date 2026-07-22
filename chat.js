@@ -278,7 +278,54 @@ if (
     addMessage("ai", reply);
 
     return;
-}// ==========================
+}
+ // ==========================
+// AI Add Task
+// ==========================
+
+if(
+    msg.startsWith("add task ") ||
+    msg.startsWith("create task ")
+){
+
+    const title = msg
+        .replace("add task","")
+        .replace("create task","")
+        .trim();
+
+    if(title === ""){
+
+        addMessage("ai","❌ Please tell me the task.");
+
+        return;
+
+    }
+
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    tasks.push({
+
+        id: Date.now(),
+
+        text: title,
+
+        priority: "Medium",
+
+        done: false
+
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    addMessage(
+        "ai",
+        "✅ Task added successfully:\n\n📌 " + title
+    );
+
+    return;
+
+}
+ // ==========================
 // Tasks Summary
 // ==========================
 
