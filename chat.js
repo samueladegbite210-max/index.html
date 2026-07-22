@@ -376,6 +376,49 @@ if(
 
 }
  // ==========================
+// AI Add Note
+// ==========================
+
+if(
+    msg.startsWith("add note ") ||
+    msg.startsWith("create note ")
+){
+
+    const title = "Quick Note";
+
+    const content = msg
+        .replace("add note","")
+        .replace("create note","")
+        .trim();
+
+    if(content === ""){
+
+        addMessage("ai","❌ Please tell me the note.");
+
+        return;
+
+    }
+
+    const notes = JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    notes.push({
+
+        title: title,
+        content: content
+
+    });
+
+    localStorage.setItem("allNotes", JSON.stringify(notes));
+
+    addMessage(
+        "ai",
+        "📝 Note saved successfully!"
+    );
+
+    return;
+
+}
+ // ==========================
 // Tasks Summary
 // ==========================
 
