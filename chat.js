@@ -1,4 +1,4 @@
- // ================================
+// ================================
 // AI Life Assistant 
 // ================================
 
@@ -465,6 +465,59 @@ if(
     return;
 
 }
+ 
+
+// ==========================
+
+// Smart Note Detection
+
+// ==========================
+
+if(
+
+    msg.includes("remember that") ||
+
+    msg.includes("take note that") ||
+
+    msg.includes("write this down")
+
+){
+
+    let note = msg;
+
+    note = note.replace("remember that","");
+
+    note = note.replace("take note that","");
+
+    note = note.replace("write this down","");
+
+    note = note.trim();
+
+    const notes = JSON.parse(localStorage.getItem("allNotes")) || [];
+
+    notes.push({
+
+        title: "Quick Note",
+
+        content: note
+
+    });
+
+    localStorage.setItem("allNotes", JSON.stringify(notes));
+
+    addMessage(
+
+        "ai",
+
+        "📝 I've saved that note for you."
+
+    );
+
+    return;
+
+}
+
+// ===
  // ==========================
 // AI Add Note
 // ==========================
