@@ -562,7 +562,77 @@ if(
 
 }
  
+// ==========================
+// Smart Event Detection
+// ==========================
 
+if(
+
+    msg.includes("meeting") ||
+
+    msg.includes("appointment") ||
+
+    msg.includes("training") ||
+
+    msg.includes("class") ||
+
+    msg.includes("event")
+
+){
+
+    let title = text;
+
+    let date = "";
+
+    let today = new Date();
+
+    if(msg.includes("today")){
+
+        date = today.toISOString().split("T")[0];
+
+    }
+
+    if(msg.includes("tomorrow")){
+
+        today.setDate(today.getDate()+1);
+
+        date = today.toISOString().split("T")[0];
+
+    }
+
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    events.push({
+
+        title:title,
+
+        date:date,
+
+        time:"",
+
+        location:"",
+
+        notes:"",
+
+        reminder:"none",
+
+        repeat:"none"
+
+    });
+
+    localStorage.setItem("events",JSON.stringify(events));
+
+    addMessage(
+
+        "ai",
+
+        "📅 I've added that to your calendar."
+
+    );
+
+    return;
+
+}
 // ==========================
 // AI Add Event (Smart)
 // ==========================
