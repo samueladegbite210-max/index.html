@@ -411,6 +411,61 @@ if(
 
 }
  // ==========================
+// Smart Goal Detection
+// ==========================
+
+if(
+
+    msg.startsWith("i want to ") ||
+
+    msg.startsWith("my goal is to ") ||
+
+    msg.startsWith("i plan to ")
+
+){
+
+    let goal = msg
+
+        .replace("i want to","")
+
+        .replace("my goal is to","")
+
+        .replace("i plan to","")
+
+        .trim();
+
+    const goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+    goals.push({
+
+        id: Date.now(),
+
+        title: goal,
+
+        description: "",
+
+        deadline: "",
+
+        category: "Personal",
+
+        done: false
+
+    });
+
+    localStorage.setItem("goals", JSON.stringify(goals));
+
+    addMessage(
+
+        "ai",
+
+        "🎯 Great goal!\n\nI've added it:\n🎯 " + goal
+
+    );
+
+    return;
+
+}
+ // ==========================
 // AI Add Note
 // ==========================
 
