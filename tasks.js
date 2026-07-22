@@ -125,6 +125,36 @@ function deleteTask(id){
     saveTasks();
 
 }
+function updateTaskSummary(){
+
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.done).length;
+    const pending = total - completed;
+
+    const totalBox = document.getElementById("totalTasks");
+    const completedBox = document.getElementById("completedTasks");
+    const pendingBox = document.getElementById("pendingTasks");
+
+    if(totalBox) totalBox.textContent = total;
+    if(completedBox) completedBox.textContent = completed;
+    if(pendingBox) pendingBox.textContent = pending;
+
+}
+function updateTaskProgress(){
+
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.done).length;
+
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    document.getElementById("taskProgressBar").style.width = percent + "%";
+
+    document.getElementById("taskProgressText").textContent =
+        percent + "% Completed";
+
+}
 
 // Start
 renderTasks();
+updateTaskSummary();
+updateTaskProgress();
