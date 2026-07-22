@@ -202,7 +202,9 @@ if(
 
     pendingTasks.slice(0,3).forEach(function(task, index){
 
-        reply += `${index + 1}. ${task.text} (${task.priority})\n`;
+        const priority = task.priority || "Normal";
+
+reply += `${index + 1}. ${task.text} (${priority})\n`;
 
     });
 
