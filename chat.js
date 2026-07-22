@@ -81,18 +81,18 @@ async function aiReply(text){
 
     const msg = text.toLowerCase().trim();
 const goals = JSON.parse(localStorage.getItem("goals")) || [];
-
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const notes = JSON.parse(localStorage.getItem("allNotes")) || [];
+    
 const goalSummary = {
     total: goals.length,
     completed: goals.filter(g => g.done).length,
     pending: goals.filter(g => !g.done).length,
     goals: goals
 };
- // ==========================
-// Notes Data
-// ==========================
+ 
 
-const notes = JSON.parse(localStorage.getItem("allNotes")) || [];
+
 // ==========================
 // Calendar Data
 // ==========================
@@ -112,6 +112,50 @@ const upcomingEvents = events.filter(function(event){
     return event.date >= today;
 
 });
+    // ==========================
+// AI Daily Planner
+// ==========================
+
+if(
+
+    msg.includes("good morning") ||
+
+    msg.includes("daily summary") ||
+
+    msg.includes("how am i doing today")
+
+){
+
+    const pendingTasks = tasks.filter(task => !task.done).length;
+
+    const activeGoals = goals.filter(goal => !goal.done).length;
+
+    let reply = `🌅 Good Morning!
+
+📅 Events Today: ${todayEvents.length}
+
+✅ Pending Tasks: ${pendingTasks}
+
+🎯 Active Goals: ${activeGoals}
+
+📝 Notes Saved: ${notes.length}
+`;
+
+    if(pendingTasks > 0){
+
+        reply += `\n💡 Today's Focus:\nFinish your pending tasks first.`;
+
+    }else{
+
+        reply += `\n🎉 Great job! You're all caught up today.`;
+
+    }
+
+    addMessage("ai", reply);
+
+    return;
+
+}
  // ==========================
 // Note Count
 // ==========================
