@@ -156,6 +156,64 @@ if(
     return;
 
 }
+    // ==========================
+// AI Priority Assistant
+// ==========================
+
+if(
+
+    msg.includes("what should i do first") ||
+
+    msg.includes("what's my priority") ||
+
+    msg.includes("what should i focus on") ||
+
+    msg.includes("priority today")
+
+){
+
+    const pendingTasks = tasks.filter(task => !task.done);
+
+    if(pendingTasks.length === 0){
+
+        addMessage(
+            "ai",
+            "🎉 Fantastic! You have no pending tasks today."
+        );
+
+        return;
+
+    }
+
+    // Sort by priority
+    const priorityOrder = {
+        High: 1,
+        Medium: 2,
+        Low: 3
+    };
+
+    pendingTasks.sort(function(a, b){
+
+        return priorityOrder[a.priority] - priorityOrder[b.priority];
+
+    });
+
+    let reply = "🔥 Today's Top Priorities\n\n";
+
+    pendingTasks.slice(0,3).forEach(function(task, index){
+
+        reply += `${index + 1}. ${task.text} (${task.priority})\n`;
+
+    });
+
+    reply += "\n💡 I recommend starting with the highest-priority task.";
+
+    addMessage("ai", reply);
+
+    return;
+
+}
+    
  // ==========================
 // Note Count
 // ==========================
