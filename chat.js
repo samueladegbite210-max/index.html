@@ -138,7 +138,70 @@ if (
 
     return;
 }
+ // ==========================
+// Pending Goals
+// ==========================
 
+if(
+    msg.includes("pending goals") ||
+    msg.includes("unfinished goals")
+){
+
+    const pending = goalSummary.goals.filter(g => !g.done);
+
+    if(pending.length === 0){
+
+        addMessage("ai","🎉 Congratulations! You have no pending goals.");
+
+        return;
+
+    }
+
+    let reply = "⏳ Pending Goals:\n\n";
+
+    pending.forEach(function(goal){
+
+        reply += `🎯 ${goal.title || goal.text}\n`;
+
+    });
+
+    addMessage("ai", reply);
+
+    return;
+
+}
+
+ // ==========================
+// Completed Goals
+// ==========================
+
+if(
+    msg.includes("completed goals")
+){
+
+    const completed = goalSummary.goals.filter(g => g.done);
+
+    if(completed.length === 0){
+
+        addMessage("ai","You haven't completed any goals yet.");
+
+        return;
+
+    }
+
+    let reply = "✅ Completed Goals:\n\n";
+
+    completed.forEach(function(goal){
+
+        reply += `✅ ${goal.title || goal.text}\n`;
+
+    });
+
+    addMessage("ai", reply);
+
+    return;
+
+}
 // ==========================
 // Normal AI
 // ==========================
