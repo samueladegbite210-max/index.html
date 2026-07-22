@@ -278,7 +278,7 @@ if(
 
         reply += `🎯 ${goal.title}\n`;
 
-        reply += `📆 ${goal.deadline}\n\n`;
+        reply += `📆 ${new Date(goal.deadline).toDateString()}\n\n`;
 
     });
 
