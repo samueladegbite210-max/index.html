@@ -229,6 +229,23 @@ if(msg.includes("find note") || msg.includes("search note")){
     return;
 
 }
+ // ==========================
+// Tasks
+// ==========================
+
+if(
+    hasAny(msg, ["task","tasks"])
+){
+
+    const taskSummary = getTaskSummary();
+
+    return `📋 Task Summary
+
+📝 Total Tasks: ${taskSummary.total}
+✅ Completed: ${taskSummary.completed}
+⏳ Pending: ${taskSummary.pending}`;
+
+}
 // ==========================
 // Goal Summary
 // ==========================
