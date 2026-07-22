@@ -278,23 +278,24 @@ if (
     addMessage("ai", reply);
 
     return;
-}
- // ==========================
-// Tasks
+}// ==========================
+// Tasks Summary
 // ==========================
 
-if(
-    hasAny(msg, ["task","tasks"])
-){
+if(hasAny(msg, ["task","tasks"])){
 
     const taskSummary = getTaskSummary();
 
-    return `📋 Task Summary
+    addMessage(
+        "ai",
+`📋 Task Summary
 
 📝 Total Tasks: ${taskSummary.total}
 ✅ Completed: ${taskSummary.completed}
-⏳ Pending: ${taskSummary.pending}`;
+⏳ Pending: ${taskSummary.pending}`
+    );
 
+    return;
 }
  // ==========================
 // Pending Goals
