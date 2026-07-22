@@ -418,8 +418,10 @@ if(
     return;
 
 }
- // ==========================
-// AI Add Event
+ 
+
+// ==========================
+// AI Add Event (Smart)
 // ==========================
 
 if(
@@ -427,38 +429,43 @@ if(
     msg.startsWith("create event ")
 ){
 
-    const title = msg
+    let text = msg
         .replace("add event","")
         .replace("create event","")
         .trim();
 
-    if(title === ""){
+    let date = "";
+    let today = new Date();
 
-        addMessage("ai","❌ Please tell me the event.");
+    if(text.includes("today")){
+        date = today.toISOString().split("T")[0];
+        text = text.replace("today","").trim();
+    }
 
-        return;
-
+    if(text.includes("tomorrow")){
+        today.setDate(today.getDate()+1);
+        date = today.toISOString().split("T")[0];
+        text = text.replace("tomorrow","").trim();
     }
 
     const events = JSON.parse(localStorage.getItem("events")) || [];
 
     events.push({
-
-        title: title,
-        date: "",
+        title: text,
+        date: date,
         time: "",
         location: "",
         notes: "",
         reminder: "none",
         repeat: "none"
-
     });
 
     localStorage.setItem("events", JSON.stringify(events));
 
     addMessage(
         "ai",
-        "📅 Event created successfully!\n\n📌 " + title + "\n\nNow open Calendar and edit the date and time."
+        "📅 Event added successfully!\n\n📌 " + text +
+        (date ? "\n📅 " + date : "")
     );
 
     return;
