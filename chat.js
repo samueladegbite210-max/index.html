@@ -216,57 +216,59 @@ reply += `${index + 1}. ${task.text} (${priority})\n`;
 
 }
     
-    // ==========================
-// AI Deadline Assistant
+    
+
+// ==========================
+// Deadlines
 // ==========================
 
 if(
-
     msg.includes("deadline") ||
-
     msg.includes("deadlines") ||
-
-    msg.includes("what is due") ||
-
-    msg.includes("due today") ||
-
-    msg.includes("due tomorrow")
-
+    msg.includes("due")
 ){
 
     const today = new Date();
-
     const tomorrow = new Date();
 
     tomorrow.setDate(today.getDate() + 1);
 
     const todayStr = today.toISOString().split("T")[0];
-
     const tomorrowStr = tomorrow.toISOString().split("T")[0];
 
     let results = [];
 
-    if(msg.includes("today")){
+    // TODAY
+    if(
+        msg.includes("today")
+    ){
 
         results = goals.filter(goal => goal.deadline === todayStr);
 
     }
 
-    else if(msg.includes("tomorrow")){
+    // TOMORROW
+    else if(
+        msg.includes("tomorrow")
+    ){
 
         results = goals.filter(goal => goal.deadline === tomorrowStr);
 
     }
 
+    // ALL DEADLINES
     else{
 
-        results = goals.filter(goal => goal.deadline);
+        results = goals.filter(goal => goal.deadline && !goal.done);
 
     }
 
     if(results.length === 0){
 
-        addMessage("ai","📅 You have no matching deadlines.");
+        addMessage(
+            "ai",
+            "📅 You have no matching deadlines."
+        );
 
         return;
 
@@ -274,10 +276,9 @@ if(
 
     let reply = "📅 Upcoming Deadlines\n\n";
 
-    results.forEach(function(goal){
+    results.forEach(goal=>{
 
         reply += `🎯 ${goal.title}\n`;
-
         reply += `📆 ${new Date(goal.deadline).toDateString()}\n\n`;
 
     });
