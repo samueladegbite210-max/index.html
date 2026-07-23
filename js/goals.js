@@ -49,10 +49,11 @@ function goalReply(msg, text){
             .trim();
 
         goals.push({
-            id:Date.now(),
-            text:goalName,
-            done:false
-        });
+    id: Date.now(),
+    title: goalName,
+    text: goalName,
+    done: false
+});
 
         localStorage.setItem("goals",JSON.stringify(goals));
 
@@ -97,7 +98,7 @@ function goalReply(msg, text){
 
         goals.forEach(goal=>{
 
-            reply += `${goal.done ? "✅":"🎯"} ${goal.text}\n`;
+            reply += `${goal.done ? "✅":"🎯"} ${goal.title || goal.text}\n`;
 
         });
 
@@ -121,10 +122,10 @@ function goalReply(msg, text){
         let reply="⏳ Pending Goals\n\n";
 
         pending.forEach(goal=>{
-
-            reply += `🎯 ${goal.text || goal.title}\n`;
-
-        });
+    if(goal.title || goal.text){
+        reply += `🎯 ${goal.title || goal.text}\n`;
+    }
+});
 
         return reply;
     }
@@ -146,10 +147,10 @@ function goalReply(msg, text){
         let reply="✅ Completed Goals\n\n";
 
         completed.forEach(goal=>{
-
-            reply += `✅ ${goal.text}\n`;
-
-        });
+    if(goal.title || goal.text){
+        reply += `✅ ${goal.title || goal.text}\n`;
+    }
+});
 
         return reply;
     }
