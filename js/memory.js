@@ -1,149 +1,253 @@
 alert("memory.js loaded");
 
+// ==========================
+// AI Memory
+// ==========================
+
 let memory = JSON.parse(localStorage.getItem("memory")) || {};
+
+function saveMemory(){
+
+    localStorage.setItem(
+        "memory",
+        JSON.stringify(memory)
+    );
+
+}
 
 function memoryReply(msg, text){
 
-    // Save Name
+    memory = JSON.parse(localStorage.getItem("memory")) || {};
+
+    // ==========================
+    // SAVE NAME
+    // ==========================
+
     if(msg.startsWith("my name is ")){
 
         memory.name = text.replace(/my name is /i,"").trim();
 
-        localStorage.setItem("memory", JSON.stringify(memory));
+        saveMemory();
 
-        return "😊 Nice to meet you, " + memory.name + ". I'll remember your name.";
+        return "😊 Nice to meet you, " + memory.name + ".";
     }
 
-    // Save Location
+    // ==========================
+    // SAVE CITY
+    // ==========================
+
     if(msg.startsWith("i live in ")){
 
         memory.city = text.replace(/i live in /i,"").trim();
 
-        localStorage.setItem("memory", JSON.stringify(memory));
+        saveMemory();
 
         return "📍 I'll remember that you live in " + memory.city + ".";
     }
 
-    // Save Job
-    if(msg.startsWith("i work as ")){
+    // ==========================
+    // SAVE JOB
+    // ==========================
 
-        memory.job = text.replace(/i work as /i,"").trim();
-
-        localStorage.setItem("memory", JSON.stringify(memory));
-
-        return "💼 I'll remember that you work as " + memory.job + ".";
-    }
-
-    // Recall Name
     if(
-        msg.includes("what is my name") ||
-        msg.includes("who am i")
+        msg.startsWith("i work as ") ||
+        msg.startsWith("i work at ") ||
+        msg.startsWith("my job is ") ||
+        msg.startsWith("i am a ")
     ){
 
-        if(memory.name){
-            return "😊 Your name is " + memory.name + ".";
-        }
+        memory.job = text
+            .replace(/i work as /i,"")
+            .replace(/i work at /i,"")
+            .replace(/my job is /i,"")
+            .replace(/i am a /i,"")
+            .trim();
 
-        return "I don't know your name yet.";
+        saveMemory();
+
+        return "💼 I'll remember your job.";
     }
 
-    // Recall City
+    // ==========================
+    // SAVE BIRTHDAY
+    // ==========================
+
+    if(msg.startsWith("my birthday is ")){
+
+        memory.birthday = text.replace(/my birthday is /i,"").trim();
+
+        saveMemory();
+
+        return "🎂 I'll remember your birthday.";
+    }
+
+    // ==========================
+    // SAVE FAVORITE COLOR
+    // ==========================
+
+    if(msg.startsWith("my favorite color is ")){
+
+        memory.favoriteColor = text.replace(/my favorite color is /i,"").trim();
+
+        saveMemory();
+
+        return "🎨 I'll remember your favorite color.";
+    }
+
+    // ==========================
+    // SAVE FACTS
+    // ==========================
+
+    if(msg.startsWith("remember that ")){
+
+        memory.facts = memory.facts || [];
+
+        const fact = text.replace(/remember that /i,"").trim();
+
+        memory.facts.push(fact);
+
+        saveMemory();
+
+        return "🧠 I'll remember that.";
+    }
+
+    // ==========================
+    // RECALL NAME
+    // ==========================
+
+    if(msg.includes("what is my name") || msg.includes("who am i")){
+
+        return memory.name
+            ? "😊 Your name is " + memory.name + "."
+            : "I don't know your name yet.";
+
+    }
+
+    // ==========================
+    // RECALL CITY
+    // ==========================
+
     if(msg.includes("where do i live")){
 
-        if(memory.city){
-            return "📍 You live in " + memory.city + ".";
-        }
+        return memory.city
+            ? "📍 You live in " + memory.city + "."
+            : "I don't know where you live yet.";
 
-        return "I don't know where you live yet.";
     }
 
-    // Recall Job
+    // ==========================
+    // RECALL JOB
+    // ==========================
+
     if(msg.includes("what is my job")){
 
-        if(memory.job){
-            return "💼 You work as " + memory.job + ".";
+        return memory.job
+            ? "💼 You work as " + memory.job + "."
+            : "I don't know your job yet.";
+
+    }
+
+    // ==========================
+    // RECALL BIRTHDAY
+    // ==========================
+
+    if(msg.includes("when is my birthday")){
+
+        return memory.birthday
+            ? "🎂 Your birthday is " + memory.birthday + "."
+            : "I don't know your birthday yet.";
+
+    }
+
+    // ==========================
+    // RECALL FAVORITE COLOR
+    // ==========================
+
+    if(msg.includes("what is my favorite color")){
+
+        return memory.favoriteColor
+            ? "🎨 Your favorite color is " + memory.favoriteColor + "."
+            : "I don't know your favorite color yet.";
+
+    }
+
+    // ==========================
+    // SHOW EVERYTHING
+    // ==========================
+
+    if(
+        msg.includes("what do you remember about me") ||
+        msg.includes("tell me what you know about me")
+    ){
+
+        let reply = "🧠 Here's what I know about you:\n\n";
+
+        let hasData = false;
+
+        if(memory.name){
+
+            reply += "👤 Name: " + memory.name + "\n";
+
+            hasData = true;
+
         }
 
-        return "I don't know your job yet.";
-    }
-// ==========================
-// Remember Facts
-// ==========================
+        if(memory.city){
 
-if(msg.startsWith("remember that ")){
+            reply += "📍 Lives in: " + memory.city + "\n";
 
-    memory.facts = memory.facts || [];
+            hasData = true;
 
-    const fact = text.replace(/remember that /i,"").trim();
+        }
 
-    memory.facts.push(fact);
+        if(memory.job){
 
-    localStorage.setItem("memory", JSON.stringify(memory));
+            reply += "💼 Job: " + memory.job + "\n";
 
-    return "🧠 I'll remember that: " + fact;
-}
-    // ==========================
-// Show Memory
-// ==========================
+            hasData = true;
 
-if(
+        }
 
-    msg.includes("what do you remember about me") ||
+        if(memory.birthday){
 
-    msg.includes("tell me what you know about me")
+            reply += "🎂 Birthday: " + memory.birthday + "\n";
 
-){
+            hasData = true;
 
-    let reply = "🧠 Here's what I know about you:\n\n";
+        }
 
-    let hasData = false;
+        if(memory.favoriteColor){
 
-    if(memory.name){
+            reply += "🎨 Favorite Color: " + memory.favoriteColor + "\n";
 
-        reply += "👤 Name: " + memory.name + "\n";
+            hasData = true;
 
-        hasData = true;
+        }
 
-    }
+        if(memory.facts && memory.facts.length){
 
-    if(memory.city){
+            reply += "\n💡 Things you've told me:\n";
 
-        reply += "📍 Lives in: " + memory.city + "\n";
+            memory.facts.forEach(function(fact){
 
-        hasData = true;
+                reply += "• " + fact + "\n";
 
-    }
+            });
 
-    if(memory.job){
+            hasData = true;
 
-        reply += "💼 Job: " + memory.job + "\n";
+        }
 
-        hasData = true;
+        if(!hasData){
+
+            return "🧠 I don't know much about you yet.";
+
+        }
+
+        return reply;
 
     }
 
-    if(memory.facts && memory.facts.length){
-
-        reply += "\n💡 Things you've told me:\n";
-
-        memory.facts.forEach(function(fact){
-
-            reply += "• " + fact + "\n";
-
-        });
-
-        hasData = true;
-
-    }
-
-    if(!hasData){
-
-        return "🧠 I don't know much about you yet.";
-
-    }
-
-    return reply;
-
-}
     return null;
+
 }
