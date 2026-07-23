@@ -228,58 +228,62 @@ if(
     msg.includes("due")
 ){
 
-    const today = new Date();
+    const today = new Date().toISOString().split("T")[0];
+
     const tomorrow = new Date();
-
-    tomorrow.setDate(today.getDate() + 1);
-
-    const todayStr = today.toISOString().split("T")[0];
+    tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toISOString().split("T")[0];
 
     let results = [];
 
-    // TODAY
-    if(
-        msg.includes("today")
-    ){
+    if(msg.includes("today")){
 
-        results = goals.filter(goal => goal.deadline === todayStr);
+        results = goals.filter(goal => goal.deadline === today);
 
     }
 
-    // TOMORROW
-    else if(
-        msg.includes("tomorrow")
-    ){
+    else if(msg.includes("tomorrow")){
 
         results = goals.filter(goal => goal.deadline === tomorrowStr);
 
     }
 
-    // ALL DEADLINES
     else{
 
-        results = goals.filter(goal => goal.deadline && !goal.done);
+        results = goals.filter(goal => goal.deadline);
 
     }
 
     if(results.length === 0){
 
-        addMessage(
-            "ai",
-            "📅 You have no matching deadlines."
-        );
+        if(msg.includes("today")){
+
+            addMessage("ai","📅 Nothing is due today.");
+
+        }
+
+        else if(msg.includes("tomorrow")){
+
+            addMessage("ai","📅 Nothing is due tomorrow.");
+
+        }
+
+        else{
+
+            addMessage("ai","📅 You don't have any deadlines.");
+
+        }
 
         return;
 
     }
 
-    let reply = "📅 Upcoming Deadlines\n\n";
+    let reply = "📅 Upcoming Deadlines 🎯\n\n";
 
     results.forEach(goal=>{
 
         reply += `🎯 ${goal.title}\n`;
-        reply += `📆 ${new Date(goal.deadline).toDateString()}\n\n`;
+        reply += `📅 ${goal.deadline}\n\n`;
 
     });
 
