@@ -82,6 +82,68 @@ if(msg.startsWith("remember that ")){
 
     return "🧠 I'll remember that: " + fact;
 }
+// ==========================
+// Show Memory
+// ==========================
 
+if(
+
+    msg.includes("what do you remember about me") ||
+
+    msg.includes("tell me what you know about me")
+
+){
+
+    let reply = "🧠 Here's what I know about you:\n\n";
+
+    let hasData = false;
+
+    if(memory.name){
+
+        reply += "👤 Name: " + memory.name + "\n";
+
+        hasData = true;
+
+    }
+
+    if(memory.city){
+
+        reply += "📍 Lives in: " + memory.city + "\n";
+
+        hasData = true;
+
+    }
+
+    if(memory.job){
+
+        reply += "💼 Job: " + memory.job + "\n";
+
+        hasData = true;
+
+    }
+
+    if(memory.facts && memory.facts.length){
+
+        reply += "\n💡 Things you've told me:\n";
+
+        memory.facts.forEach(function(fact){
+
+            reply += "• " + fact + "\n";
+
+        });
+
+        hasData = true;
+
+    }
+
+    if(!hasData){
+
+        return "🧠 I don't know much about you yet.";
+
+    }
+
+    return reply;
+
+}
     return null;
 }
