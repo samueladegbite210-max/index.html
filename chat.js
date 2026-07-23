@@ -1151,6 +1151,60 @@ if(msg.includes("what is my name")){
     return;
 
 }
+    // ==========================
+// Remember Anything
+// ==========================
+
+if(msg.startsWith("remember that ")){
+
+    const fact = text.replace(/remember that/i,"").trim();
+
+    let memory = JSON.parse(localStorage.getItem("aiFacts")) || [];
+
+    memory.push(fact);
+
+    localStorage.setItem("aiFacts", JSON.stringify(memory));
+
+    addMessage("ai","🧠 I'll remember that!");
+
+    return;
+
+}
+    // ==========================
+// Show Memory
+// ==========================
+
+if(
+
+    msg.includes("what do you remember about me") ||
+
+    msg.includes("what do you know about me")
+
+){
+
+    let memory = JSON.parse(localStorage.getItem("aiFacts")) || [];
+
+    if(memory.length === 0){
+
+        addMessage("ai","🧠 I don't know much about you yet.");
+
+        return;
+
+    }
+
+    let reply = "🧠 Here's what I remember:\n\n";
+
+    memory.forEach(function(item){
+
+        reply += "• " + item + "\n";
+
+    });
+
+    addMessage("ai", reply);
+
+    return;
+
+}
 // ==========================
 // Normal AI
 // ==========================
