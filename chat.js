@@ -126,7 +126,7 @@ const upcomingEvents = events.filter(function(event){
 
 });
     
-}
+
     // ==========================
 // AI Daily Planner
 // ==========================
