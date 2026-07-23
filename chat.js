@@ -711,7 +711,25 @@ if(
     return;
 
 }
+// ==========================
+// Remember Anything
+// ==========================
 
+if(msg.startsWith("remember that ")){
+
+    const fact = text.replace(/remember that/i,"").trim();
+
+    let memory = JSON.parse(localStorage.getItem("aiFacts")) || [];
+
+    memory.push(fact);
+
+    localStorage.setItem("aiFacts", JSON.stringify(memory));
+
+    addMessage("ai","🧠 I'll remember that!");
+
+    return;
+
+}
 // ===
  // ==========================
 // AI Add Note
@@ -1151,25 +1169,8 @@ if(msg.includes("what is my name")){
     return;
 
 }
-    // ==========================
-// Remember Anything
-// ==========================
+  
 
-if(msg.startsWith("remember that ")){
-
-    const fact = text.replace(/remember that/i,"").trim();
-
-    let memory = JSON.parse(localStorage.getItem("aiFacts")) || [];
-
-    memory.push(fact);
-
-    localStorage.setItem("aiFacts", JSON.stringify(memory));
-
-    addMessage("ai","🧠 I'll remember that!");
-
-    return;
-
-}
     // ==========================
 // Show Memory
 // ==========================
