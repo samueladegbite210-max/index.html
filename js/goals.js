@@ -1,67 +1,157 @@
 alert("Goals loaded");
-let goals = JSON.parse(localStorage.getItem("goals")) || [];
-    function goalReply(msg, text){
 
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+function goalReply(msg, text){
+
+    // Reload latest goals
+    goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+    // ==========================
+    // Smart Goal Detection
+    // ==========================
+
+    if(
+        msg.startsWith("i want to ") ||
+        msg.startsWith("my goal is to ") ||
+        msg.startsWith("i plan to ")
+    ){
+
+        const goalName = text
+            .replace(/i want to/i,"")
+            .replace(/my goal is to/i,"")
+            .replace(/i plan to/i,"")
+            .trim();
+
+        goals.push({
+            id: Date.now(),
+            text: goalName,
+            done:false
+        });
+
+        localStorage.setItem("goals",JSON.stringify(goals));
+
+        return "🎯 Great goal!\n\nI've added:\n🎯 " + goalName;
+    }
+
+    // ==========================
     // Create Goal
+    // ==========================
+
     if(
         msg.startsWith("create a goal called ") ||
         msg.startsWith("add a goal called ")
     ){
 
-        let goalName = text
-            .replace(/create a goal called /i,"")
-            .replace(/add a goal called /i,"")
+        const goalName = text
+            .replace(/create a goal called/i,"")
+            .replace(/add a goal called/i,"")
             .trim();
 
-        if(goalName === ""){
-            return "❌ Please enter a goal.";
-        }
-
         goals.push({
-            id: Date.now(),
-            text: goalName,
-            done: false
+            id:Date.now(),
+            text:goalName,
+            done:false
         });
 
-        localStorage.setItem("goals", JSON.stringify(goals));
+        localStorage.setItem("goals",JSON.stringify(goals));
 
-        return "🎯 Goal \"" + goalName + "\" created successfully!";
+        return "🎯 Goal created successfully!";
     }
 
-    // Show Goals
-    if(hasAny(msg,[
-        "show my goals",
-        "show goals",
-        "my goals",
-        "goal list",
-        "list goals",
-        "list my goals"
-    ])){
+    // ==========================
+    // Goal Summary
+    // ==========================
 
-        if(goals.length === 0){
+    if(
+        msg.includes("goal summary") ||
+        msg.includes("how many goals")
+    ){
+
+        const completed = goals.filter(g=>g.done).length;
+
+        return `📊 Goal Summary
+
+🎯 Total Goals: ${goals.length}
+✅ Completed: ${completed}
+⏳ Pending: ${goals.length-completed}`;
+    }
+
+    // ==========================
+    // Show Goals
+    // ==========================
+
+    if(
+        msg.includes("show my goals") ||
+        msg.includes("list my goals") ||
+        msg.includes("show goals")
+    ){
+
+        if(goals.length===0){
+
             return "🎯 You don't have any goals yet.";
+
         }
 
-        let reply = "🎯 <strong>Your Goals</strong><br><br>";
+        let reply="🎯 Your Goals\n\n";
 
-        goals.forEach(function(goal,index){
-            reply +=
-                (goal.done ? "✅ " : "🎯 ") +
-                (index+1) + ". " +
-                goal.text +
-                "<br>";
+        goals.forEach(goal=>{
+
+            reply += `${goal.done ? "✅":"🎯"} ${goal.text}\n`;
+
         });
 
         return reply;
     }
 
-    // Goal Count
-    if(hasAny(msg,[
-        "goal count",
-        "how many goals",
-        "number of goals"
-    ])){
-        return "🎯 You currently have " + goals.length + " goal(s).";
+    // ==========================
+    // Pending Goals
+    // ==========================
+
+    if(msg.includes("pending goals")){
+
+        const pending = goals.filter(g=>!g.done);
+
+        if(pending.length===0){
+
+            return "🎉 You have no pending goals.";
+
+        }
+
+        let reply="⏳ Pending Goals\n\n";
+
+        pending.forEach(goal=>{
+
+            reply += `🎯 ${goal.text}\n`;
+
+        });
+
+        return reply;
+    }
+
+    // ==========================
+    // Completed Goals
+    // ==========================
+
+    if(msg.includes("completed goals")){
+
+        const completed = goals.filter(g=>g.done);
+
+        if(completed.length===0){
+
+            return "You haven't completed any goals yet.";
+
+        }
+
+        let reply="✅ Completed Goals\n\n";
+
+        completed.forEach(goal=>{
+
+            reply += `✅ ${goal.text}\n`;
+
+        });
+
+        return reply;
     }
 
     return null;
