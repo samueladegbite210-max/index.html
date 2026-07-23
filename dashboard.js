@@ -228,6 +228,37 @@ Start by adding your first task to begin your productive journey. 🚀
 }
 
 loadDailyBrief();
+function generateDailyBriefing(){
+
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const goals = JSON.parse(localStorage.getItem("goals")) || [];
+    const events = JSON.parse(localStorage.getItem("events")) || [];
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const todayEvents = events.filter(e => e.date === today);
+    const pendingTasks = tasks.filter(t => !t.done);
+    const pendingGoals = goals.filter(g => !g.done);
+
+    let briefing = `👋 Good day, Samuel!\n\n`;
+
+    briefing += `📅 Today's Events: ${todayEvents.length}\n`;
+    briefing += `✅ Pending Tasks: ${pendingTasks.length}\n`;
+    briefing += `🎯 Pending Goals: ${pendingGoals.length}\n\n`;
+
+    if(pendingTasks.length){
+
+        briefing += `🔥 Focus on:\n${pendingTasks[0].text}`;
+
+    }else{
+
+        briefing += "🎉 You're all caught up today!";
+
+    }
+
+    document.getElementById("briefingText").innerText = briefing;
+
+}
 // ==========================
 // Notifications
 // ==========================
@@ -437,3 +468,4 @@ const recommendationBox = document.getElementById("aiRecommendation");
 if (recommendationBox) {
     recommendationBox.innerHTML = recommendation;
 }
+generateDailyBriefing();
