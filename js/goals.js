@@ -122,7 +122,7 @@ function goalReply(msg, text){
 
         pending.forEach(goal=>{
 
-            reply += `🎯 ${goal.text}\n`;
+            reply += `🎯 ${goal.text || goal.title}\n`;
 
         });
 
