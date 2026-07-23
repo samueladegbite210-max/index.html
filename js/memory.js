@@ -66,23 +66,7 @@ function memoryReply(msg, text){
 
         return "I don't know your job yet.";
     }
-    // ==========================
-// Remember Facts
-// ==========================
-
-if(msg.startsWith("remember that ")){
-
-    memory.facts = memory.facts || [];
-
-    const fact = text.replace(/remember that /i,"").trim();
-
-    memory.facts.push(fact);
-
-    localStorage.setItem("memory", JSON.stringify(memory));
-
-    return "🧠 I'll remember that: " + fact;
-}
-
+ 
 
     return null;
 }
