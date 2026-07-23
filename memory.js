@@ -4,6 +4,10 @@
 
 function getMemory(){
 
+    return JSON.parse(localStorage.getItem("memory")) || {};
+
+}
+
     return JSON.parse(localStorage.getItem("aiMemory")) || {};
 
 }
@@ -11,7 +15,7 @@ function getMemory(){
 function saveMemory(memory){
 
     localStorage.setItem(
-        "aiMemory",
+        "memory",
         JSON.stringify(memory)
     );
 
