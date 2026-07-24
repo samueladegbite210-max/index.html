@@ -253,29 +253,6 @@ if(
         reply += "🎨 Favorite Color: " + memory.color + "\n";
         hasData = true;
     }
-
-    if(memory.club){
-        reply += "⚽ Favorite Club: " + memory.club + "\n";
-        hasData = true;
-    }
-
-    if(memory.facts && memory.facts.length){
-
-        reply += "\n💡 Things you've told me:\n";
-
-        memory.facts.forEach(function(fact){
-            reply += "• " + fact + "\n";
-        });
-
-        hasData = true;
-    }
-
-    if(!hasData){
-        return "🧠 I don't know much about you yet.";
-    }
-
-    return reply;
-}
     if(memory.phone){
 
     reply += "📱 Phone: " + memory.phone + "\n";
@@ -327,3 +304,59 @@ if(memory.dislikes && memory.dislikes.length){
     hasData = true;
 
 }
+// Show Study
+if(memory.study){
+
+    reply += "🎓 Study: " + memory.study + "\n";
+
+    hasData = true;
+
+}
+
+// Show Favourite Club
+if(memory.club){
+
+    reply += "⚽ Favorite Club: " + memory.club + "\n";
+
+    hasData = true;
+
+}
+
+// Show Likes
+if(memory.likes && memory.likes.length){
+
+    reply += "❤️ Likes:\n";
+
+    memory.likes.forEach(function(item){
+
+        reply += "• " + item + "\n";
+
+    });
+
+    hasData = true;
+
+}
+    if(memory.club){
+        reply += "⚽ Favorite Club: " + memory.club + "\n";
+        hasData = true;
+    }
+
+    if(memory.facts && memory.facts.length){
+
+        reply += "\n💡 Things you've told me:\n";
+
+        memory.facts.forEach(function(fact){
+            reply += "• " + fact + "\n";
+        });
+
+        hasData = true;
+    }
+
+    if(!hasData){
+        return "🧠 I don't know much about you yet.";
+    }
+
+    return reply;
+}
+    
+
