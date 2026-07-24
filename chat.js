@@ -31,7 +31,12 @@ async function aiReply(text){
     const answer = await smartAIReply(text);
 
     addMessage("ai", answer);
-saveContext("ai", answer);
+
+    // Save AI response
+    if(typeof saveContext === "function"){
+        saveContext("ai", answer);
+    }
+
 }
 
 // ================================
@@ -45,7 +50,12 @@ function sendMessage(){
     if(text === "") return;
 
     addMessage("user", text);
-saveContext("user", text);
+
+    // Save user message
+    if(typeof saveContext === "function"){
+        saveContext("user", text);
+    }
+
     input.value = "";
 
     aiReply(text);
