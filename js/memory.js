@@ -175,7 +175,76 @@ function memoryReply(msg, text){
             : "I don't know your favorite color yet.";
 
     }
+// Save Birthday
+if(msg.startsWith("my birthday is ")){
 
+    memory.birthday = text.replace(/my birthday is /i,"").trim();
+
+    localStorage.setItem("memory", JSON.stringify(memory));
+
+    return "🎂 I'll remember your birthday.";
+}
+
+// Save Favourite Color
+if(msg.startsWith("my favorite color is ")){
+
+    memory.color = text.replace(/my favorite color is /i,"").trim();
+
+    localStorage.setItem("memory", JSON.stringify(memory));
+
+    return "🎨 I'll remember your favorite color.";
+}
+
+// Save School/Course
+if(msg.startsWith("i study ")){
+
+    memory.study = text.replace(/i study /i,"").trim();
+
+    localStorage.setItem("memory", JSON.stringify(memory));
+
+    return "📚 I'll remember what you study.";
+}
+
+// Save Favourite Club
+if(msg.startsWith("my favorite club is ")){
+
+    memory.club = text.replace(/my favorite club is /i,"").trim();
+
+    localStorage.setItem("memory", JSON.stringify(memory));
+
+    return "⚽ I'll remember your favorite club.";
+}
+    if(memory.study){
+
+    reply += "🎓 Study: " + memory.study + "\n";
+
+    hasData = true;
+
+}
+
+if(memory.birthday){
+
+    reply += "🎂 Birthday: " + memory.birthday + "\n";
+
+    hasData = true;
+
+}
+
+if(memory.club){
+
+    reply += "⚽ Favorite Club: " + memory.club + "\n";
+
+    hasData = true;
+
+}
+
+if(memory.color){
+
+    reply += "🎨 Favorite Color: " + memory.color + "\n";
+
+    hasData = true;
+
+}
     // ==========================
     // SHOW EVERYTHING
     // ==========================
